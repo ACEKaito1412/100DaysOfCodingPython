@@ -1,8 +1,3 @@
-"""
-    namespaces and scope
-    - local scope - can be accessable only inside the function
-    - global scope - variable define outside the function
-"""
 
 # global scope
 player_health = 10
@@ -27,5 +22,4 @@ def is_prime(num):
     return True
 
 
-print(is_prime(73))
-print(is_prime(75))
+print(int(75 ** 0.5) + 1)
