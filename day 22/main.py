@@ -1,10 +1,12 @@
 from turtle import Turtle, Screen
-
+from paddle import Paddle
+from ball import Ball
 
 screen = Screen()
 screen.setup(width=800, height=400)
+screen.tracer(0)
 
-ball = Turtle("square")
+ball = Ball()
 
 for i in range(0, 20):
     line = Turtle("square")
@@ -12,32 +14,28 @@ for i in range(0, 20):
     line.shapesize(stretch_wid=0.5, stretch_len=0.1)
     line.setpos(0 , (212 - (i + 1) * 20))
 
+paddle_1 = Paddle(350, 0)
+paddle_2 = Paddle(-350, 0)
 
-class Paddle():
-    def __init__(self):
-        self.padle_list = []
-        self.create_paddle()
-    
-    def create_paddle(self):
-        for i in range(0, 4):
-            line = Turtle("square")
-            line.penup()
-            line.setpos(-390 , (40 - (i + 1) * 20))
-            self.padle_list.append(line)
-
-    def move_up(self):
-        for item in self.padle_list:
-            item.setpos(-390, item.ycor() + 20)
-    
-    def move_down(self):
-        for item in reversed(self.padle_list):
-            item.setpos(-390, item.ycor() - 20)
-
-
-paddle = Paddle()
 
 screen.listen()
-screen.onkey(paddle.move_up, 'Up')
-screen.onkey(paddle.move_down, 'Down')
+screen.onkey(paddle_1.move_up, 'Up')
+screen.onkey(paddle_1.move_down, 'Down')
+screen.onkey(paddle_2.move_up, 'w')
+screen.onkey(paddle_2.move_down, 's')
+
+
+game_state = True
+
+while game_state:
+    screen.update()
+    screen.delay(1)
+    ball.move()
+
+    if ball.ycor() > 190 or ball.ycor() < -190:
+        ball.bounce_y()
+        
+    if ball.distance(paddle_1) < 50 and ball.xcor() > 340 or ball.distance(paddle_2) < 50 and ball.xcor() > -360:
+        ball.bounce_x()
 
 screen.exitonclick()
