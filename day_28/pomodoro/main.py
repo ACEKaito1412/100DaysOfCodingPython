@@ -1,5 +1,9 @@
 from tkinter import *
+from playsound import playsound
 import math
+from pygame import mixer
+
+
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -11,6 +15,19 @@ SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 _reps = 1
 _sched_id = ""
+
+# ---------------------------- FOCUS TAB ---------------------------------- # 
+
+mixer.init()
+mixer.music.load("alarm.mp3")
+
+
+def start_playing():
+    mixer.music.play()
+
+def stop_playing():
+    mixer.music.stop()
+
 
 # ---------------------------- FOCUS TAB ---------------------------------- # 
 
@@ -76,7 +93,8 @@ def countdown_mechanism(count):
     if count > 0:
         _sched_id = window.after(1000, countdown_mechanism, count - 1)
     elif count <= 0 and _reps < 10:
-        _reps += 1
+        _reps += 1        
+        start_playing()
         bring_to_front()
         start_timer()
 
@@ -92,6 +110,7 @@ def countdown_mechanism(count):
     
 
 # ---------------------------- UI SETUP ------------------------------- #
+
 window = Tk()
 window.title("Pomodoro")
 window.config(padx=100, pady=50, bg=YELLOW)
@@ -111,13 +130,12 @@ btn_start = Button(text="Start", font=(FONT_NAME, 15, "bold"), padx=5, pady=5, b
 btn_start.grid(column=0, row=2)
 
 
-label_check = Label(font=(FONT_NAME, 20, "bold"), fg=GREEN)
+label_check = Label(font=(FONT_NAME, 20, "bold"), fg=GREEN, background=YELLOW)
 label_check.grid(column=1, row=2)
 
 
 btn_reset = Button(text="Reset", font=(FONT_NAME, 15, "bold"), padx=5, pady=5, border=1, command=reset_timer)
 btn_reset.grid(column=2, row=2)
-
 
 
 window.mainloop()
