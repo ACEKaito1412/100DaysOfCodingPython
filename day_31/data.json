@@ -1,0 +1,1694 @@
+{
+     "ningen": {
+          "translation": "human"
+     },
+     "jinrui": {
+          "translation": "humanity"
+     },
+     "hito": {
+          "translation": "person"
+     },
+     "otoko": {
+          "translation": "male"
+     },
+     "otokonohito": {
+          "translation": "man"
+     },
+     "otokonoko": {
+          "translation": "boy"
+     },
+     "onna": {
+          "translation": "female"
+     },
+     "onnanohito": {
+          "translation": "woman"
+     },
+     "onnanoko": {
+          "translation": "girl"
+     },
+     "akachan": {
+          "translation": "baby"
+     },
+     "wakamono": {
+          "translation": "youth, young person"
+     },
+     "watashi": {
+          "translation": "I, myself"
+     },
+     "watakushi": {
+          "translation": "I, myself"
+     },
+     "boku": {
+          "translation": "I, myself"
+     },
+     "ore": {
+          "translation": "I, myself"
+     },
+     "atashi": {
+          "translation": "I, myself"
+     },
+     "shoujo": {
+          "translation": "girl"
+     },
+     "shounen": {
+          "translation": "boy"
+     },
+     "isha": {
+          "translation": "doctor"
+     },
+     "kangoshi": {
+          "translation": "nurse"
+     },
+     "kangofu": {
+          "translation": "female nurse"
+     },
+     "shikai, ha-isha": {
+          "translation": "dentist"
+     },
+     "seijika": {
+          "translation": "politician"
+     },
+     "bengoshi": {
+          "translation": "lawyer"
+     },
+     "shouboushi": {
+          "translation": "firefighter"
+     },
+     "keisatsukan": {
+          "translation": "police officer"
+     },
+     "heishi": {
+          "translation": "soldier"
+     },
+     "kenchikuka": {
+          "translation": "architect"
+     },
+     "sensei": {
+          "translation": "teacher"
+     },
+     "academic teacher kyoushi": {
+          "translation": ""
+     },
+     "kashu": {
+          "translation": "singer"
+     },
+     "enjinia": {
+          "translation": "engineer"
+     },
+     "ashi": {
+          "translation": "foot, leg"
+     },
+     "kakato": {
+          "translation": "heel"
+     },
+     "sune": {
+          "translation": "shin"
+     },
+     "hiza": {
+          "translation": "knee"
+     },
+     "momo": {
+          "translation": "peach"
+     },
+     "atama": {
+          "translation": "head"
+     },
+     "kao": {
+          "translation": "face"
+     },
+     "kuchi": {
+          "translation": "mouth"
+     },
+     "kuchibiru": {
+          "translation": "lips"
+     },
+     "ha": {
+          "translation": "tooth"
+     },
+     "hana": {
+          "translation": "nose"
+     },
+     "me": {
+          "translation": "eye"
+     },
+     "hige": {
+          "translation": "moustache, beard"
+     },
+     "kami": {
+          "translation": "paper"
+     },
+     "mimi": {
+          "translation": "ear"
+     },
+     "onaka": {
+          "translation": "stomach"
+     },
+     "ude": {
+          "translation": "arm"
+     },
+     "hiji": {
+          "translation": "elbow"
+     },
+     "kata": {
+          "translation": "shoulder"
+     },
+     "tsume": {
+          "translation": "nail"
+     },
+     "te": {
+          "translation": "hand"
+     },
+     "tekubi": {
+          "translation": "wrist"
+     },
+     "te-no-hira": {
+          "translation": "palm of hand"
+     },
+     "yubi": {
+          "translation": "finger, toe"
+     },
+     "shiri": {
+          "translation": "buttocks"
+     },
+     "o-naka": {
+          "translation": "abdomen"
+     },
+     "kanz\u014d": {
+          "translation": "liver"
+     },
+     "kimo": {
+          "translation": "liver"
+     },
+     "kin'niku": {
+          "translation": "muscle"
+     },
+     "kubi": {
+          "translation": "neck"
+     },
+     "kokoro": {
+          "translation": "heart [as in feelings]"
+     },
+     "koshi": {
+          "translation": "waist, hip"
+     },
+     "shinz\u014d": {
+          "translation": "heart"
+     },
+     "senaka": {
+          "translation": "back"
+     },
+     "chi": {
+          "translation": "blood"
+     },
+     "niku": {
+          "translation": "meat"
+     },
+     "hada": {
+          "translation": "skin"
+     },
+     "hifu": {
+          "translation": "skin"
+     },
+     "hone": {
+          "translation": "bone"
+     },
+     "mune": {
+          "translation": "chest"
+     },
+     "kaze": {
+          "translation": "wind"
+     },
+     "geri": {
+          "translation": "diarrhea"
+     },
+     "by\u014dki": {
+          "translation": "illness"
+     },
+     "kazoku": {
+          "translation": "family"
+     },
+     "ryoushin": {
+          "translation": "parents"
+     },
+     "kodomo": {
+          "translation": "children, child"
+     },
+     "chichi\"otou-san\"": {
+          "translation": "father"
+     },
+     "haha\"okaa-san\"": {
+          "translation": "mother"
+     },
+     "tsuma": {
+          "translation": "wife"
+     },
+     "otto": {
+          "translation": "husband"
+     },
+     "ani on\u012b-san": {
+          "translation": "older brother"
+     },
+     "ane on\u0113-san": {
+          "translation": "older sister"
+     },
+     "ot\u014dto": {
+          "translation": "younger brother"
+     },
+     "im\u014dto": {
+          "translation": "younger sister"
+     },
+     "ky\u014ddai": {
+          "translation": "brothers, siblings"
+     },
+     "shimai": {
+          "translation": "sisters"
+     },
+     "sofu ojii-san": {
+          "translation": "grandfather"
+     },
+     "sobo obaa-san": {
+          "translation": "grandmother"
+     },
+     "mago": {
+          "translation": "grandchild"
+     },
+     "oji oji-san": {
+          "translation": "uncle"
+     },
+     "oba oba-san": {
+          "translation": "aunt"
+     },
+     "itoko": {
+          "translation": "cousin"
+     },
+     "mei": {
+          "translation": "niece"
+     },
+     "oi": {
+          "translation": "nephew"
+     },
+     "ikimono": {
+          "translation": "living creatures"
+     },
+     "bakemono": {
+          "translation": "monster"
+     },
+     "d\u014dbutsu": {
+          "translation": "animal"
+     },
+     "ch\u012bt\u0101": {
+          "translation": "cheetah"
+     },
+     "inu": {
+          "translation": "dog"
+     },
+     "neko": {
+          "translation": "cat"
+     },
+     "ushi": {
+          "translation": "cow"
+     },
+     "buta": {
+          "translation": "pig"
+     },
+     "uma": {
+          "translation": "horse"
+     },
+     "hitsuji": {
+          "translation": "sheep"
+     },
+     "saru": {
+          "translation": "monkey"
+     },
+     "nezumi": {
+          "translation": "mouse, rat"
+     },
+     "tora": {
+          "translation": "tiger"
+     },
+     "\u014dkami": {
+          "translation": "wolf"
+     },
+     "usagi": {
+          "translation": "rabbit"
+     },
+     "ry\u016b, tatsu": {
+          "translation": "dragon"
+     },
+     "shika": {
+          "translation": "only"
+     },
+     "kaeru": {
+          "translation": "to exchange"
+     },
+     "gama": {
+          "translation": "toad"
+     },
+     "shishi": {
+          "translation": "lion"
+     },
+     "kirin": {
+          "translation": "giraffe"
+     },
+     "z\u014d": {
+          "translation": "elephant"
+     },
+     "tori": {
+          "translation": "bird"
+     },
+     "niwatori": {
+          "translation": "chicken"
+     },
+     "suzume": {
+          "translation": "sparrow"
+     },
+     "karasu": {
+          "translation": "crow, raven"
+     },
+     "washi": {
+          "translation": "eagle"
+     },
+     "taka": {
+          "translation": "hawk, falcon"
+     },
+     "sakana": {
+          "translation": "fish"
+     },
+     "ebi": {
+          "translation": "shrimp, lobster"
+     },
+     "iwashi": {
+          "translation": "sardine"
+     },
+     "maguro": {
+          "translation": "tuna"
+     },
+     "katsuo": {
+          "translation": "bonito"
+     },
+     "sanma": {
+          "translation": "pike"
+     },
+     "aji": {
+          "translation": "horse mackerel"
+     },
+     "saba": {
+          "translation": "mackerel"
+     },
+     "ika": {
+          "translation": "squid"
+     },
+     "tako": {
+          "translation": "octopus"
+     },
+     "mushi": {
+          "translation": "insect"
+     },
+     "ch\u014d": {
+          "translation": "butterfly"
+     },
+     "ga": {
+          "translation": "but"
+     },
+     "semi": {
+          "translation": "cicada"
+     },
+     "tonbo": {
+          "translation": "dragonfly"
+     },
+     "batta": {
+          "translation": "grasshopper"
+     },
+     "kumo": {
+          "translation": "spider"
+     },
+     "hotaru": {
+          "translation": "firefly"
+     },
+     "hae": {
+          "translation": "housefly"
+     },
+     "ka": {
+          "translation": "question marker"
+     },
+     "gokiburi": {
+          "translation": "cockroach"
+     },
+     "katatsumuri": {
+          "translation": "snail"
+     },
+     "namekuji": {
+          "translation": "slug"
+     },
+     "mimizu": {
+          "translation": "earthworm"
+     },
+     "kai": {
+          "translation": "shellfish"
+     },
+     "kaigara": {
+          "translation": "shell"
+     },
+     "tokage": {
+          "translation": "lizard"
+     },
+     "hebi": {
+          "translation": "snake"
+     },
+     "kuma": {
+          "translation": "bear"
+     },
+     "kome": {
+          "translation": "uncooked rice"
+     },
+     "ine": {
+          "translation": "rice in a field"
+     },
+     "mugi": {
+          "translation": "wheat, oats"
+     },
+     "yasai": {
+          "translation": "vegetable"
+     },
+     "kudamono": {
+          "translation": "fruit for eating"
+     },
+     "imo": {
+          "translation": "yam, potato, taro"
+     },
+     "mame": {
+          "translation": "beans, peas"
+     },
+     "daikon": {
+          "translation": "Japanese white radish"
+     },
+     "ninjin": {
+          "translation": "carrot"
+     },
+     "ringo": {
+          "translation": "apple"
+     },
+     "mikan": {
+          "translation": "mandarin orange"
+     },
+     "banana, kansh\u014d": {
+          "translation": "banana"
+     },
+     "nashi": {
+          "translation": "pear"
+     },
+     "kuri": {
+          "translation": "chestnut tree"
+     },
+     "tomato, banka": {
+          "translation": "tomato"
+     },
+     "suika": {
+          "translation": "watermelon"
+     },
+     "jikan": {
+          "translation": "time"
+     },
+     "toki, ji": {
+          "translation": "~hours"
+     },
+     "koyomi, karend\u0101": {
+          "translation": "calendar"
+     },
+     "fun": {
+          "translation": "minute"
+     },
+     "by\u014d": {
+          "translation": "second"
+     },
+     "hi, nichi": {
+          "translation": "day"
+     },
+     "tsuki, gatsu": {
+          "translation": "month"
+     },
+     "toshi, nen": {
+          "translation": "year"
+     },
+     "kin\u014d, sakujitsu": {
+          "translation": "yesterday"
+     },
+     "ky\u014d": {
+          "translation": "today"
+     },
+     "ashita, asu, my\u014dnichi": {
+          "translation": "tomorrow"
+     },
+     "asa": {
+          "translation": "morning"
+     },
+     "hiru": {
+          "translation": "afternoon"
+     },
+     "y\u016bgata": {
+          "translation": "evening"
+     },
+     "ban": {
+          "translation": "evening"
+     },
+     "yoru": {
+          "translation": "evening, night"
+     },
+     "y\u014dbi": {
+          "translation": "~day"
+     },
+     "sh\u016b": {
+          "translation": "week"
+     },
+     "issh\u016bkan": {
+          "translation": "one week"
+     },
+     "nichi-y\u014dbi": {
+          "translation": "Sunday"
+     },
+     "getsu-y\u014dbi": {
+          "translation": "Monday"
+     },
+     "ka-y\u014dbi": {
+          "translation": "Tuesday"
+     },
+     "sui-y\u014dbi": {
+          "translation": "Wednesday"
+     },
+     "moku-y\u014dbi": {
+          "translation": "Thursday"
+     },
+     "kin-y\u014dbi": {
+          "translation": "Friday"
+     },
+     "do-y\u014dbi": {
+          "translation": "Saturday"
+     },
+     "taiy\u014d": {
+          "translation": "sun"
+     },
+     "tsuki": {
+          "translation": "moon"
+     },
+     "hoshi": {
+          "translation": "star"
+     },
+     "tenki": {
+          "translation": "weather"
+     },
+     "hare": {
+          "translation": "clear weather"
+     },
+     "ame": {
+          "translation": "rain"
+     },
+     "kumori": {
+          "translation": "cloudy"
+     },
+     "yuki": {
+          "translation": "snow"
+     },
+     "kaminari": {
+          "translation": "thunder, lightning"
+     },
+     "taif\u016b": {
+          "translation": "typhoon"
+     },
+     "arashi": {
+          "translation": "storm"
+     },
+     "sora": {
+          "translation": "sky"
+     },
+     "kita": {
+          "translation": "north"
+     },
+     "higashi": {
+          "translation": "east"
+     },
+     "minami": {
+          "translation": "south"
+     },
+     "nishi": {
+          "translation": "west"
+     },
+     "koko": {
+          "translation": "here"
+     },
+     "soko": {
+          "translation": "there"
+     },
+     "asoko": {
+          "translation": "over there"
+     },
+     "migi": {
+          "translation": "right"
+     },
+     "hidari": {
+          "translation": "left"
+     },
+     "ue": {
+          "translation": "above, up"
+     },
+     "shita": {
+          "translation": "below, down"
+     },
+     "mae": {
+          "translation": "front"
+     },
+     "ushiro": {
+          "translation": "behind"
+     },
+     "muk\u014d": {
+          "translation": "opposite side"
+     },
+     "naname": {
+          "translation": "diagonal"
+     },
+     "temae": {
+          "translation": "nearer"
+     },
+     "tooi": {
+          "translation": "far"
+     },
+     "chikai": {
+          "translation": "near, close"
+     },
+     "mizu": {
+          "translation": "water"
+     },
+     "yu": {
+          "translation": "hot water"
+     },
+     "k\u014dri": {
+          "translation": "ice"
+     },
+     "yuge": {
+          "translation": "steam"
+     },
+     "hi": {
+          "translation": "fire"
+     },
+     "gasu": {
+          "translation": "gas"
+     },
+     "k\u016bki": {
+          "translation": "air, atmosphere"
+     },
+     "tsuchi": {
+          "translation": "earth, ground"
+     },
+     "kinzoku": {
+          "translation": "metal, metallic"
+     },
+     "doro": {
+          "translation": "mud, mire, clay, plaster"
+     },
+     "kemuri": {
+          "translation": "smoke, tobacco, opium"
+     },
+     "tetsu": {
+          "translation": "iron [Fe]"
+     },
+     "d\u014d": {
+          "translation": "how"
+     },
+     "kin": {
+          "translation": "gold [Au]; money"
+     },
+     "gin": {
+          "translation": "silver [Ag]; wealth"
+     },
+     "namari": {
+          "translation": "lead [Pb]"
+     },
+     "shio": {
+          "translation": "salt [NaCl]"
+     },
+     "m\u0113toru": {
+          "translation": "meter"
+     },
+     "rittoru": {
+          "translation": "litre"
+     },
+     "guramu": {
+          "translation": "gram"
+     },
+     "kiro": {
+          "translation": "kilo-"
+     },
+     "miri": {
+          "translation": "milli-"
+     },
+     "senchi": {
+          "translation": "centimeter"
+     },
+     "inchi": {
+          "translation": "inch"
+     },
+     "shakai": {
+          "translation": "society"
+     },
+     "keizai": {
+          "translation": "economy, economics"
+     },
+     "kaisha": {
+          "translation": "company"
+     },
+     "kaigi": {
+          "translation": "meeting"
+     },
+     "gakk\u014d": {
+          "translation": "school"
+     },
+     "yakusho": {
+          "translation": "local government office"
+     },
+     "mise": {
+          "translation": "store"
+     },
+     "hoteru": {
+          "translation": "hotel"
+     },
+     "k\u014dj\u014d": {
+          "translation": "factory"
+     },
+     "kane, most commonly o-kane": {
+          "translation": "money"
+     },
+     "satsu": {
+          "translation": "bill"
+     },
+     "kozeni": {
+          "translation": "small change"
+     },
+     "tsurisen, change o-tsuri": {
+          "translation": "change"
+     },
+     "jid\u014dhanbaiki": {
+          "translation": "vending machine, slot machine"
+     },
+     "public transport, fine kippu": {
+          "translation": "ticket"
+     },
+     "kitte": {
+          "translation": "stamp"
+     },
+     "tsukue": {
+          "translation": "desk"
+     },
+     "isu": {
+          "translation": "chair, position"
+     },
+     "tatami": {
+          "translation": "a tatami mat"
+     },
+     "to": {
+          "translation": "when, if, that"
+     },
+     "tobira": {
+          "translation": "door panel"
+     },
+     "doa": {
+          "translation": "door"
+     },
+     "mado": {
+          "translation": "window"
+     },
+     "futon": {
+          "translation": "futon"
+     },
+     "genkan": {
+          "translation": "entrance"
+     },
+     "ie": {
+          "translation": "house, home"
+     },
+     "ereb\u0113t\u0101": {
+          "translation": "elevator"
+     },
+     "esukar\u0113t\u0101": {
+          "translation": "escalator"
+     },
+     "denki": {
+          "translation": "electricity"
+     },
+     "kugi": {
+          "translation": "nail, spike"
+     },
+     "himo": {
+          "translation": "string, cord"
+     },
+     "nawa": {
+          "translation": "rope, string"
+     },
+     "fukuro": {
+          "translation": "pocket, bag"
+     },
+     "kaban": {
+          "translation": "leather bag"
+     },
+     "kasa": {
+          "translation": "umbrella, parasol"
+     },
+     "kagi": {
+          "translation": "door bolt, key"
+     },
+     "ch\u014dkoku": {
+          "translation": "sculpture, engraving"
+     },
+     "bunb\u014dgu": {
+          "translation": "stationery \u200b"
+     },
+     "inku": {
+          "translation": "ink"
+     },
+     "pen": {
+          "translation": "pen"
+     },
+     "b\u014drupen": {
+          "translation": "ball-point pen"
+     },
+     "mannenhitsu": {
+          "translation": "fountain pen"
+     },
+     "enpitsu": {
+          "translation": "pencil"
+     },
+     "fude": {
+          "translation": "brush for writing or painting"
+     },
+     "ch\u014dku": {
+          "translation": "chalk"
+     },
+     "keshigomu": {
+          "translation": "eraser"
+     },
+     "enpitsu-kezuri": {
+          "translation": "pencil sharpener"
+     },
+     "j\u014dgi": {
+          "translation": "ruler"
+     },
+     "n\u014dto": {
+          "translation": "notebook"
+     },
+     "nikki": {
+          "translation": "diary"
+     },
+     "kab\u0101": {
+          "translation": "book cover"
+     },
+     "f\u016bt\u014d": {
+          "translation": "envelope"
+     },
+     "hasami": {
+          "translation": "scissors"
+     },
+     "hotchikisu": {
+          "translation": "stapler"
+     },
+     "fuku": {
+          "translation": "clothes"
+     },
+     "y\u014dfuku": {
+          "translation": "western clothing"
+     },
+     "kimono": {
+          "translation": "kimono"
+     },
+     "wafuku": {
+          "translation": "Japanese clothing"
+     },
+     "sode": {
+          "translation": "sleeve"
+     },
+     "eri": {
+          "translation": "lapel, collar"
+     },
+     "botan": {
+          "translation": "button"
+     },
+     "chakku, fasun\u0101, jipp\u0101": {
+          "translation": "zipper, zipper fastener"
+     },
+     "beruto": {
+          "translation": "belt"
+     },
+     "kutsu": {
+          "translation": "shoe"
+     },
+     "kutsushita": {
+          "translation": "sock"
+     },
+     "megane": {
+          "translation": "glasses"
+     },
+     "tetsud\u014d": {
+          "translation": "railway"
+     },
+     "eki": {
+          "translation": "station"
+     },
+     "hik\u014dki": {
+          "translation": "airplane"
+     },
+     "k\u016bk\u014d, hik\u014dj\u014d": {
+          "translation": "airport"
+     },
+     "michi": {
+          "translation": "street, way, road"
+     },
+     "d\u014dro": {
+          "translation": "road"
+     },
+     "basutei": {
+          "translation": "bus-stop"
+     },
+     "t\u014dri": {
+          "translation": "avenue"
+     },
+     "densha": {
+          "translation": "train"
+     },
+     "kuruma, jid\u014dsha": {
+          "translation": "car"
+     },
+     "moji": {
+          "translation": "letter, character, script"
+     },
+     "ji": {
+          "translation": "a letter, character"
+     },
+     "kanji": {
+          "translation": "Chinese character"
+     },
+     "hiragana": {
+          "translation": "hiragana syllabary characters"
+     },
+     "katakana": {
+          "translation": "katakana syllabary characters"
+     },
+     "s\u016bji": {
+          "translation": "numbers"
+     },
+     "arufabetto": {
+          "translation": "alphabet"
+     },
+     "hon": {
+          "translation": "book"
+     },
+     "tegami": {
+          "translation": "letter"
+     },
+     "shinbun": {
+          "translation": "newspaper"
+     },
+     "jisho": {
+          "translation": "dictionary"
+     },
+     "pasokon": {
+          "translation": "personal computer"
+     },
+     "iro, shikisai": {
+          "translation": "color"
+     },
+     "aka": {
+          "translation": "red"
+     },
+     "kiiro": {
+          "translation": "yellow"
+     },
+     "midori": {
+          "translation": "green"
+     },
+     "ao": {
+          "translation": "blue"
+     },
+     "murasaki, murasakiiro": {
+          "translation": "purple"
+     },
+     "shiro": {
+          "translation": "white"
+     },
+     "kuro": {
+          "translation": "black"
+     },
+     "pinku": {
+          "translation": "pink"
+     },
+     "chairo": {
+          "translation": "brown"
+     },
+     "haiiro, nezumiiro": {
+          "translation": "grey"
+     },
+     "orenji": {
+          "translation": "orange"
+     },
+     "e": {
+          "translation": "picture"
+     },
+     "ongaku": {
+          "translation": "music"
+     },
+     "rika": {
+          "translation": "science"
+     },
+     "sans\u016b": {
+          "translation": "arithmetic"
+     },
+     "rekishi": {
+          "translation": "history"
+     },
+     "chiri": {
+          "translation": "geography"
+     },
+     "taiiku": {
+          "translation": "physical education"
+     },
+     "sup\u014dtsu": {
+          "translation": "sport"
+     },
+     "shisutemu": {
+          "translation": "system"
+     },
+     "j\u014dh\u014d": {
+          "translation": "information, news"
+     },
+     "hitsuy\u014d": {
+          "translation": "necessity"
+     },
+     "benky\u014d": {
+          "translation": "study"
+     },
+     "irai": {
+          "translation": "request"
+     },
+     "rei, zero": {
+          "translation": "zero"
+     },
+     "ichi": {
+          "translation": "one"
+     },
+     "ni": {
+          "translation": "to, by"
+     },
+     "san": {
+          "translation": "three"
+     },
+     "yon, shi": {
+          "translation": "four"
+     },
+     "go": {
+          "translation": "five"
+     },
+     "roku": {
+          "translation": "six"
+     },
+     "nana, shichi": {
+          "translation": "seven"
+     },
+     "hachi": {
+          "translation": "eight"
+     },
+     "ky\u016b, ku": {
+          "translation": "nine"
+     },
+     "j\u016b": {
+          "translation": "ten"
+     },
+     "hyaku": {
+          "translation": "hundred"
+     },
+     "sen": {
+          "translation": "thousand"
+     },
+     "man": {
+          "translation": "ten thousand"
+     },
+     "oku": {
+          "translation": "to put"
+     },
+     "hitotsu": {
+          "translation": "one, one thing"
+     },
+     "futatsu": {
+          "translation": "two, two things"
+     },
+     "mittsu": {
+          "translation": "three, three things"
+     },
+     "yottsu": {
+          "translation": "four, four things"
+     },
+     "itsutsu": {
+          "translation": "five, five things"
+     },
+     "muttsu": {
+          "translation": "six, six things"
+     },
+     "nanatsu": {
+          "translation": "seven, seven things"
+     },
+     "yattsu": {
+          "translation": "eight, eight things"
+     },
+     "kokonotsu": {
+          "translation": "nine, nine things"
+     },
+     "t\u014d": {
+          "translation": "ten, ten things"
+     },
+     "kore": {
+          "translation": "this, it"
+     },
+     "sore": {
+          "translation": "that"
+     },
+     "are": {
+          "translation": "that over there"
+     },
+     "dore": {
+          "translation": "which"
+     },
+     "himitsu": {
+          "translation": "secret"
+     },
+     "jid\u014d": {
+          "translation": "automatic"
+     },
+     "naiy\u014d": {
+          "translation": "content"
+     },
+     "seishiki": {
+          "translation": "formality"
+     },
+     "kekkon": {
+          "translation": "marriage"
+     },
+     "genzai": {
+          "translation": "now"
+     },
+     "ima": {
+          "translation": "now"
+     },
+     "kako": {
+          "translation": "past"
+     },
+     "mirai": {
+          "translation": "future"
+     },
+     "ii, yoi": {
+          "translation": "good"
+     },
+     "sugoi": {
+          "translation": "amazing"
+     },
+     "subarashii": {
+          "translation": "wonderful"
+     },
+     "warui": {
+          "translation": "bad, inferior"
+     },
+     "takai": {
+          "translation": "expensive, high"
+     },
+     "hikui": {
+          "translation": "low"
+     },
+     "yasui": {
+          "translation": "cheap"
+     },
+     "\u014dkii": {
+          "translation": "big"
+     },
+     "chiisai": {
+          "translation": "small"
+     },
+     "hosoi": {
+          "translation": "thin"
+     },
+     "futoi": {
+          "translation": "thick"
+     },
+     "furui": {
+          "translation": "old"
+     },
+     "atarashii": {
+          "translation": "new"
+     },
+     "wakai": {
+          "translation": "young"
+     },
+     "karui": {
+          "translation": "light, easy"
+     },
+     "omoi": {
+          "translation": "heavy"
+     },
+     "yasashii": {
+          "translation": "easy, simple"
+     },
+     "muzukashii": {
+          "translation": "difficult"
+     },
+     "yawarakai": {
+          "translation": "soft"
+     },
+     "katai": {
+          "translation": "hard"
+     },
+     "atsui": {
+          "translation": "hot"
+     },
+     "tsumetai": {
+          "translation": "cold"
+     },
+     "samui as in cold weather": {
+          "translation": "cold"
+     },
+     "oishii": {
+          "translation": "delicious"
+     },
+     "umai": {
+          "translation": "delicious, appetizing"
+     },
+     "mazui": {
+          "translation": "tastes awful"
+     },
+     "amai": {
+          "translation": "sweet"
+     },
+     "karai": {
+          "translation": "hot [spicy]"
+     },
+     "shoppai": {
+          "translation": "salty"
+     },
+     "nigai": {
+          "translation": "bitter"
+     },
+     "utsukushii": {
+          "translation": "beautiful"
+     },
+     "ureshii": {
+          "translation": "happy"
+     },
+     "tanoshii": {
+          "translation": "fun"
+     },
+     "kanashii": {
+          "translation": "sad"
+     },
+     "sabishii": {
+          "translation": "lonely"
+     },
+     "kowai": {
+          "translation": "scary"
+     },
+     "itai": {
+          "translation": "painful"
+     },
+     "kayui": {
+          "translation": "itchy"
+     },
+     "kusai": {
+          "translation": "stinky"
+     },
+     "tsurai": {
+          "translation": "painful, heart-breaking"
+     },
+     "suru": {
+          "translation": "to do"
+     },
+     "yaru": {
+          "translation": "to do"
+     },
+     "iru": {
+          "translation": "to need"
+     },
+     "aru": {
+          "translation": "to exist"
+     },
+     "naru": {
+          "translation": "to become"
+     },
+     "okoru": {
+          "translation": "to be angry"
+     },
+     "arawareru": {
+          "translation": "to appear"
+     },
+     "ikiru": {
+          "translation": "to live"
+     },
+     "umu": {
+          "translation": "to give birth"
+     },
+     "shinu": {
+          "translation": "to die"
+     },
+     "kowareru": {
+          "translation": "to breakin"
+     },
+     "iku": {
+          "translation": "to go"
+     },
+     "kuru": {
+          "translation": "to come"
+     },
+     "aruku": {
+          "translation": "to walk"
+     },
+     "tobu": {
+          "translation": "to jump, to fly"
+     },
+     "oyogu": {
+          "translation": "to swim"
+     },
+     "ugoku": {
+          "translation": "to movein"
+     },
+     "odoru": {
+          "translation": "to dance"
+     },
+     "neru": {
+          "translation": "to sleep"
+     },
+     "utau": {
+          "translation": "to sing"
+     },
+     "kamu": {
+          "translation": "to bite"
+     },
+     "taberu": {
+          "translation": "to eat"
+     },
+     "nomu": {
+          "translation": "to drink"
+     },
+     "sawaru": {
+          "translation": "to touch, to feel"
+     },
+     "nageru": {
+          "translation": "to throw"
+     },
+     "motsu": {
+          "translation": "to hold"
+     },
+     "utsu": {
+          "translation": "to hit, to strike"
+     },
+     "naguru": {
+          "translation": "to hit, to strike"
+     },
+     "sasu": {
+          "translation": "extend one's hands"
+     },
+     "keru": {
+          "translation": "to kick"
+     },
+     "suwaru": {
+          "translation": "to sit"
+     },
+     "tatsu": {
+          "translation": "to stand"
+     },
+     "hashiru": {
+          "translation": "to run"
+     },
+     "aku": {
+          "translation": "to become unoccupied"
+     },
+     "komu": {
+          "translation": "to be crowded"
+     },
+     "kawaku": {
+          "translation": "to become dry"
+     },
+     "miru": {
+          "translation": "to see"
+     },
+     "kiku": {
+          "translation": "to hear, to listen"
+     },
+     "kagu": {
+          "translation": "to smell"
+     },
+     "iu": {
+          "translation": "to say"
+     },
+     "hanasu": {
+          "translation": "to let go of"
+     },
+     "kataru": {
+          "translation": "to tell"
+     },
+     "kaku": {
+          "translation": "to write"
+     },
+     "yomu": {
+          "translation": "to read"
+     },
+     "tsukau": {
+          "translation": "to use"
+     },
+     "tsukuru": {
+          "translation": "to make"
+     },
+     "naosu": {
+          "translation": "to fix, repair"
+     },
+     "suteru": {
+          "translation": "to discard, throw away"
+     },
+     "toru": {
+          "translation": "to take"
+     },
+     "kanashimu": {
+          "translation": "to be sad"
+     },
+     "naku": {
+          "translation": "to cry"
+     },
+     "warau": {
+          "translation": "to laugh"
+     },
+     "homeru": {
+          "translation": "to encourage"
+     },
+     "shikaru": {
+          "translation": "to scold"
+     },
+     "yorokobu": {
+          "translation": "to celebrate"
+     },
+     "yorokobi": {
+          "translation": "joy, delight, rapture"
+     },
+     "nagusameru": {
+          "translation": "provide empathy"
+     },
+     "akiru": {
+          "translation": "be weary"
+     },
+     "odoroku": {
+          "translation": "astonished, surprised, scared"
+     },
+     "au": {
+          "translation": "meet, interview"
+     },
+     "akeru": {
+          "translation": "opentr, unwraptr"
+     },
+     "asobu": {
+          "translation": "to play"
+     },
+     "atsumaru": {
+          "translation": "to gatherin"
+     },
+     "uru": {
+          "translation": "to sell"
+     },
+     "eru": {
+          "translation": "to obtain"
+     },
+     "oru": {
+          "translation": "to breaktr, to foldtr"
+     },
+     "kau": {
+          "translation": "to buy"
+     },
+     "kiru\u2020": {
+          "translation": "to cut"
+     },
+     "kiru": {
+          "translation": "to wear [on the upper body]"
+     },
+     "haku": {
+          "translation": "to wear [on the lower body]"
+     },
+     "shimeru": {
+          "translation": "to comprise, to account for"
+     },
+     "shiru\u2020": {
+          "translation": "to know"
+     },
+     "tsukareru": {
+          "translation": "to get tired"
+     },
+     "dekakeru": {
+          "translation": "to go out, to depart"
+     },
+     "hataraku": {
+          "translation": "to work"
+     },
+     "yasumu": {
+          "translation": "to rest"
+     },
+     "wakareru": {
+          "translation": "to separatein"
+     },
+     "m\u014d": {
+          "translation": "already"
+     },
+     "mada": {
+          "translation": "still, yet"
+     },
+     "zutto": {
+          "translation": "always"
+     },
+     "totemo": {
+          "translation": "very"
+     },
+     "k\u014d": {
+          "translation": "like this"
+     },
+     "s\u014d": {
+          "translation": "like that"
+     },
+     "\u0101": {
+          "translation": "in that other way"
+     },
+     "shibashiba": {
+          "translation": "often"
+     },
+     "kono": {
+          "translation": "this"
+     },
+     "sono": {
+          "translation": "that"
+     },
+     "ano": {
+          "translation": "that"
+     },
+     "dono": {
+          "translation": "which"
+     },
+     "hai": {
+          "translation": "yes"
+     },
+     "iie": {
+          "translation": "no"
+     },
+     "shikashi": {
+          "translation": "but, however"
+     },
+     "soshite": {
+          "translation": "and then"
+     },
+     "soreni": {
+          "translation": "besides"
+     },
+     "nazenara": {
+          "translation": "that is because, being because"
+     },
+     "made": {
+          "translation": "until"
+     },
+     "kara": {
+          "translation": "from"
+     },
+     "yori": {
+          "translation": "than"
+     },
+     "oyobi": {
+          "translation": "and; as well as"
+     },
+     "kamo": {
+          "translation": "might be, possible that"
+     },
+     "soretomo": {
+          "translation": "or"
+     },
+     "dano": {
+          "translation": "such things as"
+     },
+     "tsutsu": {
+          "translation": "ongoing occurrence"
+     },
+     "nagara": {
+          "translation": "while, though, both"
+     },
+     "narabini": {
+          "translation": "as well as"
+     },
+     "nari": {
+          "translation": "whether or not"
+     },
+     "node": {
+          "translation": "so"
+     },
+     "mata": {
+          "translation": "also, again"
+     },
+     "matawa": {
+          "translation": "or alternatively"
+     },
+     "mo": {
+          "translation": "too, also"
+     },
+     "ya": {
+          "translation": "and"
+     },
+     "kashira": {
+          "translation": "I wonder"
+     },
+     "koso": {
+          "translation": "emphasis"
+     },
+     "sae": {
+          "translation": "even"
+     },
+     "sura": {
+          "translation": "even"
+     },
+     "kurai": {
+          "translation": "approximately, about"
+     },
+     "dake": {
+          "translation": "only, as much as"
+     },
+     "datte": {
+          "translation": "however"
+     },
+     "demo": {
+          "translation": "also, or"
+     },
+     "nado": {
+          "translation": "for example"
+     },
+     "nara": {
+          "translation": "if"
+     },
+     "nanka": {
+          "translation": "casual undervalue"
+     },
+     "nante": {
+          "translation": "casual undervalue"
+     },
+     "bakari": {
+          "translation": "just, full of, only"
+     }
+}
