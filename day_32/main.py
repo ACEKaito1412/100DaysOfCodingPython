@@ -2,8 +2,8 @@ import smtplib
 import random
 import datetime as dt
 
-email = "jhuncarlomacdon@gmail.com"
-password = "nawkfujkpgudxxpw"
+email = ""
+password = "nawkfujkpgudxxpgw"
 
 # READ QUOTES TXT
 with open("quotes.txt", 'r') as f:
