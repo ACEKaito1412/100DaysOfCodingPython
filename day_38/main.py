@@ -1,11 +1,17 @@
 import requests
+from datetime import datetime
+from dotenv import load_dotenv 
+import os
 
-APP_ID = "57d5243b"
-APP_KEY = "af67fd139ac9ee0eba4218e3f79053cc"
+load_dotenv()
 
-endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
+APP_ID = os.getenv('APP_ID')
+APP_KEY = os.getenv("API_KEY")
 
-query = "yoga 30 mins"
+endpoint_track = "https://trackapi.nutritionix.com/v2/natural/exercise"
+endpoint_sheet = "https://api.sheety.co/952a8c555b507ce7b7d3ead3adab81b8/workout/workouts"
+
+query = input("What did you do today: ")
 parameters = {
     "query": query,
     "gender": "male",
@@ -21,7 +27,27 @@ headers = {
 
 
 
+response = requests.post(endpoint_track, json=parameters, headers=headers)
+result = response.json()
+result = result['exercises'][0]
 
-response = requests.post(endpoint, json=parameters, headers=headers)
+
+now = datetime.now()
+
+parameters_wrk = {
+    'workout' : {
+        'date' : now.strftime("%Y/%m/%d"),
+        'time' : now.strftime("%H:%M"),
+        'exercise' : result['user_input'],
+        'duration' : result['duration_min'],
+        'calories' :  round(float(result['nf_calories']))
+    }
+}
+
+headers = {
+    'Authorization' : os.getenv("SHEETY_TOKEN")
+}
+
+response = requests.post(endpoint_sheet, json=parameters_wrk, headers=headers)
 result = response.json()
 print(result)
