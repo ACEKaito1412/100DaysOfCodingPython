@@ -23,5 +23,6 @@ class DataManager:
         }
 
         res = requests.put(url=f"{ENDPOINT}/{item_data['id']}", json=json_params)
-        data = res.json()
-        print(data)
+        res.raise_for_status()
+        # data = res.json()
+        # print(data)
