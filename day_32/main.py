@@ -3,7 +3,7 @@ import random
 import datetime as dt
 
 email = ""
-password = "nawkfujkpgudxxpgw"
+password = ""
 
 # READ QUOTES TXT
 with open("quotes.txt", 'r') as f:

@@ -22,5 +22,6 @@ class NotificationManager:
                 connection.sendmail(from_addr=self.email, to_addrs=to_addrs,  msg=msg_1 + msg_2)
                 return True
         except Exception as e:
+            print(e)
             return False   
     

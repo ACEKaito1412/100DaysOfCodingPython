@@ -40,10 +40,10 @@ for item in sheet_data:
     cheapest_flight = find_cheapest_flight(data['data'])
     print(f"price: {cheapest_flight.price}")
     
-    if cheapest_flight == "N/A" :
+    if cheapest_flight.price == "N/A" :
         print(f"No flight found for {destination}")
     elif float(cheapest_flight.price) < float(item['lowestPrice']):
-        send_notification(data_m.user_data, cheapest_flight)
+        send_notification(data_m.user_data, cheapest_flight, notif_manager=notif_manager)
     else:
         print("skip for now")
 
