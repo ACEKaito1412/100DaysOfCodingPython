@@ -19,5 +19,7 @@ driver.get("https://appbrewery.github.io/instant_pot/")
 
 # driver.find_element(By.CSS_SELECTOR, ".demo_class a") # using css selector
 
+# driver.find_element(By.XPATH, '//*[@id="udemy"]/div[1]/div[2]/footer/div[5]/div/div[2]/ul/li/button/span') #finding element using its element path
+
 # driver.close() this will close the tab that is open
 driver.quit() # this will close the browser
