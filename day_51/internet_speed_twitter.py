@@ -7,8 +7,6 @@ URL_SPEED_TEST = "https://www.speedtest.net/"
 URL_TWITTER = "https://x.com/"
 PROMISED_DOWN = 150
 PROMISED_UP = 10
-TWITTER_EMAIL = "jhuncarlomacdon@gmail.com"
-TWITTER_PASSWORD = "09098893233"
 
 class InternetSpeedTwitterBot():
     def __init__(self):
