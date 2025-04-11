@@ -14,3 +14,14 @@ soup = BeautifulSoup(zillow_text, "html.parser")
 element_container = soup.find(name="ul", class_="List-c11n-8-84-3-photo-cards")
 
 list_items = element_container.find_all(name="li")
+
+for item in list_items:
+    
+    price = item.find(name='span', class_="PropertyCardWrapper__StyledPriceLine")
+    address = item.find(name='address')
+    link_ = item.find(name="a", class_="StyledPropertyCardDataArea-anchor")
+
+    if price == None:
+        pass
+    else:
+        print(f"{price.text.strip()} : {address.text.strip()} : {link_.text.strip()}")
