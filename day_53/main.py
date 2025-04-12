@@ -1,8 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from for_submit import SheetSubmit
+import time
 
 URL_TO_ZILLOW = "https://appbrewery.github.io/Zillow-Clone"
-URL_TO_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSeVfel87Dsuxjs4DvrFsmw9XDhE4ekpG1L8Jtu6f6yyLHoXdg/viewform?usp=header"
 
 res = requests.get(url=URL_TO_ZILLOW)
 res.raise_for_status()
@@ -15,13 +19,40 @@ element_container = soup.find(name="ul", class_="List-c11n-8-84-3-photo-cards")
 
 list_items = element_container.find_all(name="li")
 
-for item in list_items:
-    
-    price = item.find(name='span', class_="PropertyCardWrapper__StyledPriceLine")
-    address = item.find(name='address')
-    link_ = item.find(name="a", class_="StyledPropertyCardDataArea-anchor")
+def clean_price(str_price) -> float:
+    str_price = str_price.split(" ")[0]
+    n = ""
+    for char in str_price:
+        
+        if char == ".":
+            n += char
+        elif char.isdigit():
+            n += char
 
-    if price == None:
+    return float(n)
+
+apartment_list = []
+
+for item in list_items:
+    el_price = item.find(name='span', class_="PropertyCardWrapper__StyledPriceLine")
+    el_address = item.find(name='address')
+    el_anchor = item.find(name="a", class_="StyledPropertyCardDataArea-anchor")
+
+    if el_price == None:
         pass
     else:
-        print(f"{price.text.strip()} : {address.text.strip()} : {link_.text.strip()}")
+        href = el_anchor.get('href')
+        price = clean_price(el_price.text)
+        address = el_address.text.strip()
+
+        apartment_list.append({'price' : price, 'address' : address, "link" : href})
+
+
+sheet_submit = SheetSubmit()
+
+for apartment in apartment_list:
+    try:
+        sheet_submit.submit(apartment)
+        time.sleep(1.5)
+    except Exception as e:
+        print("Skip")
