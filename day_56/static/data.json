@@ -1,0 +1,72 @@
+{
+  "studies": [
+    {
+      "field": "Computer Science",
+      "institution": "Eulogio Amang Rodriguez Institute of Science and Technology",
+      "topics": [
+        "Database Management",
+        "Web Development",
+        "Python",
+        "SQL",
+        "Programming Fundamentals"
+      ],
+      "link" : ""
+    },
+    {
+      "field": "Introduction to Computer Science",
+      "institution": "Harvard University (Online)",
+      "topics": [
+        "Database Structures",
+        "JavaScript",
+        "Python",
+        "HTML",
+        "SQL",
+        "CSS"
+      ],
+      "link" : "https://cs50.harvard.edu/certificates/bf822fe6-c29f-43ed-9595-113cd3f6ab69"
+    },
+    {
+      "field": "Foundational C# with Microsoft",
+      "institution": "freeCodeCamp | Microsoft",
+      "topics": ["C# Fundamentals", "Data Types", "Control Structures", "OOP"],
+      "link" : "https://www.freecodecamp.org/certification/ACE_Kaito1412/foundational-c-sharp-with-microsoft"
+    }
+  ],
+  "work": [
+      {
+        "position": "Software Developer",
+        "company": "Intelligent Touch Corporation",
+        "skills": [
+          "Server API Development",
+          "Git",
+          ".NET Framework",
+          "C#",
+          "SQL"
+        ],
+        "start_date": "May 2024",
+        "end_date": "Present"
+      },
+      {
+        "position": "Web Developer Intern",
+        "company": "Philippine Human Resources World-Wide",
+        "skills": [
+          "Bootstrap",
+          "Web Development",
+          "PHP",
+          "SQL"
+        ],
+        "start_date": "April 2023",
+        "end_date": "July 2023"
+      },
+      {
+        "position": "Document Controller",
+        "company": "R-Mac",
+        "skills": [
+          "Blueprint Validation",
+          "Safety Checks on Installed Equipment"
+        ],
+        "start_date": "June 2021",
+        "end_date": "October 2022"
+      }
+    ]
+}
