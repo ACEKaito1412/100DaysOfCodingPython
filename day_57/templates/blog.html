@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    {% for item in blog: %}
+        <h1>{{item['title']}}</h1>
+        <p>{{item['subtitle']}}</p>
+        <a href="{{ url_for('get_blog', num=item['id']) }}">Go to blog</a>
+    {% endfor %}
+</body>
+</html>

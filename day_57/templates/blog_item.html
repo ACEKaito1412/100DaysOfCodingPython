@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    {% for item in blog: %}
+        {% if item['id'] == number :%}
+            <h1>{{item['title']}}</h1>
+            <p>{{item['subtitle']}}</p>
+            <p>{{item['body']}}</p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
