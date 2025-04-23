@@ -41,8 +41,8 @@ def contact():
         to_email = flask_req.form['email']
 
         messages = f"""Name: {flask_req.form['name']}\n
-        Contact: {flask_req.form['contact']}
-        Messages: {flask_req.form[messages]}
+        Contact: {flask_req.form['phone']}
+        Messages: {flask_req.form['message']}
 """
         mail_me(subject=subject, message=messages, to_email_addrs=to_email)
         return render_template('contact.html')
