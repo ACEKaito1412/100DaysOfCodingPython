@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Book</title>
+    {{ bootstrap.load_css() }}
+  </head>
+  <body>
+    <div class="p-5 m-5 col-4 border border-gray rounded">
+      <h3 class="fs-4">Book Title: {{ book.title }}</h3>
+      <p class="fs-5">By: {{ book.author }}</p>
+
+      <form action="/edit/{{book.id}}" method="post">
+        <input type="number" name="rating">
+        <input type="submit" value="Update">
+      </form>
+      
+    </div>
+    {{ bootstrap.load_js() }}
+  </body>
+</html>

@@ -3,19 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Library</title>
+    {{ bootstrap.load_css() }}
   </head>
-  <body>
+  <body class="d-flex row justify-center align-center w-100 h-100 p-5">
     <h1>My Library</h1>
-    <ul>
+    <ul class="px-5">
       {% if books: %}
         {% for book in books :%}
-        <li>{{book.title}} | {{book.author}} | {{book.rating}}/10</li>
+        <li>{{book.title}} - {{book.author}} - {{book.rating}}/10 - <a href="{{ url_for('edit', id=book.id) }}">Change Rating</a> -  <a href="{{ url_for('delete', id=book.id) }}">Delete</a></li>
         {% endfor %}
       {% else: %}
         <li>No books</li>
       {% endif %}
     </ul>
 
-    <a href="">Add New Book</a>
+    <a href="{{ url_for('add') }}" class="">Add New Book</a>
+    {{ bootstrap.load_js() }}
   </body>
 </html>
