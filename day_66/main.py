@@ -1,7 +1,8 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Boolean
+import random as r
 
 '''
 Install the required packages first: 
@@ -41,15 +42,29 @@ class Cafe(db.Model):
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     coffee_price: Mapped[str] = mapped_column(String(250), nullable=True)
 
-
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+    
 with app.app_context():
     db.create_all()
 
+def get_cafe_data():
+    response = db.session.execute(db.select(Cafe))
+    cafes = response.scalars().all()
+    res = r.choice(cafes)
+
+    return res
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
+@app.route("/random")
+def random():
+    data = get_cafe_data()
+
+    return jsonify(cafe = data.to_dict())
 
 # HTTP GET - Read Record
 
