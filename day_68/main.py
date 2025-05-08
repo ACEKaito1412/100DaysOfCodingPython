@@ -7,6 +7,8 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 # CREATE DATABASE
 
@@ -22,20 +24,25 @@ db.init_app(app)
 # CREATE TABLE IN DB
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(100), unique=True)
     password: Mapped[str] = mapped_column(String(100))
     name: Mapped[str] = mapped_column(String(1000))
 
 
+
 with app.app_context():
     db.create_all()
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
+
 @app.route('/')
 def home():
-    return render_template("index.html")
+    return render_template("index.html", logged_in = current_user.is_authenticated)
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -44,31 +51,54 @@ def register():
     if request.method == "POST":
         new_user = User(
             email = request.form.get("email"),
-            password = request.form.get("password"),
+            password = generate_password_hash(request.form.get("password"), method="pbkdf2", salt_length=8),
             name = request.form.get("name")
         )
 
         db.session.add(new_user)
         db.session.commit()
 
-        return render_template("secrets.html", name=request.form.get("name"))
+        login_user(new_user)
+
+        return redirect('/secrets')
 
     return render_template("register.html")
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
+
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        try:
+            res = db.session.execute(db.select(User).where(User.email == email)).scalar()
+            print(res.email)
+            if check_password_hash(res.password, password):
+                login_user(res)
+                return redirect('/secrets')
+            else:
+                flash("Wrong Password")
+                return redirect('/login')
+        except AttributeError:
+            flash("No user found")
+            return redirect('/login')
+
     return render_template("login.html")
 
 
 @app.route('/secrets')
+@login_required
 def secrets():
-    return render_template("secrets.html")
+    name = current_user.name
+    return render_template("secrets.html", name = name, logged_in = current_user.is_authenticated)
 
 
 @app.route('/logout')
+@login_required
 def logout():
-    pass
+    logout_user()
+    return redirect('/')
 
 
 @app.route('/download')
