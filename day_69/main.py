@@ -10,7 +10,7 @@ from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
-from forms import CreatePostForm
+from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 
 
 '''
@@ -54,8 +54,13 @@ class BlogPost(db.Model):
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
-# TODO: Create a User table for all your registered users. 
-
+# TODO: Create a User table for all your registered users.
+class User(db.Model):
+    __tablename__ = "user"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    password: Mapped[str]  = mapped_column(String, nullable=False)
+    email: Mapped[str] = mapped_column(String, nullable=False)
 
 with app.app_context():
     db.create_all()
@@ -64,7 +69,10 @@ with app.app_context():
 # TODO: Use Werkzeug to hash the user's password when creating a new user.
 @app.route('/register')
 def register():
-    return render_template("register.html")
+
+    form = RegisterForm()
+
+    return render_template("register.html", form = form)
 
 
 # TODO: Retrieve a user from the database based on their email. 
