@@ -6,7 +6,7 @@ from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Text
+from sqlalchemy import Integer, String, Text, List, ForeignKey
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
@@ -54,6 +54,7 @@ class BlogPost(db.Model):
     body: Mapped[str] = mapped_column(Text, nullable=False)
     author: Mapped[str] = mapped_column(String(250), nullable=False)
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
 
 
 # TODO: Create a User table for all your registered users.
@@ -63,6 +64,7 @@ class User(UserMixin,db.Model):
     name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     password: Mapped[str]  = mapped_column(String, nullable=False)
     email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
+    post: Mapped[List[BlogPost]] = relationship() 
 
 with app.app_context():
     db.create_all()
@@ -70,6 +72,15 @@ with app.app_context():
 @login_manager.user_loader
 def load_user(user_id):
     return db.get_or_404(User, user_id)
+
+def admin_only(func):
+    def wrapper(*args, **kwargs):
+        if current_user.id != 1:
+            return abort(401)
+        else:
+            func()
+    
+    return wrapper
 
 
 # TODO: Use Werkzeug to hash the user's password when creating a new user.
@@ -92,7 +103,7 @@ def register():
             flash("User already Exist")
             return redirect(url_for('login'))
         else:
-            return redirect(url_for('get_blog_post'))
+            return redirect(url_for('get_blog_posts'))
 
     return render_template("register.html", form = form)
 
@@ -101,8 +112,10 @@ def register():
 @app.route('/login', methods = ["POST", "GET"])
 def login():
 
-    form  = LoginForm()
+    if current_user.is_authenticated:
+        return redirect(url_for('get_all_posts'))
 
+    form  = LoginForm()
     if form.validate_on_submit():
 
         try:
@@ -129,6 +142,7 @@ def login():
 
 @app.route('/logout')
 def logout():
+    logout_user()
     return redirect(url_for('get_all_posts'))
 
 
@@ -136,7 +150,7 @@ def logout():
 def get_all_posts():
     result = db.session.execute(db.select(BlogPost))
     posts = result.scalars().all()
-    return render_template("index.html", all_posts=posts)
+    return render_template("index.html", all_posts=posts, logged_in = current_user.is_authenticated)
 
 
 # TODO: Allow logged-in users to comment on posts
@@ -148,8 +162,10 @@ def show_post(post_id):
 
 # TODO: Use a decorator so only an admin user can create a new post
 @app.route("/new-post", methods=["GET", "POST"])
+@admin_only
 def add_new_post():
     form = CreatePostForm()
+
     if form.validate_on_submit():
         new_post = BlogPost(
             title=form.title.data,
@@ -198,13 +214,12 @@ def delete_post(post_id):
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template("about.html", logged_in = current_user.is_authenticated)
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
-
+    return render_template("contact.html", logged_in = current_user.is_authenticated)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5002)
