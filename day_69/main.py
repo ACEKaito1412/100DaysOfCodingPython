@@ -40,6 +40,8 @@ class Base(DeclarativeBase):
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 
 # CONFIGURE TABLES
@@ -55,30 +57,74 @@ class BlogPost(db.Model):
 
 
 # TODO: Create a User table for all your registered users.
-class User(db.Model):
+class User(UserMixin,db.Model):
     __tablename__ = "user"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     password: Mapped[str]  = mapped_column(String, nullable=False)
-    email: Mapped[str] = mapped_column(String, nullable=False)
+    email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
 
 with app.app_context():
     db.create_all()
 
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
+
 
 # TODO: Use Werkzeug to hash the user's password when creating a new user.
-@app.route('/register')
+@app.route('/register', methods = ["POST", "GET"])
 def register():
 
     form = RegisterForm()
+    if form.validate_on_submit():
+        new_user = User(
+            name = form.name.data,
+            email = form.email.data,
+            password = generate_password_hash(form.password.data, method="pbkdf2", salt_length=16)
+        )
+
+        try: 
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
+        except Exception:
+            flash("User already Exist")
+            return redirect(url_for('login'))
+        else:
+            return redirect(url_for('get_blog_post'))
 
     return render_template("register.html", form = form)
 
 
 # TODO: Retrieve a user from the database based on their email. 
-@app.route('/login')
+@app.route('/login', methods = ["POST", "GET"])
 def login():
-    return render_template("login.html")
+
+    form  = LoginForm()
+
+    if form.validate_on_submit():
+
+        try:
+            email = form.email.data
+            password = form.password.data
+
+            res = db.session.execute(db.select(User).where(User.email == email)).scalar_one_or_none()
+            
+            if check_password_hash(res.password, password):
+                login_user(res)
+            else:
+                flash("Wrong Password!")
+
+        except AttributeError:
+            flash("User not found")
+            return redirect(url_for('login'))
+            
+
+             
+        return redirect(url_for('login'))
+
+    return render_template("login.html", form = form)
 
 
 @app.route('/logout')
