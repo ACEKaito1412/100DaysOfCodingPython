@@ -1,14 +1,15 @@
 from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash
+from flask import Flask, abort, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Text, List, ForeignKey
+from sqlalchemy import Integer, String, Text, ForeignKey
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+from typing import List
 # Import your forms from the forms.py
 from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 
@@ -30,6 +31,16 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
+
+
+gravatar = Gravatar(app,
+                    size=100,
+                    rating='g',
+                    default='retro',
+                    force_default=False,
+                    force_lower=False,
+                    use_ssl=False,
+                    base_url=None)
 
 # TODO: Configure Flask-Login
 
@@ -54,8 +65,9 @@ class BlogPost(db.Model):
     body: Mapped[str] = mapped_column(Text, nullable=False)
     author: Mapped[str] = mapped_column(String(250), nullable=False)
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-
+    author_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    user: Mapped["User"] = relationship(back_populates="posts")
+    comments: Mapped[List["Comments"]] = relationship(back_populates="post")
 
 # TODO: Create a User table for all your registered users.
 class User(UserMixin,db.Model):
@@ -64,7 +76,21 @@ class User(UserMixin,db.Model):
     name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     password: Mapped[str]  = mapped_column(String, nullable=False)
     email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
-    post: Mapped[List[BlogPost]] = relationship() 
+    posts: Mapped[List["BlogPost"]] = relationship(back_populates="user") 
+    comments: Mapped[List["Comments"]] = relationship(back_populates="user")
+
+
+class Comments(db.Model):
+    __tablename__ =  'comments'
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    author_id: Mapped[int] = mapped_column(ForeignKey('user.id'))
+    user: Mapped["User"] = relationship(back_populates="comments")
+    text: Mapped[String] = mapped_column(String, nullable=False)
+    post_id: Mapped[int] = mapped_column(ForeignKey('blog_posts.id'))
+    post: Mapped["BlogPost"] = relationship(back_populates="comments")
+
+    def to_dict(self):
+        return {column.name: getattr(self, column.name)  for column in self.__table__.columns}
 
 with app.app_context():
     db.create_all()
@@ -74,11 +100,12 @@ def load_user(user_id):
     return db.get_or_404(User, user_id)
 
 def admin_only(func):
+    @wraps(func)
     def wrapper(*args, **kwargs):
         if current_user.id != 1:
             return abort(401)
         else:
-            func()
+            return func(*args, **kwargs)
     
     return wrapper
 
@@ -132,8 +159,6 @@ def login():
         except AttributeError:
             flash("User not found")
             return redirect(url_for('login'))
-            
-
              
         return redirect(url_for('login'))
 
@@ -154,10 +179,30 @@ def get_all_posts():
 
 
 # TODO: Allow logged-in users to comment on posts
-@app.route("/post/<int:post_id>")
+@app.route("/post/<int:post_id>", methods=["POST", "GET"])
 def show_post(post_id):
+
+    form = CommentForm()
     requested_post = db.get_or_404(BlogPost, post_id)
-    return render_template("post.html", post=requested_post)
+    if form.validate_on_submit():
+        if current_user.is_authenticated:
+            print(current_user.id)
+            comment = Comments(
+                author_id = current_user.id,
+                text = form.body.data,
+                post_id = post_id
+            )
+
+            db.session.add(comment)
+            db.session.commit()
+        else:
+            flash("You must login or register first to be able to comment.")
+            return redirect(url_for("login"))
+
+
+
+    requested_comment = db.session.execute(db.select(Comments).where(Comments.post_id == requested_post.id)).scalars().all()
+    return render_template("post.html", post=requested_post, comments=requested_comment, form = form, logged_in = current_user.is_authenticated)
 
 
 # TODO: Use a decorator so only an admin user can create a new post
