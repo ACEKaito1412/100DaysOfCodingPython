@@ -1,0 +1,141 @@
+body {
+  background-color: #1B262C;
+  /* background: radial-gradient(
+    circle,
+    rgba(11, 0, 36, 1) 0%,
+    rgba(9, 56, 121, 1) 78%,
+    rgba(36, 10, 156, 1) 100%
+  ); */
+
+  font-family: "Ubuntu Mono", monospace;
+  overflow-x: hidden;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#profile-img {
+  transition: 0.3s ease-in;
+}
+
+#profile-img:hover {
+  transform: rotate(-15deg);
+}
+
+.my-cont {
+  width: 80%;
+}
+
+
+.border-outline-color{
+  border-color: #3FC1C9;
+}
+
+.secondary-text {
+  color: #0D7377;
+  font-size: 15px;
+}
+
+.secondary-title {
+  color: #0D7377;
+  font-weight: bold;
+}
+
+#logo {
+  display: inline-block; /* Required for transform to work properly */
+  transform: scaleY(1.4);
+  font-family: "Rubik Glitch", system-ui;
+  font-size: 50px;
+  color: #0D7377;
+}
+
+.btn-work {
+  border-radius: 50px 0 0 50px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.btn-cert {
+  border-radius: 0 50px 50px 0;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.tech-item {
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  background-color: rgba(82, 96, 96, 0.201);
+  border-radius: 5px;
+  /* filter: grayscale(100%); */
+}
+
+.tech-container {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+#particle-container {
+  position: relative;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  z-index: -1;
+  width: 200px; /* Changed from 100px to 10px */
+  height: 200px; /* Changed from 100px to 10px */
+  background-color: #1514140e;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: particle-animation 1s ease-out forwards; /* Added animation */
+}
+
+#contact-btn{
+  background: transparent;
+  transition: 0.6s ease;
+}
+
+.no-hover:hover {
+  color: gray;
+  background-color: transparent;
+  border-color: inherit;
+}
+
+#contact-btn:hover{
+  box-shadow: -5px 13px 101px 29px rgb(141, 140, 170);
+  border: 3px solid white;
+}
+
+.active {
+  background-color: rgba(82, 96, 96, 0.201);
+  color: black;
+}
+
+@keyframes particle-animation {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5); /* Fade out and shrink */
+  }
+}
+
+.animate__swing {
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-animation-name: swing;
+  animation-name: swing;
+}
+
+@media (min-width: 319px) and (max-width: 480px) {
+  .tech-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}

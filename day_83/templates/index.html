@@ -1,4 +1,260 @@
 {% extends "base.html" %} {% block content %}
+<section class="container-fluid my-cont col-7" id="summary">
+  <div class="m-2">
+    <div
+      class="row flex-lg-row-reverse align-items-center g-5 pt-3 mx-md-5 justify-content-center pb-3"
+    >
+      <div
+        class="col-7 col-lg-4 d-flex row justify-content-end align-self-stretch align-items-end pt-5"
+      >
+        <img
+          id="profile-img"
+          src="{{ url_for('static', filename='img/profile.jpg')}}"
+          class="d-block mx-lg-auto img-fluid rounded-circle"
+          width="200"
+          loading="lazy"
+        />
+      </div>
+      <div class="col-12 col-lg-6">
+        <h1
+          class="display-5 fw-bold text-body-emphasis lh-1 mb-3"
+          style="color: #14ffec"
+        >
+          Hi,<br />
+          I’m <span id="">Jhun Carlo</span>,
+        </h1>
+        <h2 class="text-white">Software Developer</h2>
+        <p class="lead secondary-text opacity-75">
+          Experience on using .NET Framework, C#, Python and web development
+          using PHP and SQL.
+        </p>
+        <p class="fw-bold">Cavite - Philippines</p>
+        <div class="d-flex row justify-content-between mt-4">
+          <a
+            href="{{ url_for('static', filename='index.pdf')}}"
+            type="button"
+            class="btn col-12 col-md-5 btn-outline-light btn-sm px-4 me-md-2 d-flex justify-content-between align-items-center opacity-75"
+            download
+          >
+            Resume
 
-<div>Hello</div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="32"
+              height="32"
+              stroke-width="1"
+            >
+              <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+              <path
+                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"
+              ></path>
+              <path d="M12 17v-6"></path>
+              <path d="M9.5 14.5l2.5 2.5l2.5 -2.5"></path>
+            </svg>
+          </a>
+          <div
+            class="mt-2 col-12 col-md-5 d-flex justify-content-md-end align-items-center p-0"
+          >
+            <a
+              id="contact-btn"
+              class="ms-1 p-1 border border-outline d-flex justify-content-center rounded"
+              href="mailto:macdon.jc.bscs@gmail.com"
+              ><img src="{{ url_for('static', filename='img/email.svg') }}" alt="email" width="22px"
+            /></a>
+            <a
+              id="contact-btn"
+              class="ms-1 p-1 border border-outline d-flex justify-content-center rounded"
+              href="https://github.com/ACEKaito1412/"
+              ><img src="{{ url_for('static', filename='img/github.svg') }}" alt="github" width="22px"
+            /></a>
+            <a
+              id="contact-btn"
+              class="ms-1 p-1 border border-outline d-flex justify-content-center rounded"
+              href="https://www.linkedin.com/in/macdon-jhun-carlo-34670a26b?trk=contact-info"
+              ><img src="{{ url_for('static', filename='img/linkedin.svg') }}" alt="linkedin" width="22px"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center row pb-3">
+      <div class="col-lg-8 tech-container">
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img width="50px" id="net" src="{{ url_for('static', filename='img/dotnet.png') }}" />
+        </div>
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img width="50px" id="c-sharp" src="{{ url_for('static', filename='img/c-sharp.png') }}" />
+        </div>
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img width="50px" id="python" src="{{ url_for('static', filename='img/python.png') }}" />
+        </div>
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img width="50px" id="java" src="{{ url_for('static', filename='img/java.png') }}" />
+        </div>
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img width="50px" id="git" src="{{ url_for('static', filename='img/git.svg') }}" />
+        </div>
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img id="sql" src="{{ url_for('static', filename='img/sql.svg') }}" width="50px" />
+        </div>
+        <div class="tech-item py-2 text-center m-2 rounded">
+          <img width="50px" height="50px" id="php" src="{{ url_for('static', filename='img/php.png') }}" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container pt-2 my-cont" id="experiences">
+  <div class="d-flex justify-content-center row col-sm-12">
+    <div class="col-lg-9 col-sm-12 mb-2">
+      <h2 class="secondary-title fs-sec">Experiences</h2>
+    </div>
+    <div class="d-flex col-sm-12 col-lg-9 align-content-center mt-4 mx-md-3">
+      <div
+        class="col-6 border p-2 ps-3 fw-bold btn-work text-center fs-6 active"
+        id="btn-work"
+        onclick="showDiv('work')"
+      >
+        WORK
+      </div>
+      <div
+        class="col-6 border p-2 ps-3 fw-bold btn-cert text-center"
+        id="btn-cert"
+        onclick="showDiv('certification')"
+      >
+        STUDIES
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-12 p-4" id="work">
+      <div
+        class="d-flex row p-sm-2 gap-2 py-md-2 align-items-center justify-content-center"
+        id="work-container"
+      ></div>
+    </div>
+
+    <div class="col-lg-6 col-sm-12 p-4" id="certification">
+      <div
+        class="d-flex row p-sm-2 gap-2 py-md-2 align-items-center justify-content-center"
+        id="cert-container"
+      ></div>
+    </div>
+  </div>
+</section>
+
+<section class="container my-cont py-2" id="projects">
+  <div class="d-flex justify-content-center row col-sm-12">
+    <div class="col-lg-9 col-sm-12 mb-2">
+      <h2 class="secondary-title fs-sec">Projects</h2>
+    </div>
+    <div class="row align-items-stretch justify-content-center col-12 col-md-9">
+      <div
+        class="m-2 bg-transparent col-12 d-flex flex-column flex-sm-row justify-content-around align-items-center border p-2 rounded"
+      >
+        <div
+          class="opacity-75 col-sm-4 col-9"
+          style="overflow-x: hidden; overflow-y: hidden; height: 200px"
+        >
+          <img
+            src="{{ url_for('static', filename='img/filipino.png') }}"
+            height="250px"
+            alt="Filipino Sign Application"
+          />
+        </div>
+        <div class="px-0 col m-3 row d-flex align-content-between">
+          <h5 class="card-title">
+            Filipino Sign Recognition Android Application
+          </h5>
+          <p class="card-text text-secondary d-none d-md-block mt-2">
+            Android application that recognize Filipino sign language.
+          </p>
+          <div
+            class="d-flex flex-row flex-wrap gap-2 mt-2"
+            style="line-height: 1px"
+          >
+            <p class="fw-bold secondary-text">Python</p>
+            <p class="fw-bold secondary-text">TensorFlow</p>
+            <p class="fw-bold secondary-text">Java</p>
+            <p class="fw-bold secondary-text">App Development</p>
+          </div>
+          <div>
+            <a href="#" class="btn btn-outline-secondary btn-sm"
+              >Check on GitHub ></a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="m-2 bg-transparent col-12 d-flex flex-column flex-sm-row justify-content-around align-items-center border p-2 rounded"
+      >
+        <div
+          class="opacity-75 col-sm-4 col-9"
+          style="overflow-x: hidden; overflow-y: hidden; height: 200px"
+        >
+          <img
+            src="{{ url_for('static', filename='img/x-change.png') }}"
+            height="250px"
+            alt="X-Change Designs"
+          />
+        </div>
+        <div class="px-0 col m-3 row d-flex align-content-between">
+          <h5 class="card-title">X-Change</h5>
+          <p class="card-text text-secondary d-none d-md-block mt-2">
+            Mobile wallet app project
+          </p>
+          <div
+            class="d-flex flex-row flex-wrap gap-2 mt-2"
+            style="line-height: 2px"
+          >
+            <p class="fw-bold secondary-text">Java</p>
+            <p class="fw-bold secondary-text">Firebase</p>
+            <p class="fw-bold secondary-text">App Development</p>
+          </div>
+          <div>
+            <a href="#" class="btn btn-outline-secondary btn-sm"
+              >Check on GitHub ></a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="m-2 bg-transparent col-12 d-flex flex-column flex-sm-row justify-content-around align-items-center border p-2 rounded"
+      >
+        <div
+          class="opacity-75 col-sm-4 col-9"
+          style="overflow-x: hidden; overflow-y: hidden; height: 200px"
+        >
+          <img
+            src="{{ url_for('static', filename='img/resume-ex.png') }}"
+            height="250px"
+            alt="resume ex website"
+          />
+        </div>
+        <div class="px-0 col m-3 row d-flex align-content-between">
+          <h5 class="card-title">Resume-Ex</h5>
+          <p class="card-text text-secondary d-none d-md-block mt-2">
+            Api for resume extraction using Spacy and OpenAI Api in Python.
+          </p>
+          <div
+            class="d-flex flex-row flex-wrap gap-2 mt-2"
+            style="line-height: 2px"
+          >
+            <p class="fw-bold secondary-text">Python</p>
+            <p class="fw-bold secondary-text">Sql</p>
+          </div>
+          <div>
+            <a href="#" class="btn btn-outline-secondary btn-sm"
+              >Check on GitHub ></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
