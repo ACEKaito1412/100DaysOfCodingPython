@@ -3,10 +3,11 @@ class Ball(Turtle):
     def __init__(self):
         super().__init__()
         self.shape("circle")
+        self.shapesize(0.5, 0.5)
         self.penup()
         self.x_trajectory = -1
-        self.y_trajectory = -1
-        self.cur_speed = 1
+        self.y_trajectory = 1
+        self.cur_speed = 0.01
         self.start()
 
     def move(self):
@@ -17,7 +18,6 @@ class Ball(Turtle):
 
     def bounce_x(self):
         self.x_trajectory *= -1
-        self.cur_speed *= 0.9
 
     def bounce_y(self):
         self.y_trajectory *= -1
@@ -32,4 +32,4 @@ class Ball(Turtle):
         self.y_trajectory = -1
 
     def start(self):
-        self.goto(0,-165)
+        self.goto(0,-170)
