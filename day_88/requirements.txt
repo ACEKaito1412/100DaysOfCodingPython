@@ -1,0 +1,5 @@
+flask==3.1.1
+flask_sqlalchemy==3.1.1
+SQLAlchemy==2.0.41
+bootstrap_flask==3.3.7.1
+wtforms==3.2.1

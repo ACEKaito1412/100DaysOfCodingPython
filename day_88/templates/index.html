@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+    {{ bootstrap.load_css() }}
+  </head>
+  <body class="d-flex row justify-center align-center w-100 h-100 p-5">
+    <h1>My Library</h1>
+    <ul class="px-5">
+      {% if cafes: %}
+        {% for cafe in cafes :%}
+        <li>{{cafe.name}} - {{cafe.coffee_price}} - Has Wifi: {{cafe.has_wifi}} - <a href="{{ url_for('update_cafe', id=cafe.id) }}">Update Cafe</a> -  <a href="{{ url_for('r_delete', id=cafe.id) }}">Delete</a></li>
+        {% endfor %}
+      {% else: %}
+        <li>No books</li>
+      {% endif %}
+    </ul>
+
+    <a href="{{ url_for('add_cafe') }}" class="">Add New Book</a>
+    {{ bootstrap.load_js() }}
+  </body>
+</html>
