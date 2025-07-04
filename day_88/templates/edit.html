@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Add Book</title>
-    {{ bootstrap.load_css() }}
-    {% from 'bootstrap5/form.html' import render_form %}
-  </head>
-  <body>
-    <div class="p-5 m-5 col-4 border border-gray rounded">
-      <h3 class="fs-4">Cafe: {{ cafe.name }}</h3>
+{% extends "base.html" %} {% block content %}
 
-      {{ render_form(form, novalidate=True) }}
-      
+<div class="d-flex justify-content-center">
+  <div class="p-5 m-2 col-4 border border-gray rounded">
+    <h3 class="fs-4">Cafe: {{ cafe.name }}</h3>
+    {{ render_form(form, novalidate=True) }}
+  </div>
+  <div class="p-5 m-2 card cafe-card shadow-sm">
+    <img src="{{ cafe.img_url }}" class="card-img-top" alt="Cafe 1" />
+    <div class="card-body">
+      <h5 class="card-title fs-2">{{cafe.name}}</h5>
+      <p class="card-text fs-6">
+        A cozy place to unwind with aromatic blends and light snacks.
+      </p>
+      <div class="active-filters">
+        {% if cafe.has_wifi: %}
+        <span class="active-filter high"><i class="fa fa-fw fa-wifi"></i></span>
+        {% endif %} {% if cafe.has_plug %}
+        <span class="active-filter high"><i class="fa fa-fw fa-plug"></i></span>
+        {% endif %} {% if cafe.has_toilet %}
+        <span class="active-filter high"
+          ><i class="fa fa-fw fa-toilet-paper"></i
+        ></span>
+        {% endif %} {% if cafe.has_toilet %}
+        <span class="active high"><i class="fa fa-fw fa-headset"></i></span>
+        {% endif %}
+      </div>
     </div>
-    {{ bootstrap.load_js() }}
-  </body>
-</html>
+  </div>
+</div>
+{% endblock %}

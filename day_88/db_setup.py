@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import String, Integer, Float, Boolean
+from sqlalchemy import String, Integer, Float, Boolean, and_, or_
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
+from flask_login import UserMixin
 
 
 class Base(DeclarativeBase):
@@ -20,7 +21,15 @@ class Cafe(db.Model):
     has_wifi: Mapped[bool] = mapped_column(Boolean, nullable=False)
     can_take_calls: Mapped[bool] = mapped_column(Boolean, nullable=False)
     seats: Mapped[str] = mapped_column(String, nullable=False)
-    coffee_price: Mapped[float] = mapped_column(Float, nullable=False)
+    coffee_price: Mapped[str] = mapped_column(String, nullable=False)
+
+
+class User(UserMixin, db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    email: Mapped[str] = mapped_column(String(100), unique=True)
+    password: Mapped[str] = mapped_column(String(100))
+    name: Mapped[str] = mapped_column(String(1000))
+
 
 def add_new_cafe(name:str, map_url:str, img_url:str, location:str, coffee_price:float,
                     has_sockets = False, has_toilet = False, has_wifi = False,
@@ -34,8 +43,12 @@ def add_new_cafe(name:str, map_url:str, img_url:str, location:str, coffee_price:
     db.session.add(new_cafe)
     db.session.commit()
 
-def get_all_cafe()->list:
-    result = db.session.execute(db.select(Cafe).order_by(Cafe.coffee_price))
+def get_all_cafe(filters, filter_on:bool)->list:
+    if filter_on:
+        result = db.session.execute(db.select(Cafe).where(and_(*filters)).order_by(Cafe.coffee_price)) 
+    else:
+        result = db.session.execute(db.select(Cafe).order_by(Cafe.coffee_price))
+
     return list(result.scalars())
 
 def get_cafe_by_id(id:int)->Cafe:
@@ -62,6 +75,5 @@ def update_cafe(id:int, name:str, map_url:str, img_url:str, location:str, coffee
 
 def remove_cafe(id:int):
     result = db.session.execute(db.select(Cafe).where(Cafe.id == id)).scalar_one()
-
     db.session.remove(result)
     db.session.commit()

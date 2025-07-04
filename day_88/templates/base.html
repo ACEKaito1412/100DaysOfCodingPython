@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+    {{ bootstrap.load_css() }}
+    {% from 'bootstrap5/form.html' import render_form %}
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .cafe-card img {
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="d-flex row justify-center align-center w-100 h-100 p-5">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">☕ Café Explorer</a>
+        {% if logged_in %}
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-primary fs-5">Log-out</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="text-center p-5 bg-light">
+      <h1 class="display-4">Find Your Favorite Café</h1>
+      <p class="lead">Explore cozy cafés near you!</p>
+    </header>
+    {% block content %} {% endblock %}
+
+    <footer class="bg-dark text-white text-center p-3">
+      &copy; 2025 Café Explorer. All rights reserved.
+    </footer>
+
+    {{ bootstrap.load_js() }}
+  </body>
+</html>

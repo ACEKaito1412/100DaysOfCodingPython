@@ -1,23 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Library</title>
-    {{ bootstrap.load_css() }}
-  </head>
-  <body class="d-flex row justify-center align-center w-100 h-100 p-5">
-    <h1>My Library</h1>
-    <ul class="px-5">
-      {% if cafes: %}
-        {% for cafe in cafes :%}
-        <li>{{cafe.name}} - {{cafe.coffee_price}} - Has Wifi: {{cafe.has_wifi}} - <a href="{{ url_for('update_cafe', id=cafe.id) }}">Update Cafe</a> -  <a href="{{ url_for('r_delete', id=cafe.id) }}">Delete</a></li>
-        {% endfor %}
-      {% else: %}
-        <li>No books</li>
-      {% endif %}
-    </ul>
 
-    <a href="{{ url_for('add_cafe') }}" class="">Add New Book</a>
-    {{ bootstrap.load_js() }}
-  </body>
-</html>
+{% extends "base.html"%}
+{% block content %}
+    <div class="container py-5">
+      <h2 class="mb-4">Filter Cafés</h2>
+
+      <!-- Filter Form -->
+      <form
+        class="row g-3 bg-white p-4 rounded shadow-sm"
+        action="/"
+        method="get"
+      >
+        <!-- Checkbox Filters -->
+        <div class="col-12 container d-flex justify-content-center fs-4">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="wifi">WiFi</label>
+            <input class="form-check-input" type="checkbox" id="wifi"
+            name="wifi" value="1" {% if request.args.get("wifi") == "1" %}
+            checked {% endif %}>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="sockets">Sockets</label>
+            <input class="form-check-input" type="checkbox" id="sockets"
+            name="sockets" value="1" {% if request.args.get("sockets") == "1" %}
+            checked {% endif %}>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="toilet">Toilet</label>
+            <input class="form-check-input" type="checkbox" id="toilet"
+            name="toilet" value="1" {% if request.args.get("toilet") == "1" %}
+            checked {% endif %}>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="can_take_call">Calls</label>
+            <input class="form-check-input" type="checkbox" id="can_take_calls"
+            name="can_take_call" value="1" {% if
+            request.args.get("can_take_calls") == "1" %} checked {% endif %}>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-12 d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary">Apply Filters</button>
+        </div>
+      </form>
+    </div>
+
+<!-- Café List -->
+<div class="container my-4">
+  <div class="row g-4">
+    {% if cafes: %}
+        {% for cafe in cafes :%}
+    <!-- Café 1 -->
+    <div class="col-md-4">
+      <div class="card cafe-card shadow-sm">
+        <img src="{{ cafe.img_url }}" class="card-img-top" alt="Cafe 1">
+        <div class="card-body">
+          <h5 class="card-title">{{cafe.name}}</h5>
+          <p class="card-text">A cozy place to unwind with aromatic blends and light snacks.</p>
+          <div class="active-filters">
+            {% if cafe.has_wifi: %}
+            <span class="active-filter high"><i class="fa fa-fw fa-wifi"></i></span>
+            {% endif %}
+
+            {% if cafe.has_plug %}
+            <span class="active-filter high"><i class="fa fa-fw fa-plug"></i></span>
+            {% endif %}
+
+            {% if cafe.has_toilet %}
+            <span class="active-filter high"><i class="fa fa-fw fa-toilet-paper"></i></span>
+            {% endif %}
+
+            {% if cafe.has_toilet %}
+            <span class="active high"><i class="fa fa-fw fa-headset"></i></span>
+            {% endif %}
+          </div>
+          
+          {% if logged_in %}
+          <div class="mt-3">
+            <a class="btn btn-success" href="{{ url_for('update_cafe_route', id=cafe.id) }}">Update Cafe</a> -  
+            <a class="btn btn-outline-danger " href="{{ url_for('r_delete', id=cafe.id) }}">Delete</a></li>
+          </div>
+          {% endif %}
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else: %}
+    <div class="col-md-4">
+      <div class="card cafe-card shadow-sm">
+        <img src="" class="card-img-top" alt="Cafe 1">
+        <div class="card-body">
+          <h5 class="card-title">No Cafe's</h5>
+          <p class="card-text">We're still looking for cafe's</p>
+        </div>
+      </div>
+    </div> 
+    {% endif %}
+
+    {% if logged_in %}
+    <a class="btn btn-outline-primary" href="{{ url_for('add_cafe') }}" class="">Add New Cafe</a>
+    {% endif %}
+{% endblock %}
