@@ -77,3 +77,11 @@ def remove_cafe(id:int):
     result = db.session.execute(db.select(Cafe).where(Cafe.id == id)).scalar_one()
     db.session.remove(result)
     db.session.commit()
+
+def add_new_user(user:User):
+    db.session.add(user)
+    db.session.commit()
+
+def get_user_by_email(email:str)->User:
+    result = db.session.execute(db.select(User).where(User.email == email)).scalar_one()
+    return result

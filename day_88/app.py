@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap5
-from db_setup import db, Cafe, User, add_new_cafe, remove_cafe, update_cafe, get_all_cafe, get_cafe_by_id
-from forms import CafeForm
+from db_setup import db, Cafe, User, add_new_cafe, remove_cafe, update_cafe, get_all_cafe, get_cafe_by_id, add_new_user, get_user_by_email
+from forms import CafeForm, RegisterForm, LoginForm
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
 
 
@@ -112,36 +112,33 @@ def r_delete(id:int):
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-
+    form = RegisterForm()
     if request.method == "POST":
         new_user = User(
-            email = request.form.get("email"),
-            password = generate_password_hash(request.form.get("password"), method="pbkdf2", salt_length=8),
-            name = request.form.get("name")
+            email = form.email.data,
+            password = generate_password_hash(form.password.data, method="pbkdf2", salt_length=8),
+            name = form.name.data
         )
 
-        db.session.add(new_user)
-        db.session.commit()
+        add_new_user(new_user)
 
         login_user(new_user)
 
-        return redirect('/secrets')
+        return redirect('/')
 
-    return render_template("register.html")
+    return render_template("register.html", form = form)
 
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-
+    form = LoginForm()
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
+        email = form.email.data
+        password = form.pasword.data
         try:
-            res = db.session.execute(db.select(User).where(User.email == email)).scalar()
-            print(res.email)
-            if check_password_hash(res.password, password):
-                login_user(res)
-                return redirect('/secrets')
+            user = get_user_by_email(email)
+            if check_password_hash(user.password, password):
+                return redirect('/')
             else:
                 flash("Wrong Password")
                 return redirect('/login')
@@ -149,7 +146,7 @@ def login():
             flash("No user found")
             return redirect('/login')
 
-    return render_template("login.html")
+    return render_template("login.html", form = form)
 
 @app.route('/logout')
 @login_required
