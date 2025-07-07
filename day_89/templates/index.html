@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="width: 500px; border: 1px solid black; padding: 20px; display: flex; justify-content: space-between; align-items: center; align-content: center;" >
+      <h3>To-Do List</h3>
+
+      {% if not logged_in %}
+      <div>
+        <a href="/login" style="height: 20px; margin-right: 10px;">Login</a>
+        <a href="/register" style="height: 20px;">Register</a>
+      </div>
+      {%else %}
+      <div>
+        <p>{{ user_name }}</p>
+        <a href="/logout" style="height: 20px;">Logout</a>
+      </div>
+      {% endif %}
+    </div>
+    <div style="width: 500px; border: 1px solid black; padding: 20px">
+      <form
+        action="/"
+        method="post"
+        style="
+          display: flex;
+          align-content: center;
+          align-items: center;
+          gap: 10px;
+          justify-content: space-between;
+        "
+      >
+        <label for="task" style="margin-right: 25px">New</label>
+        <input type="text" name="task" id="" />
+        <input type="date" name="deadline" id="" />
+        <button style="height: 20px">Add</button>
+      </form>
+      {% for todo in todos %}
+      {% if todo.status %}
+      <div
+        style="
+          display: flex;
+          align-content: center;
+          align-items: center;
+          gap: 10px;
+          justify-content: space-between;
+        "
+      >
+        <input type="checkbox" name="" id="" checked />
+        <p style="text-decoration: line-through">{{todo.task}}</p>
+        <p>{{ todo.deadline_date }}</p>
+        {% if logged_in %}
+        <button style="height: 20px">Remove</button>
+        <button style="height: 20px">Edit</button>
+        {% endif %}
+      </div>
+      {% else %}
+      <div
+        style="
+          display: flex;
+          align-content: center;
+          align-items: center;
+          gap: 10px;
+          justify-content: space-between;
+        "
+      >
+        <input type="checkbox" name="" id="" />
+        <p>{{todo.task}}</p>
+        <p>{{ todo.deadline_date }}</p>
+        {% if logged_in %}
+        <button style="height: 20px">Remove</button>
+        <button style="height: 20px">Edit</button>
+        {% endif %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </body>
+</html>
