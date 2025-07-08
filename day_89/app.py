@@ -6,8 +6,8 @@ from datetime import datetime
 
 
 sample_todos = [
-    Todo(id = 0, user_id = 0, task = "Feed Dogs", deadline_date = "01-02-2025" , status = False),
-    Todo(id = 1, user_id = 0, task = "Relax for 30 Mins", deadline_date = "01-02-2025" , status = True)
+    Todo(id = 0, user_id = 0, task = "Feed Dogs", deadline_date = datetime.strptime("2025-12-01", "%Y-%m-%d").date() , status = False),
+    Todo(id = 1, user_id = 0, task = "Relax for 30 Mins", deadline_date = datetime.strptime("2025-12-01", "%Y-%m-%d").date(), status = True)
 ]
 
 
@@ -32,6 +32,7 @@ def load_user(user_id):
 def home():
     todos = sample_todos
     name = ""
+    print(current_user.is_authenticated)
     if request.method == 'POST':
         if not current_user.is_authenticated:
             return redirect('/login')
@@ -52,6 +53,20 @@ def home():
 
     return render_template('index.html', logged_in = current_user.is_authenticated, user_name = name, todos = todos)
 
+
+@app.route('/update/<int:task_id>', methods=['POST'])
+@login_required
+def update_task(task_id):
+    if request.method == "POST":
+        is_checked = "status" in request.form
+        task = request.form["task"]
+        deadline = datetime.strptime(request.form['deadline'], "%Y-%m-%d")
+        status = is_checked
+
+        update_todo(id=task_id, status=status, task=task, deadline=deadline)
+
+        return redirect('/')
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -59,6 +74,7 @@ def login():
         try:
             user = get_user_by_email(email)
             if check_password_hash(user.password, request.form['password']):
+                login_user(user)
                 return redirect('/')
             else:
                 return redirect('/login')
@@ -66,6 +82,13 @@ def login():
             return redirect('/login')
         
     return render_template('login.html')
+
+
+@app.route('/logout', methods=['POST'])
+@login_required
+def log_out():
+    logout_user()
+    return render_template('/')
 
 
 @app.route('/register', methods=['POST', 'GET'])

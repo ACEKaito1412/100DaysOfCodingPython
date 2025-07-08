@@ -42,17 +42,17 @@ def add_new_todo(todo:Todo):
     db.session.add(todo)
     db.session.commit()
 
-def update_todo(id:int, todo:Todo):
+def update_todo(id:int, status:bool, task:str, deadline:DateTime):
     res = db.session.execute(db.select(Todo).where(Todo.id == id)).scalar_one()
     if res:
-        res.task = todo.task
-        res.status = todo.status
-        res.deadline_date = todo.deadline_date
+        res.task = task
+        res.status = status
+        res.deadline_date = deadline
 
     db.session.commit()
 
 def get_user_todos(user_id:int)->list:
-    res = db.session.execute(db.select(Todo).where(Todo.user_id == user_id))
-    return list(res.scalars())
+    res = db.session.execute(db.select(Todo).where(Todo.user_id == user_id).order_by(Todo.deadline_date))
+    return res.scalars().all()
 
 
