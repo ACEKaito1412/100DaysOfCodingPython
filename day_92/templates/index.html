@@ -150,7 +150,7 @@
       background-color: #F0EDEA;
     }
 
-    .card img {
+    .card #src_img {
       border: 4px solid black;
       rotate: 40deg;
       position: absolute;
@@ -165,7 +165,10 @@
     }
 
 
-    .contact-container * {
+    .contact-container div {
+      display: flex;
+      justify-content: center;
+      align-items: center ;
       margin-top: 20px;
       width: 90px;
       height: 90px;
@@ -223,7 +226,7 @@
     </div>
     <div class="card-container">
       <div class="card">
-        <img src="{{src_n}}" alt="" width="300" height="200" />
+        <img id="src_img" src="{{src_n}}" alt="" width="300" height="200" />
         <h2>COLORS</h2>
         <div class="color-list-2">
           {% for color in src_col %}
@@ -234,9 +237,15 @@
       <div class="card">
         <h2>CONTACT ME</h2>
         <div class="contact-container">
-          <div style="background-color: #98A3E8;"></div>
-          <div style="background-color: #259B91;"></div>
-          <div style="background-color: #EEC64E;"></div>
+          <div style="background-color: #98A3E8;">
+            <img class="contactImg" width="100px" src="/static/github.svg" alt="">
+          </div>
+          <div style="background-color: #259B91;">
+            <img class="contactImg" width="70px"  src="/static/gmail.svg" alt="">
+          </div>
+          <div style="background-color: #EEC64E;">
+            <img class="contactImg" width="70px"  src="/static/phone.svg" alt="">
+          </div>
         </div>
       </div>
     </div>
