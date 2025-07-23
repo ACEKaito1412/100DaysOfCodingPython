@@ -1,17 +1,30 @@
 from turtle import Turtle
+from bullet import Bullet
 
 class Player(Turtle):
     def __init__(self):
         super().__init__()
         self.shape("square")
-        self.shapesize(0.5, 3)
+        self.shapesize(0.5, 1.5)
         self.penup()
-        self.move_distance = 20
-        self.go_to_start()
+        self.move_distance = 5
+        self.go_to_start() 
+        self.bullet_list = []
+
+    def update(self, ships):
+        for bullet in self.bullet_list[:]:
+            if bullet.ycor() > 200:
+                bullet.hideturtle()
+                self.bullet_list.remove(bullet)
+
+            bullet.move_towards()
+            if ships.check_collision(bullet):
+                self.bullet_list.remove(bullet)
+
+            
 
     def go_to_start(self):
         self.goto(0, -180)
-
 
     def left(self):
         new_x = self.xcor() - self.move_distance
@@ -27,4 +40,5 @@ class Player(Turtle):
         
 
     def shoot(self):
-        pass
+        bullet = Bullet(True, self.xcor() + 2, self.ycor())
+        self.bullet_list.append(bullet)
