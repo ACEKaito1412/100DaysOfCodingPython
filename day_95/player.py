@@ -10,6 +10,8 @@ class Player(Turtle):
         self.move_distance = 5
         self.go_to_start() 
         self.bullet_list = []
+        self.lives = 3
+        self.score = 0
 
     def update(self, ships):
         for bullet in self.bullet_list[:]:
@@ -20,8 +22,8 @@ class Player(Turtle):
             bullet.move_towards()
             if ships.check_collision(bullet):
                 self.bullet_list.remove(bullet)
+                self.score += 100
 
-            
 
     def go_to_start(self):
         self.goto(0, -180)

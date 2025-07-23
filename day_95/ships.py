@@ -1,6 +1,7 @@
 from turtle import Turtle
 from bullet import Bullet
 import random
+from player import Player
 
 
 
@@ -62,26 +63,33 @@ class Ships():
             n_y -= 20
             self.ships[i] = array
 
-    def update(self):
+    def update(self, player:Player):
         for i in range(self.layer):
             if len(self.bullets) < 3:
-                print('hello')
                 ship_ = random.choice(self.ships[i])
 
-                if ship_:
+                if not ship_.is_broken:
                     self.shoot(ship_)
 
             for ship in self.ships[i]:
                 if not ship.is_broken:
                     ship.update()
 
+                    if ship.ycor() > 200:
+                        player.lives = 0
+
         for bullet in self.bullets[:]:
             bullet.move_towards()
+
             if bullet.ycor() < -200:
                 self.bullets.remove(bullet)
 
+            if (player.xcor() - 10 <= bullet.xcor() <= player.xcor() + 10) and (bullet.ycor() <= -195):
+                player.lives -= 1
+                self.bullets.remove(bullet)
+                print(player.lives)
 
-    def check_collision(self, bullet)->bool:
+    def check_collision(self, bullet:Bullet)->bool:
         for key, value in self.ships.items():
             for item in value[:]:
                 if item.is_broken == False:
@@ -89,7 +97,6 @@ class Ships():
                         item.is_broken = True
                         item.hideturtle()
                         bullet.hideturtle()
-                        value.remove(item)
                         return True
                     
         return False
