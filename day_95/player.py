@@ -1,10 +1,15 @@
-from turtle import Turtle
+from turtle import Turtle, register_shape
 from bullet import Bullet
+from wall import Walls
+
+
+register_shape("images/spaceship.gif")
+
 
 class Player(Turtle):
     def __init__(self):
         super().__init__()
-        self.shape("square")
+        self.shape("images/spaceship.gif")
         self.shapesize(0.5, 1.5)
         self.penup()
         self.move_distance = 5
@@ -13,7 +18,7 @@ class Player(Turtle):
         self.lives = 3
         self.score = 0
 
-    def update(self, ships):
+    def update(self, ships, walls:Walls):
         for bullet in self.bullet_list[:]:
             if bullet.ycor() > 200:
                 bullet.hideturtle()
@@ -22,7 +27,12 @@ class Player(Turtle):
             bullet.move_towards()
             if ships.check_collision(bullet):
                 self.bullet_list.remove(bullet)
+                bullet.hideturtle()
                 self.score += 100
+
+            if walls.check_collision(bullet):
+                self.bullet_list.remove(bullet)
+                bullet.hideturtle()
 
 
     def go_to_start(self):
@@ -42,5 +52,5 @@ class Player(Turtle):
         
 
     def shoot(self):
-        bullet = Bullet(True, self.xcor() + 2, self.ycor())
+        bullet = Bullet(True, self.xcor() - 0.5, self.ycor())
         self.bullet_list.append(bullet)

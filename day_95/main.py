@@ -4,11 +4,8 @@ import time
 from bullet import Bullet
 from ships import Ships
 from scoreboard import ScoreBoard
+from wall import Walls
 
-
-
-def shoot(player):
-    bullet = Bullet(True)
 
 screen = Screen()
 screen.setup(width=360,height=440)
@@ -18,14 +15,15 @@ screen.tracer(0)
 player = Player()
 ships = Ships()
 scoreboard = ScoreBoard(player)
+walls = Walls()
 
+walls.create_walls()
 
 screen.listen()
 screen.onkey(player.right, "d")
 screen.onkey(player.left, "a")
 screen.onkey(player.shoot, "w")
 
-bullet_list = []
 
 
 game_state = True
@@ -35,10 +33,13 @@ while game_state:
         
     time.sleep(0.1)
     screen.update()
-    player.update(ships)
-    ships.update(player)
+    player.update(ships, walls)
+    ships.update(player, walls)
 
     scoreboard.update_scoreboard(player)
+
+    if len(ships.ships) == 0:
+        pass
 
 
 

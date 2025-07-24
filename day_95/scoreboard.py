@@ -10,6 +10,9 @@ class ScoreBoard(Turtle):
         self.hideturtle()
         self.goto(0 , 190)
         self.update_scoreboard(player)
+
+    def clear_s(self):
+        self.clear()
     
     def update_scoreboard(self, player:Player):
         self.clear()
