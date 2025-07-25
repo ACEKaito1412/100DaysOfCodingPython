@@ -66,6 +66,17 @@ class Ships():
             n_y -= 20
             self.ships[i] = array
 
+    def clear(self):
+        for key, value in self.ships.items():
+            for item in value[:]:
+                item.hideturtle()
+                value.remove(item)
+
+        for bullet in self.bullets[:]:
+            bullet.hideturtle()
+            self.bullets.remove(bullet)
+
+
     def update(self, player:Player, walls:Walls):
         for i in range(self.layer):
             if len(self.bullets) < 3:

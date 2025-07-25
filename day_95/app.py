@@ -48,6 +48,8 @@ def main_screen():
     inst_turtle.write("Use arrow keys to move\nPress Space to shoot", align="center", font=("Arial", 16, "normal"))
     start_turtle.write("Press Enter to Start", align="center", font=("Arial", 18, "bold"))
 
+    screen.listen()
+    screen.onkey(start_game, "Return")
 
 def start_main_game():
     player = Player()
@@ -67,6 +69,10 @@ def start_main_game():
         if player.lives == 0:
             game_state = False
             scoreboard.clear()
+            ships.clear()
+            walls.clear()
+            player.clear()
+            player.hideturtle()
             main_screen()
             
         time.sleep(0.1)
@@ -81,8 +87,4 @@ def start_main_game():
 
 
 main_screen()
-
-screen.listen()
-screen.onkey(start_game, "Return")
-
 screen.mainloop()

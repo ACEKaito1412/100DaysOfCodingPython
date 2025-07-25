@@ -31,6 +31,10 @@ class Walls():
                     print(f"hello {x_dir}")
             y_dir -= 5
 
+    def clear(self):
+        for wall in self.wall_list[:]:
+            wall.hideturtle()
+            self.wall_list.remove(wall)
     
     def check_collision(self, bullet:Bullet):
         for wall in self.wall_list[:]:
