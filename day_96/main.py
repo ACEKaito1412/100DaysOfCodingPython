@@ -34,9 +34,9 @@ login_manager.init_app(app)
 class Base(DeclarativeBase):
     pass
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://user.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 db = SQLAlchemy(model_class=Base)
-db.init_app()
+db.init_app(app)
 
 
 class User(UserMixin, db.Model):
@@ -44,9 +44,21 @@ class User(UserMixin, db.Model):
     email: Mapped[str] = mapped_column(String(100), unique=True)
     password: Mapped[str] = mapped_column(String(100))
     name: Mapped[str] = mapped_column(String(1000))
+    num_votes: Mapped[int] = mapped_column(Integer)
+
+class Image(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    image_id : Mapped[str] = mapped_column(String, nullable=False)
+    image_url : Mapped[str] = mapped_column(String, nullable=False)
+    vote : Mapped[int] = mapped_column(Integer)
 
 with app.app_context():
     db.create_all()
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
+
 
 @app.route('/')
 def home():
@@ -54,9 +66,38 @@ def home():
     data = response.json()
     return render_template('index.html', list_items = data)
 
+
+@app.route('/top-pics')
+def top_pics():
+    res = db.session.execute(db.select(Image))
+    imgs = res.scalars().all()
+    return render_template('toppics.html', list_items = imgs)
+
+
 @app.route('/like', methods=['POST'])
+@login_required
 def liked():
-    return
+    if request.method == "POST":
+        img_id = request.form.get('img_id')
+        img_url = request.form.get('img_url')
+
+        img = Image.query.get(img_id)
+
+        if current_user.num_votes > 4:
+            return redirect('/')
+
+        if not img:
+            img = Image(
+                image_id = img_id,
+                image_url = img_url,
+                vote = 1)
+            
+            current_user.num_votes = current_user.num_votes + 1
+            
+            db.session.add(img)
+            db.session.commit()
+
+    return redirect('/')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -64,7 +105,8 @@ def register():
         new_user = User(
             email = request.form.get("email"),
             password = generate_password_hash(request.form.get("password"), method="pbkdf2", salt_length=8),
-            name = request.form.get("name")
+            name = request.form.get("name"),
+            num_votes = 0
         )
 
         db.session.add(new_user)
@@ -86,7 +128,7 @@ def login():
             print(res.email)
             if check_password_hash(res.password, password):
                 login_user(res)
-                return redirect('/secrets')
+                return redirect('/home')
             else:
                 flash("Wrong Password")
                 return redirect('/login')
