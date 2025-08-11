@@ -30,6 +30,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 class Base(DeclarativeBase):
     pass
@@ -59,11 +60,11 @@ with app.app_context():
 def load_user(user_id):
     return db.get_or_404(User, user_id)
 
+response = requests.get(url=LINK, params=params, headers=headers)
+data = response.json()
 
 @app.route('/')
 def home():
-    response = requests.get(url=LINK, params=params, headers=headers)
-    data = response.json()
     return render_template('index.html', list_items = data)
 
 
@@ -114,7 +115,7 @@ def register():
 
         login_user(new_user)
 
-        return redirect('/secrets')
+        return redirect('/')
 
     return render_template("register.html")
 
@@ -128,7 +129,7 @@ def login():
             print(res.email)
             if check_password_hash(res.password, password):
                 login_user(res)
-                return redirect('/home')
+                return redirect('/')
             else:
                 flash("Wrong Password")
                 return redirect('/login')

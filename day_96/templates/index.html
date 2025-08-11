@@ -1,8 +1,10 @@
 {%extends "base.html" %}
 {% block content %}
+<div id="img-container">
     {% for item in list_items: %}
     <div class="cont-image" onclick="PopContent('{{item.url}}', '{{item.id}}')">
       <img src="{{item.url}}" class="img" alt="" />
     </div>
     {%endfor%}
+</div>
 {% endblock %}

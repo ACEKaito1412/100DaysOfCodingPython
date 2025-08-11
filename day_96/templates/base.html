@@ -7,15 +7,29 @@
       * {
         margin: 0;
         padding: 0;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol,
+        "Noto Color Emoji";
       }
 
       body {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+        position: relative;
+      }
+
+      #img-container{
         display: flex;
         flex-flow: row wrap;
         align-items: center;
         justify-content: center;
         gap: 30px;
         margin-top: 20px;
+        width: 100%;
         position: relative;
       }
 
@@ -60,25 +74,73 @@
       }
       .pop-btn{
         margin-top: 10px;
+        display: flex;
       }
 
       .box{
         justify-content: center;
         align-items: center;
         flex-flow: column wrap;
-        width: 450px;
         padding: 10px;
         border: 5px solid black;
         box-shadow: 12px 12px 0 #000;
         overflow: hidden;
         background-color: #f0edea;
+        display: flex;
       }
       
+      #form_box{
+        display:flex;
+        flex-flow: column wrap;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      #form_box *{
+        width: 200px;
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      #form_box button {
+        background-color: greenyellow;
+      }
+      #navigation{
+        padding: 20px;
+        display: flex;
+        flex-flow: row wrap;
+        width: 600px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      #nav-cont{
+        display:flex;
+        gap: 10px;
+      }
+
+      #nav-cont * {
+        text-decoration: none;
+        color: black;
+        padding: 5px;
+      }
+
+      .nav_btn{
+        border: 2px solid black;
+        box-shadow: 6px 6px 0 #000;
+      }
     </style>
   </head>
   <body>
+    <nav id="navigation">
+      <a href="/" style="text-decoration: none; color: black;"><h2>Cat-Pic</h2></a>
+      <div id="nav-cont">
+        <a href="/top-pics" class="nav_btn" style="background-color: #98A3E8; rotate: -20deg;">Top-Pics</a>
+        <a href="/login" class="nav_btn" style="background-color: #259B91; rotate: 10deg;">Login</a>
+        <a href="/register" class="nav_btn" style="background-color: #EEC64E; rotate: -5deg;">Register</a>
+      </div>
+    </nav>
     {% block content %} {% endblock %}
-
     <div class="pop-up">
         <div class="pop-content">
         <img id="pop-img" src="" alt="">
