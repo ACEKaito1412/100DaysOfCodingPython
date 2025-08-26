@@ -1,7 +1,6 @@
 from app import db
 from sqlalchemy import Integer, String, Float, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column,  DeclarativeBase, relationship
-from models.users import Users
 
 class Orders(db.Model):
     id : Mapped[int] = mapped_column(Integer, primary_key=True)

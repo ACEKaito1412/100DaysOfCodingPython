@@ -1,8 +1,6 @@
 from app import db
 from sqlalchemy import Integer, String, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from models.orders import Orders
-from models.carts import Carts
 import enum
 
 
@@ -20,7 +18,7 @@ class Users(db.Model):
     role : Mapped[RoleEnum] = mapped_column(Enum(RoleEnum), default=RoleEnum.USER, nullable=False)
 
     orders : Mapped[list["Orders"]] = relationship(
-        "Orders", back_populates="user", cascade="all delete-orphan" 
+        "Orders", back_populates="user", cascade="all, delete-orphan" 
     )
 
     cart : Mapped[list["Carts"]] = relationship(
