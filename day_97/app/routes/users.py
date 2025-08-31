@@ -22,7 +22,7 @@ def get_users():
 
 
 # GET by ID
-users_bp.route("/<int:user_id>", methods=["GET"])
+@users_bp.route("/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     result = Users.query.get_or_404(user_id)
 
@@ -35,7 +35,7 @@ def get_user(user_id):
 
 
 # Create new User
-users_bp.route("/", methods=["POST"])
+@users_bp.route("/", methods=["POST"])
 def add_user():
     data = request.get_json()
 

@@ -4,14 +4,14 @@ from sqlalchemy.orm import Mapped, mapped_column,  DeclarativeBase, relationship
 
 class Orders(db.Model):
     id : Mapped[int] = mapped_column(Integer, primary_key=True)
-    user_id : Mapped[str] = mapped_column(String, nullable=False, unique=True)
+    user_id : Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
 
     items : Mapped[list["OrderItem"]] = relationship(
         "OrderItem", back_populates="order", cascade="all, delete-orphan"
     )
 
     user : Mapped["Users"] = relationship(
-        "User", back_populates="orders"
+        "Users", back_populates="orders"
     )
 
 class OrderItem(db.Model):

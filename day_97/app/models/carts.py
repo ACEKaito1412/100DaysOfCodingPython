@@ -1,23 +1,28 @@
 from app import db
 from sqlalchemy import Integer, String, Float, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column,  DeclarativeBase, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-class Carts(db.Model):
-    id : Mapped[int] = mapped_column(Integer, primary_key=True)
-    user_id : Mapped[str] = mapped_column(String, nullable=False, unique=True)
+class Cart(db.Model):
+    __tablename__ = "carts"
 
-    items : Mapped[list["CartItem"]] = relationship(
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False, unique=True)
+
+    items: Mapped[list["CartItem"]] = relationship(
         "CartItem", back_populates="cart", cascade="all, delete-orphan"
     )
 
-    user : Mapped["Users"] = relationship(
-        "User", back_populates="carts"
+    user: Mapped["Users"] = relationship(
+        "Users", back_populates="cart"
     )
 
-class CartItem(db.Model):
-    id : Mapped[int] = mapped_column(Integer, primary_key=True)
-    cart_id : Mapped[int] = mapped_column(ForeignKey("carts.id"), nullable=False)
-    product_id : Mapped[int] = mapped_column(Integer, unique=True, nullable=False)
-    quantity : Mapped[int] = mapped_column(Integer, nullable=False, default=1)
 
-    order : Mapped["Carts"] = relationship("Cart", back_populates="items")
+class CartItem(db.Model):
+    __tablename__ = "cart_items"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    cart_id: Mapped[int] = mapped_column(ForeignKey("carts.id"), nullable=False)
+    product_id: Mapped[int] = mapped_column(Integer, unique=True, nullable=False)
+    quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
+
+    cart: Mapped["Cart"] = relationship("Cart", back_populates="items")
