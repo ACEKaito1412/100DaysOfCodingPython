@@ -1,0 +1,61 @@
+online_shop_project/
+├── server/                             # Backend API
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── products.py
+│   │   │   ├── orders.py
+│   │   │   └── users.py
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── product.py
+│   │   │   ├── order.py
+│   │   │   └── user.py
+│   │   ├── services/
+│   │   │   ├── __init__.py
+│   │   │   └── payment_service.py
+│   │   ├── config.py
+│   │   └── utils.py
+│   ├── tests/
+│   ├── requirements.txt
+│   └── run.py
+│
+├── client/                             # Customer-facing frontend (Flask-based)
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   └── shop.py
+│   │   ├── templates/
+│   │   │   ├── base.html
+│   │   │   └── shop.html
+│   │   ├── static/
+│   │   │   ├── css/
+│   │   │   ├── js/
+│   │   │   └── images/
+│   │   └── config.py
+│   ├── tests/
+│   ├── requirements.txt
+│   └── run.py
+│
+├── admin_client/                       # Admin dashboard (Flask-based)
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── routes/
+│   │   │   ├── __init__.py
+│   │   │   ├── dashboard.py
+│   │   │   └── product_management.py
+│   │   ├── templates/
+│   │   │   ├── base.html
+│   │   │   └── dashboard.html
+│   │   ├── static/
+│   │   │   ├── css/
+│   │   │   ├── js/
+│   │   │   └── images/
+│   │   └── config.py
+│   ├── tests/
+│   ├── requirements.txt
+│   └── run.py
+│
+└── README.md
