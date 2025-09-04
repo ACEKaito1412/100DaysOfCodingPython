@@ -1,9 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Form Login</h1>
-    <form action="">
-        <input type="text">
-        <input type="text">
-        <button>Login</button>
-    </form>
+
+<style>
+    .login{
+        width: 300px;
+        padding: 20px;
+        border: 1px solid black;
+        margin: 20px;
+        height: fit-content;
+    }
+
+    .login-form{
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .login-form * {
+        margin-top: 20px;
+    }
+
+    .login-form input{
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        padding: 10px;
+    }
+
+    .login-form input:focus{
+        box-shadow: none;
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        outline: none;
+    }
+
+    .login-form button{
+        margin-top: 30px;
+        padding: 10px;
+    }
+</style>
+<section class="w-100 d-flex justify-content-center align-items-center" style="height: 600px;">
+    <div class="login">
+        <h2>Login</h2>
+        <form action="" class="login-form">
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button>Login</button>
+        </form>
+    </div>
+</section>
+
 {% endblock %}

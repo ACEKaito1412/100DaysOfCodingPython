@@ -5,7 +5,7 @@ from functools import wraps
 def login_required(view_func):
     def wrapper(*args, **kwargs):
         if "token" not in session:
-            return redirect(url_for("login"))
+            return redirect(url_for("login.login"))
         
         return view_func(*args, **kwargs)
 

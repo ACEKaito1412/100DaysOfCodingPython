@@ -3,7 +3,7 @@ from app.util import login_required
 
 product_bp = Blueprint("product", __name__)
 
-@product_bp.route("", method=["POST", "GET"])
+@product_bp.route("", methods=["POST", "GET"])
 @login_required
 def product():
     return render_template("products.html")

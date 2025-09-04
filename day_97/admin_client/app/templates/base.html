@@ -1,10 +1,214 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>People Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* General */
+      body {
+        background: linear-gradient(135deg, #fdfdfda1, #d0d795a1);
+        font-family: "Inter", sans-serif;
+        color: #333;
+      }
+
+      /* Navbar */
+      .navbar {
+        padding: 0.75rem 1rem;
+      }
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.25rem;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 20px;
+      }
+      .nav-link {
+        color: #6c757d !important;
+        margin: 0 0.4rem;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: 20px;
+      }
+
+      .nav-link:hover {
+        border-bottom: 1px solid black;
+        color: white;
+      }
+
+      .nav-link.active {
+        padding: 10px;
+        border-radius: 20px;
+        background-color: black;
+        color: white;
+      }
+
+      .nav-item.setting {
+        padding: 3px;
+        border-radius: 30px;
+        background-color: white;
+        margin-left: 10px;
+      }
+
+      .navbar-nav-2 {
+        display: flex;
+        flex-flow: row wrap;
+        background-color: white;
+        border-radius: 30px;
+        padding: 3px;
+        list-style-type: none;
+      }
+
+      /* Page Title */
+      h3 {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Progress Stats */
+      .progress {
+        height: 0.6rem;
+        border-radius: 1rem;
+        background-color: #e9ecef;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .progress-bar {
+        border-radius: 1rem;
+        transition: width 0.4s ease;
+      }
+      .row > .col-md-3 p {
+        margin-bottom: 0.4rem;
+        font-weight: 500;
+      }
+
+      /* Search box */
+      .search-1{
+        padding: 10px;
+        border-radius: 20px 20px 0px 0px;
+      }
+
+      .search-1 button{
+        border: 0.5px solid rgba(128, 128, 128, 0.728);
+      }
+
+      .search-2{
+        padding: 10px;
+      }
+
+      .search-2 button{
+        border-radius: 15px;
+      }
+
+      input.form-control {
+        border-radius: 2rem;
+        padding-left: 1.2rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        border: 1px solid #ddd;
+      }
+      input.form-control:focus {
+        border-color: #ffcd39;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+      }
+
+      .dropdown button{
+        border-radius: 20px;
+      }
+
+      .search-input {
+        width: 500px;
+      }
+
+      /* Table */
+      .table {
+        background: #fff;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+      .table th {
+        font-weight: 600;
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+      .table td {
+        vertical-align: middle;
+        font-size: 0.95rem;
+      }
+      .table-hover tbody tr:hover {
+        background-color: #fffbea;
+      }
+
+      /* Highlighted row */
+      .highlight {
+        background-color: #fff7d1 !important;
+      }
+
+      /* Avatars */
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.6rem;
+        border: 2px solid #f1f1f1;
+      }
+
+      /* Status tags */
+      .status a {
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-align: center;
+        margin: 10px;
+        padding: 10px 20px;
+        border: 1px solid rgba(128, 128, 128, 0.582);
+        text-decoration: none;
+      }
+
+      .status.invited a {
+        background-color: #eaf7ef;
+        color: #198754;
+      }
+      .status.absent a {
+        background-color: #fcebea;
+        color: #dc3545;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">My Shop</a>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li>
+            <ul class="navbar-nav-2 ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Products</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#">Orders</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Reviews</a></li>
+            </ul>
+          </li>
+          <li class="nav-item setting">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     {% block content %} {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>
