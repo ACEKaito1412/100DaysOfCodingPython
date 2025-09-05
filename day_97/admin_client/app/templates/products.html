@@ -1,4 +1,277 @@
-{% extends "base.html" %}
-{% block content %}
-    <h1>Products</h1>
+{% extends "base.html" %} {% block content %}
+<div class="container py-4">
+  <h3 class="mb-4">Products</h3>
+
+  <div class="row">
+    <h2>Add New Product</h2>
+    <div class="col-3 p-2 m-2">
+      <div class="border d-flex row border p-3" style="border-radius: 20px">
+        <p class="fw-bold f-3 p-2 border-bottom">Thumbnail</p>
+        <img src="" alt="" width="150" height="150" />
+        <p class="text-center fs-9 mt-2">Only *.png, *.jpg, *.jpeg</p>
+      </div>
+      <div
+        class="border d-flex row border p-3 mt-2"
+        style="border-radius: 20px"
+      >
+        <p class="fw-bold f-3 border-bottom p-2">Product Details</p>
+        <label for="">Categories</label>
+        <div class="dropdown border mt-2">
+          <button
+            class="btn btn-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            style="width: 100%"
+          >
+            Select an option
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8 p-2 m-2 border">
+      <div class="border d-flex row border p-3 m-2" style="border-radius: 20px">
+        <p class="fw-bold f-3 p-2 border-bottom">General</p>
+        <label for="">Product Name</label>
+        <input class="border rounded p-2" type="text" name="" id="" />
+        <p class="fs-9">Product name is required and must be unique.</p>
+        <label for="">Description</label>
+        <input class="border rounded p-2" type="text" name="" id="" />
+      </div>
+      <div class="border d-flex row border p-3 m-2" style="border-radius: 20px">
+        <p class="fw-bold f-3 p-2 border-bottom">Pricing</p>
+        <label for="">Price</label>
+        <input class="border rounded p-2" type="text" name="" id="" />
+        <p class="fs-9">Set base price.</p>
+
+        <p class="fw-bold f-3 p-2 border-bottom">Discount Type</p>
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic checkbox toggle button group"
+        >
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck1"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="btncheck1"
+            >Checkbox 1</label
+          >
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck2"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="btncheck2"
+            >Checkbox 2</label
+          >
+
+          <input
+            type="checkbox"
+            class="btn-check"
+            id="btncheck3"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="btncheck3"
+            >Checkbox 3</label
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Stats -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <p>Interviews: 25%</p>
+      <div class="progress">
+        <div class="progress-bar bg-dark" style="width: 25%"></div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <p>Hired: 51%</p>
+      <div class="progress">
+        <div class="progress-bar bg-warning" style="width: 51%"></div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <p>Project Time: 10%</p>
+      <div class="progress">
+        <div class="progress-bar bg-info" style="width: 10%"></div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <p>Output: 14%</p>
+      <div class="progress">
+        <div class="progress-bar bg-secondary" style="width: 14%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="d-flex search-m justify-content-between">
+    <div class="d-flex gap-4 search-1">
+      <div class="dropdown">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Culomns
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Product Type
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Role
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+      <div class="search-input">
+        <input type="text" class="form-control" placeholder="Search..." />
+      </div>
+    </div>
+    <div class="d-flex gap-2 search-2">
+      <button class="btn btn-light">+</button>
+      <button class="btn btn-light">=</button>
+      <button class="btn btn-light">Export</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>CreatedAt</th>
+          <th>UpdateAt</th>
+          <th class="text-center">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>
+            <img src="https://via.placeholder.com/32" class="avatar" />
+            Anatoliy Belik
+          </td>
+          <td>Mobile Lead</td>
+          <td>Product</td>
+          <td>Mar 13, 2023</td>
+          <td>Hired</td>
+          <td class="status invited text-center"><a href="">Invited</a></td>
+        </tr>
+        <tr class="highlight">
+          <td><input type="checkbox" checked /></td>
+          <td>
+            <img src="https://via.placeholder.com/32" class="avatar" />
+            Ksenia Bator
+          </td>
+          <td>Fullstack Engineer</td>
+          <td>Miami</td>
+          <td>Oct 13, 2023</td>
+          <td>Hired</td>
+          <td class="status absent text-center"><a href="">Absent</a></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>
+            <img src="https://via.placeholder.com/32" class="avatar" />
+            Bogdan Nikitin
+          </td>
+          <td>Mobile Lead</td>
+          <td>$2,600</td>
+          <td>Nov 4, 2023</td>
+          <td>Employed</td>
+          <td class="status invited text-center"><a href="">Invited</a></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>
+            <img src="https://via.placeholder.com/32" class="avatar" />
+            Arsen Yatsenko
+          </td>
+          <td>Sales Manager</td>
+          <td>$900</td>
+          <td>Sep 4, 2021</td>
+          <td>Employed</td>
+          <td class="status invited text-center"><a href="">Invited</a></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>
+            <img src="https://via.placeholder.com/32" class="avatar" />
+            Daria Yurchenko
+          </td>
+          <td>Network Engineer</td>
+          <td>Product</td>
+          <td>Feb 21, 2023</td>
+          <td>Hired</td>
+          <td class="status invited text-center"><a href="">Invited</a></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>
+            <img src="https://via.placeholder.com/32" class="avatar" />
+            Yulia Polishchuk
+          </td>
+          <td>Head of Design</td>
+          <td>Product</td>
+          <td>Aug 2, 2024</td>
+          <td>Employed</td>
+          <td class="status absent text-center"><a href="">Absent</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}
