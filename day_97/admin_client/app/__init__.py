@@ -20,13 +20,19 @@ def create_app():
 
     # import blueprint
     from app.routes.dashboard import dashboard_bp
-    from app.routes.login import login_bp
-    from app.routes.product_management import product_bp
+    from app.routes.login import login_bp, init_login
+    from app.routes.product_management import product_bp, init_product
 
     # initialize routes
+    init_login(auth_client)
+    init_product(product_client)
 
     app.register_blueprint(dashboard_bp, url_prefix="/dashboard/")
     app.register_blueprint(login_bp, url_prefix="/dashboard/login/")
     app.register_blueprint(product_bp, url_prefix="/dashboard/products/")
+
+
+
+    
 
     return app

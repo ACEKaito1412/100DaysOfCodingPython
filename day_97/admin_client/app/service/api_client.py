@@ -1,4 +1,5 @@
 import requests
+from flask import jsonify
 
 class BaseApiClient:
     def __init__(self, base_url, token=None):
@@ -17,10 +18,16 @@ class BaseApiClient:
         return headers
     
     def _request(self, method, endpoint, **kwargs):
-        url = f"{self.base_url}{endpoint}"
-        response = requests.request(method, url, self._headers(), **kwargs)
-        response.raise_for_status()
-        return response.json()
+        try:
+            url = f"{self.base_url}{endpoint}"
+            response = requests.request(method, url, headers=self._headers(), **kwargs)
+            return response.json()
+        except requests.exceptions.HTTPError as http_err:
+            return None
+        except requests.exceptions.RequestException as req_err:
+            return None
+
+        
     
 class ProductApi(BaseApiClient):
     def get_all(self):
