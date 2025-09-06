@@ -10,7 +10,7 @@ url = "http://127.0.0.1:5000"
 
 json_ = {
     "email" : "jhuncarlomacdon@gmail.com",
-    "password" : "ACE_Kaito1412"
+    "password" : "..."
 }
 
 response = requests.post(url=f"{url}/api/auth/" , json=json_)
