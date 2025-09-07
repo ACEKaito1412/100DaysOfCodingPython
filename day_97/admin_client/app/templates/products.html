@@ -2,66 +2,85 @@
 <div class="container py-4">
   <h3 class="mb-4">Products</h3>
 
+
+  <style>
+    .pop-up-container {
+      background: gray;
+      position: fixed;
+      display: none;
+      justify-content: center;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 20px;
+    }
+  </style>
+
   <!-- Add Product -->
-  <div >
-    <form action="" class="row d-flex justify-content-center">
-      <div class="d-flex justify-content-between">
-        <h2>Add New Product</h2>
-        <div><button class="btn btn-outline-primary">Save</button>
-          <button class="btn btn-outline-danger">Cancel</button>
+  <div class="pop-up-container" id="pop-up-container">
+    <div class="pop-up col-10">
+      <form action="" class="row d-flex justify-content-center">
+        <div class="d-flex justify-content-between">
+          <h2>Add New Product</h2>
+          <div>
+            <button class="btn btn-outline-primary">Save</button>
+            <button type="button" onclick="popProduct()" class="btn btn-outline-danger">Cancel</button>
+          </div>
         </div>
-      </div>
-      <div class="col-3 p-2 m-2">
-        <div class="border d-flex row border p-3" style="border-radius: 20px">
-          <p class="fw-bold f-3 p-2 border-bottom">Thumbnail</p>
-          <img src="" alt="" width="150" height="150" />
-          <p class="text-center fs-9 mt-2">Only *.png, *.jpg, *.jpeg</p>
-        </div>
-        <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
-          <p class="fw-bold f-3 border-bottom p-2">Product Details</p>
-          <label for="">Categories</label>
-          <div class="dropdown border mt-2">
-            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" style="width: 100%">
-              Select an option
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+        <div class="col-3 p-2 m-2">
+          <div class="border d-flex row border p-3" style="border-radius: 20px">
+            <p class="fw-bold f-3 p-2 border-bottom">Thumbnail</p>
+            <img src="" alt="" width="150" height="150" />
+            <p class="text-center fs-9 mt-2">Only *.png, *.jpg, *.jpeg</p>
+          </div>
+          <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
+            <p class="fw-bold f-3 border-bottom p-2">Product Details</p>
+            <label for="">Categories</label>
+            <div class="dropdown border mt-2">
+              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="width: 100%">
+                Select an option
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-8 p-2 m-2">
-        <div class="border d-flex row border p-3 " style="border-radius: 20px">
-          <p class="fw-bold f-3 p-2 border-bottom">General</p>
-          <label for="">Product Name</label>
-          <input class="border rounded p-2" type="text" name="" id="" />
-          <p class="fs-9">Product name is required and must be unique.</p>
-          <label for="">Description</label>
-          <input class="border rounded p-2" type="text" name="" id="" />
-        </div>
-        <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
-          <p class="fw-bold f-3 p-2 border-bottom">Pricing</p>
-          <label for="">Price</label>
-          <input class="border rounded p-2" type="text" name="" id="" />
-          <p class="fs-9">Set base price.</p>
+        <div class="col-8 p-2 m-2">
+          <div class="border d-flex row border p-3 " style="border-radius: 20px">
+            <p class="fw-bold f-3 p-2 border-bottom">General</p>
+            <label for="">Product Name</label>
+            <input class="border rounded p-2" type="text" name="" id="" />
+            <p class="fs-9">Product name is required and must be unique.</p>
+            <label for="">Description</label>
+            <input class="border rounded p-2" type="text" name="" id="" />
+          </div>
+          <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
+            <p class="fw-bold f-3 p-2 border-bottom">Pricing</p>
+            <label for="">Price</label>
+            <input class="border rounded p-2" type="text" name="" id="" />
+            <p class="fs-9">Set base price.</p>
 
-          <p class="fw-bold f-3 p-2 border-bottom">Discount Type</p>
-          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
-            <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck1">Checkbox 1</label>
+            <p class="fw-bold f-3 p-2 border-bottom">Discount Type</p>
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+              <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+              <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck1">Checkbox 1</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
-            <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck2">Checkbox 2</label>
+              <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
+              <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck2">Checkbox 2</label>
 
-            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
-            <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck3">Checkbox 3</label>
+              <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
+              <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck3">Checkbox 3</label>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 
   <!-- Stats -->
@@ -133,7 +152,7 @@
       </div>
     </div>
     <div class="d-flex gap-2 search-2">
-      <button class="btn btn-light">+</button>
+      <button class="btn btn-light" onclick="popProduct()">Add New Product</button>
       <button class="btn btn-light">=</button>
       <button class="btn btn-light">Export</button>
     </div>
@@ -171,4 +190,16 @@
     </table>
   </div>
 </div>
+
+<script>
+  function popProduct() {
+    var container = document.querySelector("#pop-up-container");
+
+    if (container.style.display == "flex") {
+      container.style.display = "none";
+    } else {
+      container.style.display = "flex";
+    }
+  }
+</script>
 {% endblock %}

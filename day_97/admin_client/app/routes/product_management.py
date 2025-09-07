@@ -15,5 +15,4 @@ def init_product(api_client:ProductApi):
 @login_required
 def product():
     data = product_api.get_all()
-    print(data)
     return render_template("products.html", data = data)
