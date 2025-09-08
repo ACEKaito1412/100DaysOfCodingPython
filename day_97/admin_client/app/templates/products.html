@@ -21,7 +21,7 @@
   <!-- Add Product -->
   <div class="pop-up-container" id="pop-up-container">
     <div class="pop-up col-10">
-      <form action="" class="row d-flex justify-content-center">
+      <form action="{{url_for('product.wrapper')}}" method="post" class="row d-flex justify-content-center">
         <div class="d-flex justify-content-between">
           <h2>Add New Product</h2>
           <div>
@@ -55,16 +55,20 @@
           <div class="border d-flex row border p-3 " style="border-radius: 20px">
             <p class="fw-bold f-3 p-2 border-bottom">General</p>
             <label for="">Product Name</label>
-            <input class="border rounded p-2" type="text" name="" id="" />
+            <input class="border rounded p-2" type="text" name="name" id="form_name" />
             <p class="fs-9">Product name is required and must be unique.</p>
             <label for="">Description</label>
-            <input class="border rounded p-2" type="text" name="" id="" />
+            <input class="border rounded p-2" type="text" name="description" id="form_description" />
           </div>
           <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
             <p class="fw-bold f-3 p-2 border-bottom">Pricing</p>
             <label for="">Price</label>
-            <input class="border rounded p-2" type="text" name="" id="" />
+            <input class="border rounded p-2" type="text" name="price" id="form_price" />
             <p class="fs-9">Set base price.</p>
+
+            <label for="">Stock</label>
+            <input class="border rounded p-2" type="text" name="stock" id="form_stock" />
+            <p class="fs-9">Set items count.</p>
 
             <p class="fw-bold f-3 p-2 border-bottom">Discount Type</p>
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -177,13 +181,14 @@
         {% for prod in data :%}
         <tr>
           <td><input type="checkbox" /></td>
-          <td>{{prod.id}}</td>
-          <td>{{prod.name}}</td>
-          <td>{{prod.price}}</td>
-          <td>{{prod.stock}}</td>
+          <td id="prod_id_{{prod.id}}">{{prod.id}}</td>
+          <td id="prod_name_{{prod.id}}">{{prod.name}}</td>
+          <td id="prod_price_{{prod.id}}">{{prod.price}}</td>
+          <td id="prod_stock_{{prod.id}}">{{prod.stock}}</td>
+          <td id="prod_description_{{prod.id}}" style="display: none;">{{prod.description}}</td>
           <td>09/06/25</td>
           <td>09/06/25</td>
-          <td class="status invited text-center"><a href="">Update</a></td>
+          <td class="status invited text-center"><button onclick="updateProduct('{{prod.id}}')" class="btn btn-outline-success" type="button">Update</button></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -200,6 +205,29 @@
     } else {
       container.style.display = "flex";
     }
+  }
+
+  function updateProduct(id){
+    var container = document.querySelector("#pop-up-container");
+
+    var name = document.querySelector("#prod_name_"+id).textContent;
+    var description = document.querySelector("#prod_description_"+id).textContent;
+    var price = document.querySelector("#prod_price_"+id).textContent;
+    var stock = document.querySelector("#prod_stock_"+id).textContent;
+
+    var form_name = document.querySelector("#form_name");
+    var form_description = document.querySelector("#form_description");
+    var form_price = document.querySelector("#form_price");
+    var form_stock = document.querySelector("#form_stock");
+
+    form_name.value = name;
+    form_description.value = description;
+    form_price.value = price;
+    form_stock.value = stock;
+
+    container.style.display = "flex";
+
+    console.log(price)
   }
 </script>
 {% endblock %}

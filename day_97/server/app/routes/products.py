@@ -13,6 +13,7 @@ def get_products():
         {
             "id" : item.id,
             "name" : item.name,
+            "description" : item.description,
             "price" : item.price,
             "stock" : item.stock
         } 
@@ -27,6 +28,7 @@ def get_product(product_id):
         {
             "id" : result.id,
             "name" : result.name,
+            "description" : result.description,
             "price" : result.price,
             "stock" : result.stock
         }
@@ -58,6 +60,7 @@ def update_product(product_id):
         "product" : {
             "id"    : item.id,
             "name"  : item.name,
+            "description" : item.description,
             "price" : item.price,
             "stock" : item.stock
         }
