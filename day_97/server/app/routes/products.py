@@ -38,20 +38,25 @@ def get_product(product_id):
 
 @products_bp.route("/<int:product_id>", methods=["PUT"])
 @token_required
-def update_product(product_id):
+def update_product(current_user, product_id):
     item = Product.query.filter_by(id=product_id).first()
+
+    print(item)
 
     if not item:
         return jsonify({"error" : "Product not found"}), 401
-
-    data = request.get_json()
+    try:
+        data = request.get_json()
+        print(data)
+        if "name" in data:
+            item.name = data["name"]
+        if "price" in data:
+            item.price = data["price"]
+        if "stock" in data:
+            item.stock = data["stock"]
+    except Exception as  e:
+        print(e) 
     
-    if "name" in data:
-        item.name = data["name"]
-    if "price" in data:
-        item.price = data["price"]
-    if "stock" in data:
-        item.stock = data["stock"]
     
     db.session.commit()
 
@@ -64,15 +69,13 @@ def update_product(product_id):
             "price" : item.price,
             "stock" : item.stock
         }
-    })
+    }), 200
 
 # ADD NEW PRODUCT
 @products_bp.route("/", methods = ["POST"])
 @token_required
 def create_product(current_user):
     data = request.get_json()
-
-    print("hello")
 
     if not data or "name" not in data or "price" not in data:
         return jsonify({"error" : "Invalid input"}), 400

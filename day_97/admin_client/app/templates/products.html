@@ -1,8 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <div class="container py-4">
   <h3 class="mb-4">Products</h3>
-
-
   <style>
     .pop-up-container {
       background: gray;
@@ -15,13 +13,14 @@
       top: 0;
       left: 0;
       padding: 20px;
+      overflow-y: scroll;
     }
   </style>
 
   <!-- Add Product -->
   <div class="pop-up-container" id="pop-up-container">
     <div class="pop-up col-10">
-      <form action="{{url_for('product.wrapper')}}" method="post" class="row d-flex justify-content-center">
+      <form id="product_form" action="{{url_for('product.wrapper')}}" method="post" class="row d-flex justify-content-center">
         <div class="d-flex justify-content-between">
           <h2>Add New Product</h2>
           <div>
@@ -54,11 +53,12 @@
         <div class="col-8 p-2 m-2">
           <div class="border d-flex row border p-3 " style="border-radius: 20px">
             <p class="fw-bold f-3 p-2 border-bottom">General</p>
+            <input type="number" name="id" id="form_id" style="display: none;"/>
             <label for="">Product Name</label>
             <input class="border rounded p-2" type="text" name="name" id="form_name" />
             <p class="fs-9">Product name is required and must be unique.</p>
             <label for="">Description</label>
-            <input class="border rounded p-2" type="text" name="description" id="form_description" />
+            <textarea class="border rounded p-2" name="description" id="form_description"></textarea>
           </div>
           <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
             <p class="fw-bold f-3 p-2 border-bottom">Pricing</p>
@@ -151,8 +151,11 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </div>
-      <div class="search-input">
-        <input type="text" class="form-control" placeholder="Search..." />
+      <div class="search-input d-flex justify-content-between">
+        <form action="/search/" hx-get="/search" hx-target="#results" hx-trigger="keyup changed delay:300ms">>
+          <input type="text" class="form-control" placeholder="Search..." />
+          <button class="btn btn-light" style="margin-left: 20px;" type="submit">Search</button>
+        </form>
       </div>
     </div>
     <div class="d-flex gap-2 search-2">
@@ -177,7 +180,7 @@
           <th class="text-center">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="results">
         {% for prod in data :%}
         <tr>
           <td><input type="checkbox" /></td>
@@ -199,6 +202,7 @@
 <script>
   function popProduct() {
     var container = document.querySelector("#pop-up-container");
+    var form = document.querySelector("#product_form");
 
     if (container.style.display == "flex") {
       container.style.display = "none";
@@ -215,11 +219,13 @@
     var price = document.querySelector("#prod_price_"+id).textContent;
     var stock = document.querySelector("#prod_stock_"+id).textContent;
 
+    var form_id = document.querySelector("#form_id");
     var form_name = document.querySelector("#form_name");
     var form_description = document.querySelector("#form_description");
     var form_price = document.querySelector("#form_price");
     var form_stock = document.querySelector("#form_stock");
 
+    form_id.value = id;
     form_name.value = name;
     form_description.value = description;
     form_price.value = price;

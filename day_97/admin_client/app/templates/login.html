@@ -46,8 +46,8 @@
   <div class="login">
     <h2>Login</h2>
     <form action="{{url_for('login.login')}}" method="post" class="login-form">
-      <input type="text" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="text" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
       {% if error %}
       <p>{{error}}</p>
       {% endif %}

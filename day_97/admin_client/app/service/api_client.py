@@ -37,10 +37,10 @@ class ProductApi(BaseApiClient):
         return self._request("GET", f"/products/{product_id}")
     
     def create(self, data):
-        return self._request("POST", "/products", data)
+        return self._request("POST", "/products", json=data)
     
-    def update(self, data):
-        return self._request("PUT", "/products", data)
+    def update(self, data, product_id):
+        return self._request("PUT", f"/products/{product_id}",json=data)
     
     def delete(self, product_id):
         return self._request("DELETE", f"/products/{product_id}")
@@ -58,4 +58,4 @@ class UserApi(BaseApiClient):
 
 class AuthApi(BaseApiClient):
     def login(self, email, password):
-        return self._request("POST", "/auth/login", json={"email" : email , "password" : password})
+        return self._request("POST", "/auth/", json={"email" : email , "password" : password})

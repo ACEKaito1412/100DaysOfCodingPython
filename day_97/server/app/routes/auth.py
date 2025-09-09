@@ -11,6 +11,7 @@ auth_bp = Blueprint("auth", __name__)
 def login():
     data = request.get_json()
 
+    print(data)
     if not data or "email" not in data or "password" not in data:
         return jsonify({"error" : "Invalid input"}), 400
 
@@ -29,5 +30,6 @@ def login():
         algorithm="HS256"
     )
 
+    print(token)
     return jsonify({"token" : token}), 200
     
