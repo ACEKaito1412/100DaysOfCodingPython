@@ -152,7 +152,7 @@
         </div>
       </div>
       <div class="search-input d-flex justify-content-between">
-        <form action="/search/" hx-get="/search" hx-target="#results" hx-trigger="keyup changed delay:300ms">>
+        <form action="/dashboard/search/" hx-get="/search" hx-target="#results" hx-trigger="keyup changed delay:300ms">>
           <input type="text" class="form-control" placeholder="Search..." />
           <button class="btn btn-light" style="margin-left: 20px;" type="submit">Search</button>
         </form>
@@ -181,19 +181,7 @@
         </tr>
       </thead>
       <tbody id="results">
-        {% for prod in data :%}
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td id="prod_id_{{prod.id}}">{{prod.id}}</td>
-          <td id="prod_name_{{prod.id}}">{{prod.name}}</td>
-          <td id="prod_price_{{prod.id}}">{{prod.price}}</td>
-          <td id="prod_stock_{{prod.id}}">{{prod.stock}}</td>
-          <td id="prod_description_{{prod.id}}" style="display: none;">{{prod.description}}</td>
-          <td>09/06/25</td>
-          <td>09/06/25</td>
-          <td class="status invited text-center"><button onclick="updateProduct('{{prod.id}}')" class="btn btn-outline-success" type="button">Update</button></td>
-        </tr>
-        {% endfor %}
+        {% include "_products.html" %}
       </tbody>
     </table>
   </div>

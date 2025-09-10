@@ -102,3 +102,25 @@ def remove_product(product_id):
     db.session.commit()
 
     return jsonify({"message" : "Product deleted"}), 200
+
+# SEARCH PRODUCT 
+@products_bp.route("/search", method=["GET"])
+def search_product():
+    query = request.args.get("q", "")
+
+    if not query:
+        return jsonify({"error" : "Search query is required."}), 400
+    
+    results = Product.query.filter(Product.name.ilike(f"%query%")).all()
+
+    return jsonify({
+        {
+            "id" : item.id,
+            "name" : item.name,
+            "description" : item.description,
+            "price" : item.price,
+            "stock" : item.stock
+        } 
+        for item in results
+    }), 200
+    

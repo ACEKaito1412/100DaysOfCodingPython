@@ -33,6 +33,9 @@ class ProductApi(BaseApiClient):
     def get_all(self):
         return self._request("GET", "/products")
     
+    def search(self, query):
+        return self._request("GET", f"/products/search?q={query}")
+    
     def get_by_id(self, product_id):
         return self._request("GET", f"/products/{product_id}")
     

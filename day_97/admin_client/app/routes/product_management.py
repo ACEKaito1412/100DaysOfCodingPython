@@ -35,3 +35,11 @@ def product():
     data = product_api.get_all()
     
     return render_template("products.html", data = data, error = error)
+
+@product_bp.route("/search", methods=["POST"])
+@login_required
+def search():
+    q = request.args.get("q", "").lower()
+
+    res = product_api.search(q)
+    return render_template("_products.html", data = res)
