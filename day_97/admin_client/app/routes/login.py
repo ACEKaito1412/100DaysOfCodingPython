@@ -28,10 +28,10 @@ def login():
 
             session["token"] = response_data["token"]
 
-            return redirect(url_for("dashboard.wrapper"))
+            return redirect(url_for("dashboard.home"))
         except Exception as e:
             session["token"] = "something"
-            return redirect(url_for("dashboard.wrapper"))
+            return redirect(url_for("dashboard.home"))
             # error = "Login Failed"
             
     

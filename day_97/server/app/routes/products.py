@@ -95,25 +95,26 @@ def create_product(current_user):
 # DELETE PRODCT
 @products_bp.route("/<int:product_id>", methods=["DELETE"])
 @token_required
-def remove_product(product_id):
+def remove_product(current_user, product_id):
     result = Product.query.get_or_404(product_id)
 
-    db.session.remove(result)
+    db.session.delete(result)
     db.session.commit()
 
-    return jsonify({"message" : "Product deleted"}), 200
+    return jsonify({"message" : "Product deleted", "status" : 200})
 
 # SEARCH PRODUCT 
-@products_bp.route("/search", method=["GET"])
+@products_bp.route("/search", methods=["GET"])
 def search_product():
     query = request.args.get("q", "")
 
+ 
     if not query:
         return jsonify({"error" : "Search query is required."}), 400
     
-    results = Product.query.filter(Product.name.ilike(f"%query%")).all()
+    results = Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
-    return jsonify({
+    return jsonify([
         {
             "id" : item.id,
             "name" : item.name,
@@ -122,5 +123,5 @@ def search_product():
             "stock" : item.stock
         } 
         for item in results
-    }), 200
+    ]), 200
     

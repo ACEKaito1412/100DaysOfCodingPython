@@ -3,7 +3,7 @@
   <h3 class="mb-4">Products</h3>
   <style>
     .pop-up-container {
-      background: gray;
+      background: linear-gradient(135deg, #fdfdfd, #d0d795);
       position: fixed;
       display: none;
       justify-content: center;
@@ -20,12 +20,24 @@
   <!-- Add Product -->
   <div class="pop-up-container" id="pop-up-container">
     <div class="pop-up col-10">
-      <form id="product_form" action="{{url_for('product.wrapper')}}" method="post" class="row d-flex justify-content-center">
+      <form
+        id="product_form"
+        action="{{url_for('product.product')}}"
+        method="post"
+        class="row d-flex justify-content-center"
+      >
         <div class="d-flex justify-content-between">
-          <h2>Add New Product</h2>
-          <div>
+          <h2 id="pop-title">Add New Product</h2>
+          <div class="d-flex">
             <button class="btn btn-outline-primary">Save</button>
-            <button type="button" onclick="popProduct()" class="btn btn-outline-danger">Cancel</button>
+            <button type="button" id="form_delete_btn" class="btn btn-outline-danger text-center" style="display: none;"><a href="" id="form_link">Delete</a></button>
+            <button
+              type="button"
+              onclick="popProduct()"
+              class="btn btn-outline-danger"
+            >
+              Cancel
+            </button>
           </div>
         </div>
         <div class="col-3 p-2 m-2">
@@ -34,12 +46,22 @@
             <img src="" alt="" width="150" height="150" />
             <p class="text-center fs-9 mt-2">Only *.png, *.jpg, *.jpeg</p>
           </div>
-          <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
+          <div
+            class="border d-flex row border p-3 mt-2"
+            style="border-radius: 20px"
+          >
             <p class="fw-bold f-3 border-bottom p-2">Product Details</p>
             <label for="">Categories</label>
             <div class="dropdown border mt-2">
-              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" style="width: 100%">
+              <button
+                class="btn btn-light dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                style="width: 100%"
+              >
                 Select an option
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -51,35 +73,88 @@
           </div>
         </div>
         <div class="col-8 p-2 m-2">
-          <div class="border d-flex row border p-3 " style="border-radius: 20px">
+          <div class="border d-flex row border p-3" style="border-radius: 20px">
             <p class="fw-bold f-3 p-2 border-bottom">General</p>
-            <input type="number" name="id" id="form_id" style="display: none;"/>
+            <input type="number" name="id" id="form_id" style="display: none" />
             <label for="">Product Name</label>
-            <input class="border rounded p-2" type="text" name="name" id="form_name" />
+            <input
+              class="border rounded p-2"
+              type="text"
+              name="name"
+              id="form_name"
+            />
             <p class="fs-9">Product name is required and must be unique.</p>
             <label for="">Description</label>
-            <textarea class="border rounded p-2" name="description" id="form_description"></textarea>
+            <textarea
+              class="border rounded p-2"
+              name="description"
+              id="form_description"
+            ></textarea>
           </div>
-          <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
+          <div
+            class="border d-flex row border p-3 mt-2"
+            style="border-radius: 20px"
+          >
             <p class="fw-bold f-3 p-2 border-bottom">Pricing</p>
             <label for="">Price</label>
-            <input class="border rounded p-2" type="text" name="price" id="form_price" />
+            <input
+              class="border rounded p-2"
+              type="text"
+              name="price"
+              id="form_price"
+            />
             <p class="fs-9">Set base price.</p>
 
             <label for="">Stock</label>
-            <input class="border rounded p-2" type="text" name="stock" id="form_stock" />
+            <input
+              class="border rounded p-2"
+              type="text"
+              name="stock"
+              id="form_stock"
+            />
             <p class="fs-9">Set items count.</p>
 
             <p class="fw-bold f-3 p-2 border-bottom">Discount Type</p>
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-              <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
-              <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck1">Checkbox 1</label>
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic checkbox toggle button group"
+            >
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="btncheck1"
+                autocomplete="off"
+              />
+              <label
+                class="btn btn-outline-primary rounded-pill m-2"
+                for="btncheck1"
+                >Checkbox 1</label
+              >
 
-              <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
-              <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck2">Checkbox 2</label>
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="btncheck2"
+                autocomplete="off"
+              />
+              <label
+                class="btn btn-outline-primary rounded-pill m-2"
+                for="btncheck2"
+                >Checkbox 2</label
+              >
 
-              <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
-              <label class="btn btn-outline-primary  rounded-pill m-2" for="btncheck3">Checkbox 3</label>
+              <input
+                type="checkbox"
+                class="btn-check"
+                id="btncheck3"
+                autocomplete="off"
+              />
+              <label
+                class="btn btn-outline-primary rounded-pill m-2"
+                for="btncheck3"
+                >Checkbox 3</label
+              >
             </div>
           </div>
         </div>
@@ -119,8 +194,14 @@
   <div class="d-flex search-m justify-content-between">
     <div class="d-flex gap-4 search-1">
       <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Culomns
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -130,8 +211,14 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Product Type
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -141,8 +228,14 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <button
+          class="btn btn-light dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Role
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -151,15 +244,27 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </div>
-      <div class="search-input d-flex justify-content-between">
-        <form action="/dashboard/search/" hx-get="/search" hx-target="#results" hx-trigger="keyup changed delay:300ms">>
-          <input type="text" class="form-control" placeholder="Search..." />
-          <button class="btn btn-light" style="margin-left: 20px;" type="submit">Search</button>
+      <div class="search-input">
+        <form
+          hx-get="{{url_for('product.search')}}"
+          hx-target="#results"
+          hx-trigger="keyup changed delay:300ms"
+          class="d-flex justify-content-between"
+        >
+          <input
+            type="text"
+            name="q"
+            class="form-control"
+            placeholder="Search..."
+          />
+          <button class="btn btn-light" style="margin-left: 20px" type="submit">
+            Search
+          </button>
         </form>
       </div>
     </div>
     <div class="d-flex gap-2 search-2">
-      <button class="btn btn-light" onclick="popProduct()">Add New Product</button>
+      <button class="btn btn-light" onclick="popProduct()">Add Product</button>
       <button class="btn btn-light">=</button>
       <button class="btn btn-light">Export</button>
     </div>
@@ -191,6 +296,25 @@
   function popProduct() {
     var container = document.querySelector("#pop-up-container");
     var form = document.querySelector("#product_form");
+    var title = document.querySelector("#pop-title");
+
+    var form_delete_btn = document.querySelector("#form_delete_btn");
+
+
+    var form_id = document.querySelector("#form_id");
+    var form_name = document.querySelector("#form_name");
+    var form_description = document.querySelector("#form_description");
+    var form_price = document.querySelector("#form_price");
+    var form_stock = document.querySelector("#form_stock");
+
+    form_delete_btn.style.display = "none";
+    form_id.value = ""
+    form_name.value = ""
+    form_description.value = ""
+    form_price.value = ""
+    form_stock.value = ""
+
+    title.textContent = "Add New Product";
 
     if (container.style.display == "flex") {
       container.style.display = "none";
@@ -199,13 +323,25 @@
     }
   }
 
-  function updateProduct(id){
+  function updateProduct(id) {
     var container = document.querySelector("#pop-up-container");
+    var title = document.querySelector("#pop-title");
 
-    var name = document.querySelector("#prod_name_"+id).textContent;
-    var description = document.querySelector("#prod_description_"+id).textContent;
-    var price = document.querySelector("#prod_price_"+id).textContent;
-    var stock = document.querySelector("#prod_stock_"+id).textContent;
+
+    title.textContent = "Update Product";
+
+    var name = document.querySelector("#prod_name_" + id).textContent;
+    var description = document.querySelector(
+      "#prod_description_" + id
+    ).textContent;
+    var price = document.querySelector("#prod_price_" + id).textContent;
+    var stock = document.querySelector("#prod_stock_" + id).textContent;
+
+    var form_delete_btn = document.querySelector("#form_delete_btn");
+    var form_link = document.querySelector("#form_link");
+
+    form_delete_btn.style.display = "block";
+    form_link.href = `/dashboard/products/delete/${id}`;
 
     var form_id = document.querySelector("#form_id");
     var form_name = document.querySelector("#form_name");
@@ -221,7 +357,7 @@
 
     container.style.display = "flex";
 
-    console.log(price)
+    console.log(price);
   }
 </script>
 {% endblock %}

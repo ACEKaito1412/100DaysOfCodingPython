@@ -1,14 +1,20 @@
-{% for prod in data :%}
+{% if not data : %}
 <tr>
-    <td><input type="checkbox" /></td>
-    <td id="prod_id_{{prod.id}}">{{prod.id}}</td>
-    <td id="prod_name_{{prod.id}}">{{prod.name}}</td>
-    <td id="prod_price_{{prod.id}}">{{prod.price}}</td>
-    <td id="prod_stock_{{prod.id}}">{{prod.stock}}</td>
-    <td id="prod_description_{{prod.id}}" style="display: none;">{{prod.description}}</td>
-    <td>09/06/25</td>
-    <td>09/06/25</td>
-    <td class="status invited text-center"><button onclick="updateProduct('{{prod.id}}')"
-            class="btn btn-outline-success" type="button">Update</button></td>
+  <td colspan="9" class="text-center">No results found</td>
 </tr>
-{% endfor %}
+{% else %}
+    {% for prod in data :%}
+    <tr>
+        <td><input type="checkbox" /></td>
+        <td id="prod_id_{{prod.id}}">{{prod.id}}</td>
+        <td id="prod_name_{{prod.id}}">{{prod.name}}</td>
+        <td id="prod_price_{{prod.id}}">{{prod.price}}</td>
+        <td id="prod_stock_{{prod.id}}">{{prod.stock}}</td>
+        <td id="prod_description_{{prod.id}}" style="display: none;">{{prod.description}}</td>
+        <td>09/06/25</td>
+        <td>09/06/25</td>
+        <td class="status invited text-center"><button onclick="updateProduct('{{prod.id}}')"
+                class="btn btn-outline-success" type="button">Update</button></td>
+    </tr>
+    {% endfor %}
+{% endif %}
