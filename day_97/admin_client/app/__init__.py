@@ -22,14 +22,17 @@ def create_app():
     from app.routes.dashboard import dashboard_bp
     from app.routes.login import login_bp, init_login
     from app.routes.product_management import product_bp, init_product
+    from app.routes.user import user_bp, init_user
 
     # initialize routes
     init_login(auth_client)
     init_product(product_client)
+    init_user(user_client)
 
     app.register_blueprint(dashboard_bp, url_prefix="/dashboard/")
     app.register_blueprint(login_bp, url_prefix="/dashboard/login/")
     app.register_blueprint(product_bp, url_prefix="/dashboard/products/")
+    app.register_blueprint(user_bp, url_prefix="/dashboard/users/")
 
 
 

@@ -15,7 +15,7 @@ def get_users():
             "id" : user.id,
             "name" : user.name,
             "email" : user.email,
-            "role" : user.role
+            "role" : user.role.value
         }
         for user in results
     ]), 200
@@ -30,7 +30,7 @@ def get_user(user_id):
         "id" : result.id,
         "name" : result.name,
         "email" : result.email,
-        "role" : result.role
+        "role" : result.role.value
     }), 200
 
 
