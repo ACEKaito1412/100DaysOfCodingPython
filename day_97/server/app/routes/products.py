@@ -41,13 +41,11 @@ def get_product(product_id):
 def update_product(current_user, product_id):
     item = Product.query.filter_by(id=product_id).first()
 
-    print(item)
-
     if not item:
         return jsonify({"error" : "Product not found"}), 401
     try:
         data = request.get_json()
-        print(data)
+
         if "name" in data:
             item.name = data["name"]
         if "price" in data:
@@ -55,7 +53,7 @@ def update_product(current_user, product_id):
         if "stock" in data:
             item.stock = data["stock"]
     except Exception as  e:
-        print(e) 
+        return jsonify({"error" : f"{e}"}), 400 
     
     
     db.session.commit()

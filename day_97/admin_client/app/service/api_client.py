@@ -56,7 +56,10 @@ class UserApi(BaseApiClient):
         return self._request("GET", f"/users/{user_id}")
     
     def create(self, data):
-        return self._request("POST", "/users/", data)
+        return self._request("POST", "/users/", json=data)
+    
+    def update(self, data, user_id):
+        return self._request("PUT", "/users/{user_id}", json=data)
     
 
 class AuthApi(BaseApiClient):

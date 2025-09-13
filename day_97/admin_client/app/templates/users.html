@@ -22,15 +22,14 @@
   <!-- Add Product -->
   <div class="pop-up-container" id="pop-up-container">
     <div class="pop-up col-10">
-      <form id="product_form" action="{{url_for('product.product')}}" method="post"
-        class="row d-flex justify-content-center">
+      <form id="product_form" action="{{url_for('user.home')}}" method="post" class="row d-flex justify-content-center">
         <div class="d-flex justify-content-between">
           <h2 id="pop-title">Add New User</h2>
           <div class="d-flex">
             <button class="btn btn-outline-primary">Save</button>
             <button type="button" id="form_delete_btn" class="btn btn-outline-danger text-center"
               style="display: none;"><a href="" id="form_link">Delete</a></button>
-            <button type="button" onclick="popProduct()" class="btn btn-outline-danger">
+            <button type="button" onclick="popUser()" class="btn btn-outline-danger">
               Cancel
             </button>
           </div>
@@ -64,24 +63,26 @@
             <label for="">User Name</label>
             <input class="border rounded p-2" type="text" name="name" id="form_name" />
             <p class="fs-9">User name is required and must be unique.</p>
+            <label for="">User Email</label>
+            <input class="border rounded p-2" type="email" name="name" id="form_email" />
+            <p class="fs-9">Email must not be use on same account.</p>
             <label for="">Password</label>
-            <input class="border rounded p-2" type="text" name="name" id="form_name" value="admin-12345" />
+            <input class="border rounded p-2" type="text" name="password" id="form_password" value="admin-12345" />
             <p class="fs-9">Password will be set as defualt.</p>
-            
-          </div>
-          <div class="border d-flex row border p-3 mt-2" style="border-radius: 20px">
-            <p class="fw-bold f-3 p-2 border-bottom">User Type</p>
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-              <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
-              <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck1">Admin</label>
 
-              <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" />
-              <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck2">Moderator</label>
-
-              <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" />
-              <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck3">User</label>
-            </div>
           </div>
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" name="form_role" class="btn-check" id="btncheck1" value="Admin" autocomplete="off" />
+            <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck1">Admin</label>
+
+            <input type="radio" name="form_role" class="btn-check" id="btncheck2" value="Moderator"
+              autocomplete="off" />
+            <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck2">Moderator</label>
+
+            <input type="radio" name="form_role" class="btn-check" id="btncheck3" value="User" autocomplete="off" />
+            <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck3">User</label>
+          </div>
+
         </div>
       </form>
     </div>
@@ -121,28 +122,6 @@
       <div class="dropdown">
         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Culomns
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Product Type
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
           Role
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -168,6 +147,7 @@
       <thead class="table-light">
         <tr>
           <th></th>
+          <th>ID</th>
           <th>Name</th>
           <th>Email</th>
           <th>Role</th>
@@ -181,86 +161,24 @@
         {% for user in data : %}
         <tr>
           <td><input type="checkbox" /></td>
-          <td>
-            <img src="https://via.placeholder.com/32" class="avatar" />
-            {{user.name}}
-          </td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
+          <td id="user_{{user.id}}">{{user.id}}</td>
+          <td id="user_name_{{user.id}}">{{user.name}}</td>
+          <td id="user_email_{{user.id}}">{{user.email}}</td>
+          <td id="user_role_{{user.id}}">{{user.role}}</td>
           <td>Mar 13, 2023</td>
           <td>Hired</td>
-          <td class="status invited text-center"><a href="">Invited</a></td>
+          <td class="status invited text-center"><button onclick="updateUser('{{user.id}}')">Invited</button></td>
         </tr>
         {% endfor %}
         {% else %}
         <td colspan="7" class="text-center">No results found</td>
         {% endif %}
-        <tr class="highlight">
-          <td><input type="checkbox" checked /></td>
-          <td>
-            <img src="https://via.placeholder.com/32" class="avatar" />
-            Ksenia Bator
-          </td>
-          <td>Fullstack Engineer</td>
-          <td>Miami</td>
-          <td>Oct 13, 2023</td>
-          <td>Hired</td>
-          <td class="status absent text-center"><a href="">Absent</a></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>
-            <img src="https://via.placeholder.com/32" class="avatar" />
-            Bogdan Nikitin
-          </td>
-          <td>Mobile Lead</td>
-          <td>$2,600</td>
-          <td>Nov 4, 2023</td>
-          <td>Employed</td>
-          <td class="status invited text-center"><a href="">Invited</a></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>
-            <img src="https://via.placeholder.com/32" class="avatar" />
-            Arsen Yatsenko
-          </td>
-          <td>Sales Manager</td>
-          <td>$900</td>
-          <td>Sep 4, 2021</td>
-          <td>Employed</td>
-          <td class="status invited text-center"><a href="">Invited</a></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>
-            <img src="https://via.placeholder.com/32" class="avatar" />
-            Daria Yurchenko
-          </td>
-          <td>Network Engineer</td>
-          <td>Product</td>
-          <td>Feb 21, 2023</td>
-          <td>Hired</td>
-          <td class="status invited text-center"><a href="">Invited</a></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>
-            <img src="https://via.placeholder.com/32" class="avatar" />
-            Yulia Polishchuk
-          </td>
-          <td>Head of Design</td>
-          <td>Product</td>
-          <td>Aug 2, 2024</td>
-          <td>Employed</td>
-          <td class="status absent text-center"><a href="">Absent</a></td>
-        </tr>
       </tbody>
     </table>
   </div>
 </div>
 <script>
-  function popProduct() {
+  function popUser() {
     var container = document.querySelector("#pop-up-container");
     var form = document.querySelector("#product_form");
     var title = document.querySelector("#pop-title");
@@ -270,12 +188,12 @@
 
     var form_id = document.querySelector("#form_id");
     var form_name = document.querySelector("#form_name");
-    var form_description = document.querySelector("#form_description");
+    var form_email = document.querySelector("#form_email");
 
     form_delete_btn.style.display = "none";
     form_id.value = ""
     form_name.value = ""
-    form_description.value = ""
+    form_email.value = ""
 
     title.textContent = "Add New User";
 
@@ -286,19 +204,18 @@
     }
   }
 
-  function updateProduct(id) {
+  function updateUser(id) {
     var container = document.querySelector("#pop-up-container");
     var title = document.querySelector("#pop-title");
 
 
     title.textContent = "Update User";
 
-    var name = document.querySelector("#prod_name_" + id).textContent;
-    var description = document.querySelector(
-      "#prod_description_" + id
+    var name = document.querySelector("#user_name_" + id).textContent;
+    var email = document.querySelector(
+      "#user_email_" + id
     ).textContent;
-    var price = document.querySelector("#prod_price_" + id).textContent;
-    var stock = document.querySelector("#prod_stock_" + id).textContent;
+    var role = document.querySelector("#user_role_" + id).textContent;
 
     var form_delete_btn = document.querySelector("#form_delete_btn");
     var form_link = document.querySelector("#form_link");
@@ -308,19 +225,30 @@
 
     var form_id = document.querySelector("#form_id");
     var form_name = document.querySelector("#form_name");
-    var form_description = document.querySelector("#form_description");
-    var form_price = document.querySelector("#form_price");
-    var form_stock = document.querySelector("#form_stock");
+    var form_role = document.querySelector("#form_role");
+    var form_email = document.querySelector("#form_email");
+    var form_password = document.querySelector("#form_password");
 
     form_id.value = id;
     form_name.value = name;
-    form_description.value = description;
-    form_price.value = price;
-    form_stock.value = stock;
+    form_email.value = email;
+
+    form_email.readOnly = true;
+    form_password.readOnly = true
+
+    setRole(role)
 
     container.style.display = "flex";
+  }
 
-    console.log(price);
+  function setRole(role) {
+    role = role.toLowerCase()
+
+    const radios = document.querySelectorAll("input[name='form_role']")
+
+    radios.forEach(radio => {
+      radio.checked = radio.value.toLowerCase() === role;
+    })
   }
 </script>
 {% endblock %}
