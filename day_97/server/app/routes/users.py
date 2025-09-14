@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models.users import Users
 from werkzeug.security import generate_password_hash, check_password_hash
+from app.utils import token_required
 from app import db
 
 users_bp = Blueprint('users', __name__)
@@ -39,8 +40,9 @@ def get_user(user_id):
 def add_user():
     data = request.get_json()
 
+    print(data)
     if not data or "password" not in data or "email" not in data:
-        return jsonify({"error" : "Invalid data"}), 400
+        return jsonify({"message" : "Invalid data"}), 400
     
 
     email = data["email"]
@@ -48,34 +50,46 @@ def add_user():
     user_exist = Users.query.filter_by(email=email).first()
 
     if user_exist:
-        return jsonify({"error" : "Email already exist"}), 400
+        return jsonify({"message" : "Email already exist"}), 400
     
-    new_user = Users(
-        name = data["name"],
-        email = data["email"],
-        password = generate_password_hash(data["password"], "scrypt", 16)
-    )
+    try:
+        new_user = Users(
+            name = data["name"],
+            email = data["email"],
+            password = generate_password_hash(data["password"], "scrypt", 16),
+            role = data["form_role"]
+        )
 
-    db.session.add(new_user)
-    db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
+
+    except Exception as e:
+        db.sesion.roll
+        return jsonify({"message" : "Unexpected error occured"}), 400
+    
 
     return jsonify({"message" : "User added"}), 200
 
 # UPDATE USER
 @users_bp.route("/<int:user_id>", methods=["PUT"])
+@token_required
 def update_user(current_user, user_id):
     user = Users.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"error": "User not found"}), 400
+        return jsonify({"message": "User not found"}), 400
     try:
         data = request.get_json()
 
-        if "name" not in data or user.name == data["name"]:
-            return jsonify({"error" : "No changes found" }), 400
+        print(data)
+
+        if not data:
+            return jsonify({"message" : "No data found" }), 400
+        elif user.name == data["name"] and user.role == data["form_role"]:
+            return jsonify({"message" : "No changes found" }), 400
         else:
             user.name = data["name"]
-            user.role = data["role"]
+            user.role = data["form_role"]
             db.session.commit()
 
     except Exception as e:

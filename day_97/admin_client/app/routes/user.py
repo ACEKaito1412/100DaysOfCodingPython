@@ -18,12 +18,16 @@ def home():
     if request.method == "POST":
         form_data = request.form
 
+        print(form_data)
+
         if not form_data or "name" not in form_data:
             flash("Name data not found")
-        elif "id" not in form_data:   
+        elif form_data["id"] == "":    
             result = user_api.create(form_data.to_dict())
         else:
             result = user_api.update(user_id=form_data["id"], data=form_data.to_dict())
+
+        flash(result["message"])
 
     data = user_api.get_all()
     return render_template("users.html", data=data)

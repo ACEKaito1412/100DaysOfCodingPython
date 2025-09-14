@@ -59,7 +59,7 @@ class UserApi(BaseApiClient):
         return self._request("POST", "/users/", json=data)
     
     def update(self, data, user_id):
-        return self._request("PUT", "/users/{user_id}", json=data)
+        return self._request("PUT", f"/users/{user_id}", json=data)
     
 
 class AuthApi(BaseApiClient):

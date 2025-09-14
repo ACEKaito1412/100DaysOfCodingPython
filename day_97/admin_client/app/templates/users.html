@@ -7,7 +7,7 @@
     .pop-up-container {
       background: linear-gradient(135deg, #fdfdfd, #d0d795);
       position: fixed;
-      display: flex;
+      display: none;
       justify-content: center;
       z-index: 1;
       width: 100%;
@@ -64,22 +64,22 @@
             <input class="border rounded p-2" type="text" name="name" id="form_name" />
             <p class="fs-9">User name is required and must be unique.</p>
             <label for="">User Email</label>
-            <input class="border rounded p-2" type="email" name="name" id="form_email" />
+            <input class="border rounded p-2" type="email" name="email" id="form_email" />
             <p class="fs-9">Email must not be use on same account.</p>
             <label for="">Password</label>
             <input class="border rounded p-2" type="text" name="password" id="form_password" value="admin-12345" />
-            <p class="fs-9">Password will be set as defualt.</p>
+            <p class="fs-9" id="form_password_message">Password will be set as defualt.</p>
 
           </div>
           <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" name="form_role" class="btn-check" id="btncheck1" value="Admin" autocomplete="off" />
+            <input type="radio" name="form_role" class="btn-check" id="btncheck1" value="ADMIN" autocomplete="off" />
             <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck1">Admin</label>
 
-            <input type="radio" name="form_role" class="btn-check" id="btncheck2" value="Moderator"
+            <input type="radio" name="form_role" class="btn-check" id="btncheck2" value="MODERATOR"
               autocomplete="off" />
             <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck2">Moderator</label>
 
-            <input type="radio" name="form_role" class="btn-check" id="btncheck3" value="User" autocomplete="off" />
+            <input type="radio" name="form_role" class="btn-check" id="btncheck3" value="USER" autocomplete="off" />
             <label class="btn btn-outline-primary rounded-pill m-2" for="btncheck3">User</label>
           </div>
 
@@ -135,7 +135,7 @@
       </div>
     </div>
     <div class="d-flex gap-2 search-2 ">
-      <button class="btn btn-light">+</button>
+      <button class="btn btn-light" onclick="popUser()">+</button>
       <button class="btn btn-light">=</button>
       <button class="btn btn-light">Export</button>
     </div>
@@ -167,7 +167,8 @@
           <td id="user_role_{{user.id}}">{{user.role}}</td>
           <td>Mar 13, 2023</td>
           <td>Hired</td>
-          <td class="status invited text-center"><button onclick="updateUser('{{user.id}}')">Invited</button></td>
+          <td class="status invited text-center"><button onclick="updateUser('{{user.id}}')"
+                class="btn btn-outline-success" type="button">Update</button></td>
         </tr>
         {% endfor %}
         {% else %}
@@ -189,7 +190,10 @@
     var form_id = document.querySelector("#form_id");
     var form_name = document.querySelector("#form_name");
     var form_email = document.querySelector("#form_email");
+    var form_password = document.querySelector("#form_password");
 
+    form_password.style.display = "block";
+    form_password.type = "text";
     form_delete_btn.style.display = "none";
     form_id.value = ""
     form_name.value = ""
@@ -221,7 +225,7 @@
     var form_link = document.querySelector("#form_link");
 
     form_delete_btn.style.display = "block";
-    form_link.href = `/dashboard/products/delete/${id}`;
+    form_link.href = `/dashboard/users/delete/${id}`;
 
     var form_id = document.querySelector("#form_id");
     var form_name = document.querySelector("#form_name");
@@ -234,7 +238,9 @@
     form_email.value = email;
 
     form_email.readOnly = true;
-    form_password.readOnly = true
+    // form_password.style.display = "none";
+    form_password.readOnly = true;
+    form_password.type = "password";
 
     setRole(role)
 
