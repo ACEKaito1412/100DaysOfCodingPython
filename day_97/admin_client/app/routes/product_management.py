@@ -12,7 +12,7 @@ def init_product(api_client:ProductApi):
 
 @product_bp.route("/", methods=["POST", "GET"])
 @login_required
-def product():
+def home():
     product_api.set_token(session["token"])
     
     if request.method == "POST":

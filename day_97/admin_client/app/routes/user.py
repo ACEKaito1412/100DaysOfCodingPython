@@ -31,3 +31,15 @@ def home():
 
     data = user_api.get_all()
     return render_template("users.html", data=data)
+
+
+@user_bp.route("/search", methods=["GET"])
+def search():
+    q = request.args.get("q", "").lower()
+
+    if q == "" or q == " ":
+        res = user_api.get_all()
+    else:   
+        res = user_api.search(q)
+
+    return render_template("_users.html", data = res)

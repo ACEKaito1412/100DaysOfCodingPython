@@ -106,7 +106,6 @@ def remove_product(current_user, product_id):
 def search_product():
     query = request.args.get("q", "")
 
- 
     if not query:
         return jsonify({"error" : "Search query is required."}), 400
     

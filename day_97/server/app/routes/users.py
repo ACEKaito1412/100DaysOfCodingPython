@@ -103,3 +103,23 @@ def update_user(current_user, user_id):
         "role" : user.role
         }
     }), 200
+
+
+@users_bp.route("/search", methods=["GET"])
+def search_user():
+    query = request.args.get("q", "")
+
+    if not query:
+        return jsonify({"message": "Search query is required"}), 400
+    
+    results = Users.query.filter(Users.name.ilike(f"%{query}%")).all()
+
+    return jsonify([
+        {
+            "id" : user.id,
+            "name" : user.name,
+            "email" : user.email,
+            "role" : user.role.value
+        }
+        for user in results
+    ]), 200
