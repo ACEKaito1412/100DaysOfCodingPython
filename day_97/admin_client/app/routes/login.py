@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for, flash, jsonify
+from flask import Blueprint, render_template, request, session, redirect, url_for
 from app.service.api_client import AuthApi, ProductApi, UserApi
 
 
@@ -30,9 +30,12 @@ def login():
 
             return redirect(url_for("dashboard.home"))
         except Exception as e:
-            session["token"] = "something"
-            return redirect(url_for("dashboard.home"))
-            # error = "Login Failed"
+            return redirect(url_for("login.login"))
             
     
     return render_template("login.html", error=error)
+
+@login_bp.route("/logout")
+def log_out():
+    session.clear()
+    return redirect(url_for("login.login"))

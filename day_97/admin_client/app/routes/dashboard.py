@@ -6,4 +6,4 @@ dashboard_bp = Blueprint("dashboard", __name__)
 @dashboard_bp.route("/", methods=["POST", "GET"])
 @login_required
 def home():
-    return render_template("index.html")
+    return render_template("index.html", navigation=True)

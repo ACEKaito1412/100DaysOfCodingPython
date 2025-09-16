@@ -30,7 +30,7 @@ def home():
         flash(result["message"])
 
     data = user_api.get_all()
-    return render_template("users.html", data=data)
+    return render_template("users.html", data=data, navigation=True)
 
 
 @user_bp.route("/search", methods=["GET"])

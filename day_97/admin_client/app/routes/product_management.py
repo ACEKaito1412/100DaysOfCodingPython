@@ -28,7 +28,7 @@ def home():
 
     
     data = product_api.get_all()
-    return render_template("products.html", data = data)
+    return render_template("products.html", data = data, navigation=True)
 
 @product_bp.route("/delete/<int:product_id>", methods=['GET'])
 @login_required
