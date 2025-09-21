@@ -15,7 +15,8 @@ def get_products():
             "name" : item.name,
             "description" : item.description,
             "price" : item.price,
-            "stock" : item.stock
+            "stock" : item.stock,
+            "image_uri" : item.image_uri
         } 
         for item in results
     ]), 200
@@ -30,7 +31,8 @@ def get_product(product_id):
             "name" : result.name,
             "description" : result.description,
             "price" : result.price,
-            "stock" : result.stock
+            "stock" : result.stock,
+            "image_uri" : result.image_uri
         }
     ), 200
 
@@ -65,7 +67,8 @@ def update_product(current_user, product_id):
             "name"  : item.name,
             "description" : item.description,
             "price" : item.price,
-            "stock" : item.stock
+            "stock" : item.stock,
+            "image_uri" : item.image_uri
         }
     }), 200
 
@@ -82,7 +85,8 @@ def create_product(current_user):
         name = data["name"],
         description = data["description"],
         price = data["price"],
-        stock = data["stock"]
+        stock = data["stock"],
+        image_uri = data["image_uri"]
     )
 
     db.session.add(product)
@@ -117,7 +121,8 @@ def search_product():
             "name" : item.name,
             "description" : item.description,
             "price" : item.price,
-            "stock" : item.stock
+            "stock" : item.stock,
+            "image_uri" : item.image_uri
         } 
         for item in results
     ]), 200

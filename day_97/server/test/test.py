@@ -10,7 +10,7 @@ url = "http://127.0.0.1:5000"
 
 json_ = {
     "email" : "jhuncarlomacdon@gmail.com",
-    "password" : "..."
+    "password" : "12345678"
 }
 
 response = requests.post(url=f"{url}/api/auth/" , json=json_)
@@ -28,7 +28,8 @@ for item in data["products"]:
         "name" : item["title"],
         "description" : item["description"],
         "price" : item["price"],
-        "stock" : item["stock"]
+        "stock" : item["stock"],
+        "image_uri" : item["images"][0]
     }
 
     

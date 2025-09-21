@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models.orders import OrderItem, Orders
+from app.utils import token_required
 from app import db
 
 orders_bp = Blueprint('orders', __name__)
@@ -37,11 +38,15 @@ def get_order(order_id):
 
 # CREATE NEW ORDER
 @orders_bp.route("/", methods=["POST"])
-def create_order():
+@token_required
+def create_order(current_user):
     data = request.get_json()
 
     if not data or "user_id" not in data or "items" not in data:
         return jsonify({"error" : "Invalid input"}), 400
+    
+    if current_user.id != data["user_id"]:
+        return jsonify({"message": "Encountered error while authenticating"}), 400
     
     order = Orders(user_id = data["user_id"])
     for item in data["items"]:
