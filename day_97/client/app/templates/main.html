@@ -1,0 +1,152 @@
+{% extends "base.html"%}
+{% block content %}
+<style>
+  .main-item {
+    display: flex;
+    flex-flow: row wrap;
+    width: 800px;
+    border: 1px solid black;
+    padding: 25px;
+    gap: 20px;
+  }
+
+  .main-img {
+    padding: 20px;
+    background-color: blanchedalmond;
+    border-radius: 20px;
+  }
+
+  .main-img img {
+    width: 200px;
+    border-radius: 10px;
+  }
+
+  .main-description {
+    width: 500px;
+  }
+
+  .m-item-title {
+    text-transform: uppercase;
+    font-size: 40px;
+  }
+
+  .m-item-description {
+    font-size: 20px;
+    color: gray;
+  }
+
+  .m-item-price {
+    font-weight: bolder;
+    font-size: 30px;
+    color: rgb(183, 165, 29);
+  }
+
+  .m-btn-cart {
+    background-color: black;
+    text-transform: uppercase;
+    color: white;
+    width: 150px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 20px;
+    font-weight: bolder;
+  }
+
+  .m-btn-cart:hover {
+    background: rgb(38, 167, 38);
+    border: 2px solid gray;
+    color: black;
+  }
+</style>
+<section class="container">
+  <div class="main-item">
+    <div class="main-img">
+      <img src="{{data[0].image_uri}}" alt="">
+    </div>
+    <div class="main-description">
+      <h2 class="m-item-title">{{data[0].name}}</h2>
+      <p class="m-item-description">{{data[0].description}}</p>
+      <p class="m-item-price">{{data[0].price}}</p>
+      <button class="m-btn-cart">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .items {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 10px;
+    width: 900px;
+    gap: 20px;
+  }
+
+  .item {
+    width: 200px;
+    border: 1px solid rgb(179, 137, 137);
+    padding: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+  }
+
+  .item-image {
+    text-align: center;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: gray;
+    width: 190px;
+    overflow: hidden;
+  }
+
+  .item-image img {
+    width: 180px;
+    border-radius: 10px;
+  }
+
+  .description {
+    margin-top: 10px;
+  }
+
+  .item-description {
+    font-size: 13px;
+    color: gray;
+  }
+
+  .item-price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
+  .add-btn {
+    margin-top: 10;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+  }
+</style>
+
+<section class="container">
+  <div class="items">
+    {% for item in data[1:-1]%}
+    <div class="item">
+      <div class="item-image">
+        <img src="{{item.image_uri}}" alt="" />
+      </div>
+      <div class="description">
+        <h2 class="item-title">{{item.name}}</h2>
+        <p class="item-description">
+          {{item.description}}
+        </p>
+      </div>
+      <div>
+        <p class="item-price">{{item.price}}</p>
+        <button class="add-btn">Add to Cart</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

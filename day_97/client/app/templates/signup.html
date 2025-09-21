@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block content %}
+
+<style>
+  .signup {
+    width: 300px;
+    padding: 20px;
+    border: 2px solid gray;
+    margin: 20px;
+    height: fit-content;
+    box-shadow: 5px 10px 0px 0px gray;
+  }
+
+  .signup-form {
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  .signup-form * {
+    margin-top: 20px;
+  }
+
+  .signup-form input {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    padding: 10px;
+  }
+
+  .signup-form input:focus {
+    box-shadow: none;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    outline: none;
+  }
+
+  .signup-form button {
+    margin-top: 20px;
+    padding: 10px;
+  }
+</style>
+<section
+  class="w-100 d-flex justify-content-center align-items-center container"
+  style="height: 600px"
+>
+  <div class="signup">
+    <h2>Sign-up</h2>
+    <form action="" method="post" class="signup-form">
+      <input type="text" name="name" placeholder="Name" />
+      <input type="text" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      {% if error %}
+      <p>{{error}}</p>
+      {% endif %}
+      <button>signup</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

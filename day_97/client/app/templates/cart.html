@@ -1,0 +1,127 @@
+{% extends "base.html"%}
+{% block content %}
+<style>
+    .shopping-cart {
+        display: flex;
+    }
+
+    .shopping-cart> :first-child {
+        padding: 20px;
+        width: 600px;
+    }
+
+    .cart-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid black;
+        margin-bottom: 10px;
+    }
+
+    .cart-table table {
+        width: 600px;
+    }
+
+    .cart-table th {
+        text-align: left;
+        padding-bottom: 20px;
+        color: gray;
+    }
+
+    .t-item> :first-child>div {
+        display: flex;
+        flex-flow: column wrap;
+        width: 350px;
+        gap: 10px;
+    }
+
+
+
+    .c-item-title {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .c-remove-btn {
+        text-decoration: none;
+    }
+
+    .c-quantity>* {
+        padding: 10px;
+        font-size: 20px;
+        font-weight: bolder;
+        border-radius: 5px;
+        border: none;
+        background: none;
+        width: 40px;
+        height: 40px;
+    }
+
+    .c-quantity>label {
+        border: 1px solid black;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+</style>
+<section class="container">
+    <div class="shopping-cart">
+        <div>
+            <div class="cart-title">
+                <h1>Shopping Cart</h1>
+                <p>3 Items</p>
+            </div>
+            <div class="cart-table">
+                <table>
+                    <tr>
+                        <th>Product Details</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr class="t-item">
+                        <td>
+                            <div>
+                                <img src="" width="150" height="150" alt="">
+                                <div>
+                                    <p class="c-item-title">Lorem ipsum dolor sit amet.</p>
+                                    <a class="c-remove-btn" href="">Remove</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="c-quantity">
+                                <button>-</button>
+                                <label>2</label>
+                                <button>+</button>
+                            </div>
+                        </td>
+                        <td>PHP 200</td>
+                        <td>PHP 400</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h2>Order Summary</h2>
+            <div>
+                <p>Items 3</p>
+                <p>Php 400</p>
+            </div>
+            <div>
+                <h3>
+                    Shipping
+                </h3>
+                <p>Php 70</p>
+            </div>
+            <div>
+                <h3>
+                    Promo Code
+                </h3>
+                <input type="text">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

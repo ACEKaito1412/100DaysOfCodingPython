@@ -1,0 +1,201 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      nav {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
+        width: 900px;
+        padding: 20px;
+      }
+
+      nav div {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 10px;
+        background-color: bisque;
+        border-radius: 20px;
+        padding: 0px 20px 0px 20px;
+      }
+
+      nav div button {
+        font-size: 15px;
+        font-weight: bold;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: none;
+      }
+      nav div button img{
+        width: 20px;
+      }
+
+      .categories {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        width: 900px;
+      }
+
+      .categories button {
+        background: none;
+        border: none;
+        border-bottom: 3px solid black;
+        margin: 20px;
+        padding: 10px;
+        width: 110px;
+        transition: 0.6s ease-out;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .categories button:hover{
+        border-bottom: 3px solid blue;
+        color: rgb(31, 211, 43);
+      }
+
+      #user_image {
+        border: 1px solid black;
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        padding: 10px;
+        margin-left: 10px;
+      }
+
+      #brand{
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <nav>
+        <p id="brand">Shop</p>
+        <div>
+          <button>Home</button>
+          <button>Login</button>
+          <button><img src="shopping-cart.jpg" alt=""></button>
+          <button id="user_image"></button>
+        </div>
+      </nav>
+      <div class="categories">
+        <button>Womens</button>
+        <button>Mens</button>
+        <button>Bags</button>
+        <button>Dresses</button>
+        <button>Shoes</button>
+      </div>
+    </section>
+
+    {% block content %}
+    {% endblock%}
+
+    <style>
+      .footer{
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row wrap;
+        padding: 20px;
+        background-color: beige;
+      }
+
+      .footer > div{
+        padding: 20px;
+        display: flex;
+        flex-flow: column wrap;
+      }
+
+      .footer > :first-child{
+        width: 400px;
+      }
+
+      .footer > :first-child p {
+        margin-top: 10px;
+        font-size: 18px;
+      }
+
+      .footer > :first-child button {
+        font-size: 15px;
+        font-weight: bolder;
+        color: white;
+        background: black;
+        border: 1px solid gray;
+        width: 120px;
+        padding: 10px;
+        margin-top: 20px;
+      }
+
+      .footer > :last-child, .f-categories {
+        width: 200px;
+        border-left: 1px solid black;
+      }
+
+      .f-categories > div{
+        padding-top: 10px;
+        display: flex;
+        flex-flow: column wrap;
+        gap: 5px;
+      }
+
+      .f-categories a{
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+    <section class="container">
+      <div class="footer">
+        <div>
+          <h2>Shop Now</h2>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, nemo vel odit dolorum animi quod.</p>
+          <button>Sign-up</button>
+        </div>
+        <div class="f-categories">
+          <h4>Categories</h4>
+          <div>
+            <a href="">Womens</a>
+            <a href="">Mens</a>
+            <a href="">Shoes</a>
+            <a href="">Bags</a>
+            <a href="">Dresses</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contacts</h4>
+          <a href="">
+            <img src="" alt="">
+          </a>
+          <a href="">
+            <img src="" alt="">
+          </a>
+          <a href="">
+            <img src="" alt="">
+          </a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
