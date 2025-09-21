@@ -14,7 +14,9 @@
         <td>09/06/25</td>
         <td>09/06/25</td>
         <td class="status invited text-center"><button onclick="updateProduct('{{prod.id}}')"
-                class="btn btn-outline-success" type="button">Update</button></td>
+                class="btn btn-outline-success" type="button">Update</button>
+              <p id="prod_image_{{prod.id}}" style="display: none;">{{prod.image_uri}}</p>
+              </td>
     </tr>
     {% endfor %}
 {% endif %}

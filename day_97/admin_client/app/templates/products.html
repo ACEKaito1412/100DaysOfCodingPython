@@ -43,7 +43,7 @@
         <div class="col-3 p-2 m-2">
           <div class="border d-flex row border p-3" style="border-radius: 20px">
             <p class="fw-bold f-3 p-2 border-bottom">Thumbnail</p>
-            <img src="" alt="" width="150" height="150" />
+            <img id="form_image" src="" alt="" width="150" height="150" />
             <p class="text-center fs-9 mt-2">Only *.png, *.jpg, *.jpeg</p>
           </div>
           <div
@@ -302,6 +302,7 @@
     ).textContent;
     var price = document.querySelector("#prod_price_" + id).textContent;
     var stock = document.querySelector("#prod_stock_" + id).textContent;
+    var img = document.querySelector("#prod_image_" + id).textContent;
 
     var form_delete_btn = document.querySelector("#form_delete_btn");
     var form_link = document.querySelector("#form_link");
@@ -314,12 +315,15 @@
     var form_description = document.querySelector("#form_description");
     var form_price = document.querySelector("#form_price");
     var form_stock = document.querySelector("#form_stock");
+    var form_image = document.querySelector("#form_image");
 
     form_id.value = id;
     form_name.value = name;
     form_description.value = description;
     form_price.value = price;
     form_stock.value = stock;
+
+    form_image.src = img;
 
     container.style.display = "flex";
 

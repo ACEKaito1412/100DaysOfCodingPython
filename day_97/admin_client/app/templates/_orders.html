@@ -1,0 +1,17 @@
+{% if not data : %}
+<tr>
+  <td colspan="9" class="text-center">No results found</td>
+</tr>
+{% else %}
+    {% for order in data :%}
+    <tr>
+        <td><input type="checkbox" /></td>
+        <td id="prod_id_{{order.id}}">{{order.id}}</td>
+        <td id="prod_name_{{order.id}}">{{order.user.name}}</td>
+        <td>09/06/25</td>
+        <td>09/06/25</td>
+        <td class="status invited text-center"><button onclick="updateProduct('{{order.id}}')"
+                class="btn btn-outline-success" type="button">Update</button></td>
+    </tr>
+    {% endfor %}
+{% endif %}

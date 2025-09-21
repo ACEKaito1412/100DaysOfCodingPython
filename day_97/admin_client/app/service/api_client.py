@@ -27,6 +27,27 @@ class BaseApiClient:
         except requests.exceptions.RequestException as req_err:
             return None
 
+
+class OrdersApi(BaseApiClient):
+    def get_all(self):
+        return self._request("GET", "/orders")
+    
+    def search(self, query):
+        return self._request("GET", f"/orders/search?q={query}")
+    
+    def get_by_id(self, orders_id):
+        return self._request("GET", f"/orders/{orders_id}")
+    
+    def create(self, data):
+        return self._request("POST", "/orders", json=data)
+    
+    def update(self, data, orders_id):
+        return self._request("PUT", f"/orders/{orders_id}",json=data)
+    
+    def delete(self, orders_id):
+        return self._request("DELETE", f"/orders/{orders_id}")
+    
+
         
     
 class ProductApi(BaseApiClient):
@@ -47,6 +68,8 @@ class ProductApi(BaseApiClient):
     
     def delete(self, product_id):
         return self._request("DELETE", f"/products/{product_id}")
+    
+
     
 class UserApi(BaseApiClient):
     def get_all(self):
