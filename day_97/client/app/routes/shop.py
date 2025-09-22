@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from app.service.api_client import ProductApi
+from app.util import login_required
 
 product_api = None
 

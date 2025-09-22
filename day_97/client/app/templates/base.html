@@ -89,6 +89,14 @@
         text-transform: uppercase;
         font-size: 20px;
       }
+
+      .nav-item{
+        text-decoration: none;
+        color: black;
+        font-weight: bolder;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+      }
     </style>
   </head>
   <body>
@@ -96,9 +104,10 @@
       <nav>
         <p id="brand">Shop</p>
         <div>
-          <button>Home</button>
-          <button>Login</button>
-          <button><img src="shopping-cart.jpg" alt=""></button>
+          <a href="{{url_for('shop.home')}}" class="nav-item">Home</a>
+          <a href="{{url_for('login.login')}}" class="nav-item">Login</a>
+          <a href="{{url_for('signup.home')}}" class="nav-item">Sign-up</a>
+          <button class="nav-item"><img src="shopping-cart.jpg" alt=""></button>
           <button id="user_image"></button>
         </div>
       </nav>
