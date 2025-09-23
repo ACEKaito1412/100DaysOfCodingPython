@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session
 from app.service.api_client import ProductApi
-from app.util import login_required
+from app.util import login_required, is_login
 
 product_api = None
 
@@ -13,6 +13,7 @@ def init_shop(product_client:ProductApi):
 
 @shop_bp.route("/", methods=["GET", "POST"])
 def home():
+
     products = product_api.get_all()
 
-    return render_template('main.html', data = products[:8])
+    return render_template('main.html', data = products[:8], is_login = is_login())

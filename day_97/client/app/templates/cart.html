@@ -1,127 +1,235 @@
-{% extends "base.html"%}
-{% block content %}
+{% extends "base.html"%} {% block content %}
+
 <style>
-    .shopping-cart {
-        display: flex;
-    }
+  .shopping-cart {
+    display: flex;
+  }
 
-    .shopping-cart> :first-child {
-        padding: 20px;
-        width: 600px;
-    }
+  .shopping-cart > :first-child {
+    padding: 20px;
+    width: 600px;
+  }
 
-    .cart-title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 20px;
-        border-bottom: 1px solid black;
-        margin-bottom: 10px;
-    }
+  .cart-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
 
-    .cart-table table {
-        width: 600px;
-    }
+  .cart-table {
+    width: 600px;
+    display: flex;
+    flex-flow: row wrap;
+  }
 
-    .cart-table th {
-        text-align: left;
-        padding-bottom: 20px;
-        color: gray;
-    }
+  .cart-table .t-item {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 20px;
+  }
 
-    .t-item> :first-child>div {
-        display: flex;
-        flex-flow: column wrap;
-        width: 350px;
-        gap: 10px;
-    }
+  .t-item > :first-child {
+    padding: 20px;
+  }
 
+  .t-item > :last-child > div {
+    padding: 20px;
+  }
 
+  .t-item > :first-child > div {
+    display: flex;
+    flex-flow: column wrap;
+    width: 350px;
+    gap: 10px;
+  }
 
-    .c-item-title {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
+  .t-details-container {
+    text-align: center;
+  }
 
-    .c-remove-btn {
-        text-decoration: none;
-    }
+  .c-item-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 
-    .c-quantity>* {
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bolder;
-        border-radius: 5px;
-        border: none;
-        background: none;
-        width: 40px;
-        height: 40px;
-    }
+  .c-remove-btn {
+    text-decoration: none;
+  }
 
-    .c-quantity>label {
-        border: 1px solid black;
-        border-radius: 5px;
-        font-size: 15px;
-    }
+  .c-quantity > * {
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    border-radius: 5px;
+    border: none;
+    background: none;
+    width: 40px;
+    height: 40px;
+  }
+
+  .c-quantity > label {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+
+  .t-item-title {
+    font-weight: bolder;
+    color: gray;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+  }
+
+  .t-details {
+    margin-top: 20px;
+  }
+
+  .shopping-cart > :last-child {
+    padding: 20px;
+    width: 200px;
+  }
+
+  .summary-title {
+    margin-bottom: 10px;
+  }
+</style>
+<style>
+  .order-summary {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .summary-item h3 {
+    color: gray;
+  }
+
+  .summary-item p {
+    margin-top: 10px;
+    color: gray;
+  }
+
+  .summary-totals{
+    display: flex;
+    flex-flow: column wrap;
+    gap: 20px;
+  }
+
+  #price-total {
+    color: black;
+    font-weight: bolder;
+  }
 </style>
 <section class="container">
-    <div class="shopping-cart">
-        <div>
-            <div class="cart-title">
-                <h1>Shopping Cart</h1>
-                <p>3 Items</p>
+  <div class="shopping-cart">
+    <div>
+      <div class="cart-title">
+        <h1>Shopping Cart</h1>
+      </div>
+      <div class="cart-table">
+        <div class="t-item">
+          <div>
+            <p class="t-item-title">Product Details</p>
+            <img src="" width="150" height="150" alt="" />
+            <div class="t-details">
+              <p class="c-item-title">Lorem ipsum dolor sit amet.</p>
+              <a class="c-remove-btn" href="">Remove</a>
             </div>
-            <div class="cart-table">
-                <table>
-                    <tr>
-                        <th>Product Details</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr class="t-item">
-                        <td>
-                            <div>
-                                <img src="" width="150" height="150" alt="">
-                                <div>
-                                    <p class="c-item-title">Lorem ipsum dolor sit amet.</p>
-                                    <a class="c-remove-btn" href="">Remove</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="c-quantity">
-                                <button>-</button>
-                                <label>2</label>
-                                <button>+</button>
-                            </div>
-                        </td>
-                        <td>PHP 200</td>
-                        <td>PHP 400</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div>
-            <h2>Order Summary</h2>
+          </div>
+          <div>
             <div>
-                <p>Items 3</p>
+              <p class="t-item-title">Quantity</p>
+              <div class="c-quantity t-details-container">
+                <button>-</button>
+                <label>2</label>
+                <button>+</button>
+              </div>
+            </div>
+            <div>
+              <p class="t-item-title">Price</p>
+              <div class="t-details-container">
+                <p>Php 200</p>
+              </div>
+            </div>
+            <div>
+              <p class="t-item-title">Total</p>
+              <div class="t-details-container">
                 <p>Php 400</p>
+              </div>
             </div>
-            <div>
-                <h3>
-                    Shipping
-                </h3>
-                <p>Php 70</p>
-            </div>
-            <div>
-                <h3>
-                    Promo Code
-                </h3>
-                <input type="text">
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+
+    <div class="order-summary">
+      <div class="summary-title">
+        <h2>Order Summary</h2>
+      </div>
+      <div class="summary-totals">
+        <div class="summary-item">
+          <h3>Total Items</h3>
+          <p>3</p>
+        </div>
+        <div class="summary-item">
+          <h3>Sub Total</h3>
+          <p>Php 400</p>
+        </div>
+        <div class="summary-item">
+          <h3>Shipping</h3>
+          <p>Php 70</p>
+        </div>
+        <div class="summary-item">
+          <h2>Total</h2>
+          <p id="price-total">Php 470</p>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 14px; margin-bottom: 5px">
+          We only accept PayPal payments
+        </p>
+        <div id="paypal-button-container"></div>
+        <p id="result-message"></p>
+      </div>
+    </div>
+  </div>
 </section>
+<!-- Initialize the JS-SDK -->
+<script>
+  paypal
+    .Buttons({
+      style: {
+        layout: "vertical",
+        color: "gold",
+        shape: "rect",
+        label: "paypal",
+      },
+      // Disable other funding sources like card buttons
+      fundingSource: paypal.FUNDING.PAYPAL,
+
+      createOrder: async () => {
+        const res = await fetch("/cart/create-order", { method: "POST" });
+        const data = await res.json();
+        return data.id; // order ID
+      },
+      onApprove: async (data) => {
+        const res = await fetch(`/cart/capture-order/${data.orderID}`, {
+          method: "POST",
+        });
+        const details = await res.json();
+        alert("✅ Payment completed by " + details.payer.name.given_name);
+      },
+      onCancel: () => {
+        alert("❌ Payment canceled");
+      },
+    })
+    .render("#paypal-button-container");
+</script>
 {% endblock %}

@@ -8,6 +8,8 @@ def create_app():
 
     app = Flask(__name__)
 
+    app.config.from_object("app.config.Config")
+
     from app.routes.shop import shop_bp, init_shop
     from app.routes.login import login_bp, init_login
     from app.routes.signup import signup_bp, init_signup

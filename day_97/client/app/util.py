@@ -11,3 +11,6 @@ def login_required(view_func):
         return view_func(*args, **kwargs)
 
     return wrapper
+
+def is_login()->bool:
+    return "token" in session

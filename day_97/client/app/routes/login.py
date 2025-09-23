@@ -23,13 +23,14 @@ def login():
             email = data["email"]
             password = data["password"]
 
-
             response_data = auth_client.login(email, password)
 
             session["token"] = response_data["token"]
 
+            print("Hello")
             return redirect(url_for("shop.home"))
         except Exception as e:
+            print(e)
             return redirect(url_for("login.login"))
             
     
