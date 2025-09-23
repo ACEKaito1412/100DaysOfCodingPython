@@ -134,12 +134,13 @@
         <h1>Shopping Cart</h1>
       </div>
       <div class="cart-table">
+        {% for item in data['items'] : %}
         <div class="t-item">
           <div>
             <p class="t-item-title">Product Details</p>
-            <img src="" width="150" height="150" alt="" />
+            <img src="{{item.image_uri}}" width="150" height="150" alt="" />
             <div class="t-details">
-              <p class="c-item-title">Lorem ipsum dolor sit amet.</p>
+              <p class="c-item-title">{{item.name}}</p>
               <a class="c-remove-btn" href="">Remove</a>
             </div>
           </div>
@@ -148,24 +149,25 @@
               <p class="t-item-title">Quantity</p>
               <div class="c-quantity t-details-container">
                 <button>-</button>
-                <label>2</label>
+                <label>{{item.quantity}}</label>
                 <button>+</button>
               </div>
             </div>
             <div>
               <p class="t-item-title">Price</p>
               <div class="t-details-container">
-                <p>Php 200</p>
+                <p>Php {{item.price}}</p>
               </div>
             </div>
             <div>
               <p class="t-item-title">Total</p>
               <div class="t-details-container">
-                <p>Php 400</p>
+                <p>Php {{item.total}}</p>
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
 

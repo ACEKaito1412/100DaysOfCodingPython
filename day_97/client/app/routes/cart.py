@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, jsonify
+from flask import Blueprint, render_template, current_app, jsonify, session
 from app.service.api_client import CartApi
 from app.util import login_required, is_login
 import base64, requests
@@ -24,8 +24,11 @@ def get_access_token():
 @cart_bp.route("/", methods=["GET", "POST"])
 @login_required
 def home():
+    cart_api.set_token(session["token"])
 
-    return render_template("cart.html", is_login = is_login(), client_id = current_app.config['PAYPAL_CLIENT'])
+    result = cart_api.get_by_user()
+    
+    return render_template("cart.html", data = result,  is_login = is_login(), client_id = current_app.config['PAYPAL_CLIENT'])
 
 
 @cart_bp.route("/create-order", methods=["POST"])

@@ -75,8 +75,8 @@ class CartApi(BaseApiClient):
     def search(self, query):
         return self._request("GET", f"/carts/search?q={query}")
     
-    def get_by_id(self, cart_id):
-        return self._request("GET", f"/carts/{cart_id}")
+    def get_by_user(self):
+        return self._request("GET", f"/carts")
     
     def create(self, data):
         return self._request("POST", "/carts", json=data)

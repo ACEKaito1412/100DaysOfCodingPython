@@ -23,7 +23,7 @@ def create_app():
     product_api = ProductApi(os.getenv("BASE_URI"))
     auth_api = AuthApi(os.getenv("BASE_URI"))
     user_api = UserApi(os.getenv("BASE_URI"))
-    cart_api = UserApi(os.getenv("BASE_URI"))
+    cart_api = CartApi(os.getenv("BASE_URI"))
 
     init_shop(product_api)
     init_login(auth_api)
