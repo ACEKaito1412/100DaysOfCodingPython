@@ -29,7 +29,5 @@ def login():
         current_app.config["SECRET_KEY"],
         algorithm="HS256"
     )
-
-    print(token)
     return jsonify({"token" : token}), 200
     

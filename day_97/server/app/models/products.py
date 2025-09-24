@@ -11,6 +11,6 @@ class Product(db.Model):
     price : Mapped[float] = mapped_column(Float, nullable=False)
     stock : Mapped[int] = mapped_column(Integer, nullable=False)
     
-    cart: Mapped["CartItem"] = relationship(   # one-to-one
+    cartitem: Mapped["CartItem"] = relationship(   # one-to-one
         "CartItem", back_populates="product", uselist=False, cascade="all, delete-orphan"
     )
