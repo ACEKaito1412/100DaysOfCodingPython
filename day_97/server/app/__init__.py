@@ -17,11 +17,13 @@ def create_app():
     from app.routes.products import products_bp
     from app.routes.users import users_bp
     from app.routes.auth import auth_bp
+    from app.routes.cart import cart_bp
 
     app.register_blueprint(orders_bp, url_prefix='/api/orders')
     app.register_blueprint(users_bp, url_prefix='/api/users')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(products_bp, url_prefix='/api/products')
+    app.register_blueprint(cart_bp, url_prefix='/api/carts')
 
     return app
 

@@ -22,7 +22,11 @@ class CartItem(db.Model):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     cart_id: Mapped[int] = mapped_column(ForeignKey("carts.id"), nullable=False)
-    product_id: Mapped[int] = mapped_column(Integer, unique=True, nullable=False)
+    product_id: Mapped[int] = mapped_column(ForeignKey("product.id"), unique=True, nullable=False)
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
 
     cart: Mapped["Cart"] = relationship("Cart", back_populates="items")
+    product : Mapped["Product"] = relationship(
+        "Product", back_populates="cart"
+    )
+
