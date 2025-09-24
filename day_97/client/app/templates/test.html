@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input[type="number"] {
+        position: relative;
+        padding-right: 30px; /* Space for custom buttons */
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        opacity: 0; /* Hide default spinners */
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+        <button onclick="increment()">▲</button>
+      <input type="number" id="custom-number" min="1" max="9" step="1" value="1"/>
+      <button onclick="decrement()">▼</button>
+    </div>
+
+    <script>
+      const input = document.getElementById("custom-number");
+      function increment() {
+        input.stepUp();
+      }
+      function decrement() {
+        input.stepDown();
+      }
+    </script>
+  </body>
+</html>

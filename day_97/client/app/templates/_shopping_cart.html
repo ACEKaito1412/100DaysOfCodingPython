@@ -1,0 +1,117 @@
+<script src="https://www.paypal.com/sdk/js?client-id={{ client_id }}&currency=USD"></script>
+<div id="shop-cart">
+  <div class="cart-title">
+    <h1>Shopping Cart</h1>
+  </div>
+  <div class="cart-table">
+    {% for item in data['items'] :%}
+    <div class="t-item">
+      <div>
+        <p class="t-item-title">Product Details</p>
+        <img src="{{item.image_uri}}" width="150" height="150" alt="" />
+        <div class="t-details">
+          <p class="c-item-title">{{item.name}}</p>
+          <a class="c-remove-btn" href="">Remove</a>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p class="t-item-title">Quantity</p>
+
+            <form
+              hx-get="{{url_for('cart.update_cart', item_id = item.id)}}"
+              hx-target="#shopping-cart"
+              hx-trigger="input delay:100ms"
+              class="c-quantity t-details-container"
+            >
+              <input
+                type="number"
+                id="quantity_{{item.id}}"
+                name="quantity"
+                min="1"
+                max="9"
+                step="1"
+                value="{{item.quantity}}"
+                style="color: black; padding: 5px; text-align: center;"
+              />
+            </form>
+        </div>
+        <div>
+          <p class="t-item-title">Price</p>
+          <div class="t-details-container">
+            <p>Php {{item.price}}</p>
+          </div>
+        </div>
+        <div>
+          <p class="t-item-title">Total</p>
+          <div class="t-details-container">
+            <p>Php {{item.total}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="order-summary">
+  <div class="summary-title">
+    <h2>Order Summary</h2>
+  </div>
+  <div class="summary-totals">
+    <div class="summary-item">
+      <h3>Total Items</h3>
+      <p>{{data.item_count}}</p>
+    </div>
+    <div class="summary-item">
+      <h3>Sub Total</h3>
+      <p>Php {{data.sub_total}}</p>
+    </div>
+    <div class="summary-item">
+      <h3>Shipping</h3>
+      <p>Php {{data.shipping}}</p>
+    </div>
+    <div class="summary-item">
+      <h2>Total</h2>
+      <p id="price-total">Php {{data.total}}</p>
+    </div>
+  </div>
+  <div>
+    <p style="font-size: 14px; margin-bottom: 5px">
+      We only accept PayPal payments
+    </p>
+    <div id="paypal-button-container"></div>
+    <p id="result-message"></p>
+  </div>
+</div>
+<!-- Initialize the JS-SDK -->
+<script>
+  paypal
+    .Buttons({
+      style: {
+        layout: "vertical",
+        color: "gold",
+        shape: "rect",
+        label: "paypal",
+      },
+      // Disable other funding sources like card buttons
+      fundingSource: paypal.FUNDING.PAYPAL,
+
+      createOrder: async () => {
+        const res = await fetch("/cart/create-order", { method: "POST" });
+        const data = await res.json();
+        return data.id; // order ID
+      },
+      onApprove: async (data) => {
+        const res = await fetch(`/cart/capture-order/${data.orderID}`, {
+          method: "POST",
+        });
+        const details = await res.json();
+        alert("✅ Payment completed by " + details.payer.name.given_name);
+      },
+      onCancel: () => {
+        alert("❌ Payment canceled");
+      },
+    })
+    .render("#paypal-button-container");
+</script>

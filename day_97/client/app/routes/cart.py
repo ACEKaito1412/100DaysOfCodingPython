@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, jsonify, session
+from flask import Blueprint, render_template, current_app, jsonify, session, request, redirect, url_for
 from app.service.api_client import CartApi
 from app.util import login_required, is_login
 import base64, requests
@@ -26,9 +26,24 @@ def get_access_token():
 def home():
     cart_api.set_token(session["token"])
 
-    result = cart_api.get_by_user()
-    
-    return render_template("cart.html", data = result,  is_login = is_login(), client_id = current_app.config['PAYPAL_CLIENT'])
+    result = cart_api.get_by_id()
+
+    return render_template("cart.html", data = result, is_login = is_login(), client_id = current_app.config['PAYPAL_CLIENT'])
+
+
+@cart_bp.route("/update/<int:item_id>", methods=["GET"])
+@login_required
+def update_cart(item_id):
+    cart_api.set_token(session["token"])
+
+    q = request.args.get("quantity", "").lower()
+
+    if q != "" or q != " ":  
+        res = cart_api.update(cart_id=item_id, data={"quantity" : q})
+
+    result = cart_api.get_by_id()
+
+    return render_template("_shopping_cart.html", data = result, client_id = current_app.config['PAYPAL_CLIENT'])
 
 
 @cart_bp.route("/create-order", methods=["POST"])

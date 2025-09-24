@@ -1,11 +1,11 @@
 {% extends "base.html"%} {% block content %}
 
 <style>
-  .shopping-cart {
+  #shopping-cart {
     display: flex;
   }
 
-  .shopping-cart > :first-child {
+  #shopping-cart > :first-child {
     padding: 20px;
     width: 600px;
   }
@@ -30,6 +30,10 @@
     padding: 10px;
     border: 1px solid gray;
     border-radius: 20px;
+  }
+
+  .t-item {
+    margin-bottom: 10px;
   }
 
   .t-item > :first-child {
@@ -105,6 +109,7 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
+    height: 450px;
     gap: 20px;
   }
   .summary-item h3 {
@@ -116,7 +121,7 @@
     color: gray;
   }
 
-  .summary-totals{
+  .summary-totals {
     display: flex;
     flex-flow: column wrap;
     gap: 20px;
@@ -126,112 +131,21 @@
     color: black;
     font-weight: bolder;
   }
+
+  input[type="number"] {
+    position: relative;
+    padding-right: 30px; /* Space for custom buttons */
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
 </style>
 <section class="container">
-  <div class="shopping-cart">
-    <div>
-      <div class="cart-title">
-        <h1>Shopping Cart</h1>
-      </div>
-      <div class="cart-table">
-        {% for item in data['items'] : %}
-        <div class="t-item">
-          <div>
-            <p class="t-item-title">Product Details</p>
-            <img src="{{item.image_uri}}" width="150" height="150" alt="" />
-            <div class="t-details">
-              <p class="c-item-title">{{item.name}}</p>
-              <a class="c-remove-btn" href="">Remove</a>
-            </div>
-          </div>
-          <div>
-            <div>
-              <p class="t-item-title">Quantity</p>
-              <div class="c-quantity t-details-container">
-                <button>-</button>
-                <label>{{item.quantity}}</label>
-                <button>+</button>
-              </div>
-            </div>
-            <div>
-              <p class="t-item-title">Price</p>
-              <div class="t-details-container">
-                <p>Php {{item.price}}</p>
-              </div>
-            </div>
-            <div>
-              <p class="t-item-title">Total</p>
-              <div class="t-details-container">
-                <p>Php {{item.total}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="order-summary">
-      <div class="summary-title">
-        <h2>Order Summary</h2>
-      </div>
-      <div class="summary-totals">
-        <div class="summary-item">
-          <h3>Total Items</h3>
-          <p>3</p>
-        </div>
-        <div class="summary-item">
-          <h3>Sub Total</h3>
-          <p>Php 400</p>
-        </div>
-        <div class="summary-item">
-          <h3>Shipping</h3>
-          <p>Php 70</p>
-        </div>
-        <div class="summary-item">
-          <h2>Total</h2>
-          <p id="price-total">Php 470</p>
-        </div>
-      </div>
-      <div>
-        <p style="font-size: 14px; margin-bottom: 5px">
-          We only accept PayPal payments
-        </p>
-        <div id="paypal-button-container"></div>
-        <p id="result-message"></p>
-      </div>
-    </div>
+  <div id="shopping-cart">
+    {% include "_shopping_cart.html"%}
   </div>
 </section>
-<!-- Initialize the JS-SDK -->
-<script>
-  paypal
-    .Buttons({
-      style: {
-        layout: "vertical",
-        color: "gold",
-        shape: "rect",
-        label: "paypal",
-      },
-      // Disable other funding sources like card buttons
-      fundingSource: paypal.FUNDING.PAYPAL,
 
-      createOrder: async () => {
-        const res = await fetch("/cart/create-order", { method: "POST" });
-        const data = await res.json();
-        return data.id; // order ID
-      },
-      onApprove: async (data) => {
-        const res = await fetch(`/cart/capture-order/${data.orderID}`, {
-          method: "POST",
-        });
-        const details = await res.json();
-        alert("✅ Payment completed by " + details.payer.name.given_name);
-      },
-      onCancel: () => {
-        alert("❌ Payment canceled");
-      },
-    })
-    .render("#paypal-button-container");
-</script>
 {% endblock %}

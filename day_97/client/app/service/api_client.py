@@ -67,22 +67,22 @@ class ProductApi(BaseApiClient):
         return self._request("DELETE", f"/products/{product_id}")
     
         
-    
+     
 class CartApi(BaseApiClient):
-    def get_all(self):
-        return self._request("GET", "/carts")
-    
-    def search(self, query):
-        return self._request("GET", f"/carts/search?q={query}")
-    
-    def get_by_user(self):
-        return self._request("GET", f"/carts")
+    def get_by_id(self):
+        return self._request("GET", f"/carts/")
     
     def create(self, data):
         return self._request("POST", "/carts", json=data)
     
+    def search(self, query):
+        return self._request("GET", f"/carts/search?q={query}")
+    
+    def add_item(self, data):
+        return self._request("PUT", f"/carts/", json=data)
+    
     def update(self, data, cart_id):
-        return self._request("PUT", f"/carts/{cart_id}",json=data)
+        return self._request("PUT", f"/carts/{cart_id}", json=data)
     
     def delete(self, cart_id):
         return self._request("DELETE", f"/carts/{cart_id}")
