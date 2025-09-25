@@ -92,7 +92,7 @@ def add_to_cart(current_user):
 # ADD ITEM TO CART
 @cart_bp.route("/<int:cartitem_id>", methods=["PUT"])
 @token_required
-def update_cart(current_user, cartitem_id):
+def update_cart_item(current_user, cartitem_id):
     data = request.get_json()
 
     if not data or "quantity" not in data:
@@ -101,7 +101,7 @@ def update_cart(current_user, cartitem_id):
     quantity = data["quantity"]
     
     cart_item = CartItem.query.filter_by(id=cartitem_id).first()
-
+    
     if quantity == 0:
         db.session.delete(cart_item)
     else:

@@ -1,7 +1,14 @@
 from functools import wraps
 from flask import request, jsonify, current_app
 from app.models.users import Users
-import jwt
+import jwt, base64, requests
+
+def get_access_token():
+    auth = base64.b64encode(f"{current_app.config['PAYPAL_CLIENT']}:{current_app.config['PAYPAL_SECRET']}".encode()).decode()
+    headers = {"Authorization": f"Basic {auth}"}
+    data = {"grant_type": "client_credentials"}
+    res = requests.post(f"{current_app.config['PAYPAL_URI']}/v1/oauth2/token", headers=headers, data=data)
+    return res.json()["access_token"]
 
 def token_required(f):
     @wraps(f)
