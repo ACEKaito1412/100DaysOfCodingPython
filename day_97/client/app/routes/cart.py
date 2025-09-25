@@ -1,25 +1,18 @@
 from flask import Blueprint, render_template, current_app, jsonify, session, request, redirect, url_for
-from app.service.api_client import CartApi
+from app.service.api_client import CartApi, PaymentApi
 from app.util import login_required, is_login
 import base64, requests
 
 cart_api = None
+payment_api = None
 
 cart_bp = Blueprint("cart", __name__)
 
-BASE_URL = "https://api-m.sandbox.paypal.com"
 
-def init_cart(cart_client:CartApi):
-    global cart_api
+def init_cart(cart_client:CartApi, payment_client:PaymentApi):
+    global cart_api, payment_api
     cart_api = cart_client
-
-
-def get_access_token():
-    auth = base64.b64encode(f"{current_app.config['PAYPAL_CLIENT']}:{current_app.config['PAYPAL_SECRET']}".encode()).decode()
-    headers = {"Authorization": f"Basic {auth}"}
-    data = {"grant_type": "client_credentials"}
-    res = requests.post(f"{BASE_URL}/v1/oauth2/token", headers=headers, data=data)
-    return res.json()["access_token"]
+    payment_api = payment_client
 
 @cart_bp.route("/", methods=["GET", "POST"])
 @login_required
@@ -45,27 +38,33 @@ def update_cart(item_id):
 
     return render_template("_shopping_cart.html", data = result, client_id = current_app.config['PAYPAL_CLIENT'])
 
-
-@cart_bp.route("/create-order", methods=["POST"])
+@cart_bp.route("/pay_cart/<int:cart_id>")
 @login_required
-def create_order():
-    access_token = get_access_token()
-    headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
+def pay_cart(cart_id):
+    payment_api.set_token(session["token"])
 
-    order_data = {
-        "intent": "CAPTURE",
-        "purchase_units": [{
-            "amount": {"currency_code": "USD", "value": "20.00"},
-            "description": "Custom T-shirt"
-        }]
+    data = {"return_url" : url_for('cart.success', _external = True), "cancel_url" : url_for('cart.cancelled', _external = True)}
+    result = payment_api.create_order(cart_id, data)
+    
+    return redirect(result["url"])
+
+
+@cart_bp.route("/success")
+@login_required
+def success():
+    payment_api.set_token(session['token'])
+    
+    data = {
+        "token" : request.args.get("token"),
+        "payer_id" : request.args.get("PayerID")
     }
 
-    res = requests.post(f"{BASE_URL}/v2/checkout/orders", headers=headers, json=order_data)
-    return jsonify(res.json())
+    result = payment_api.capture_order(data)
 
-@cart_bp.route("/capture-order/<order_id>", methods=["POST"])
-def capture_order(order_id):
-    access_token = get_access_token()
-    headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
-    res = requests.post(f"{BASE_URL}/v2/checkout/orders/{order_id}/capture", headers=headers)
-    return jsonify(res.json())
+    print(result)
+    return "success"
+
+@cart_bp.route("/cancelled")
+@login_required
+def cancelled():
+    return "cancelled"

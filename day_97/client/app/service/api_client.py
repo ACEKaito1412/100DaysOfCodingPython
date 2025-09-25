@@ -88,6 +88,12 @@ class CartApi(BaseApiClient):
         return self._request("DELETE", f"/carts/{cart_id}")
     
 
+class PaymentApi(BaseApiClient):
+    def create_order(self, cart_id, data):
+        return self._request("POST", f"/payment/create-order/{cart_id}", json=data)
+    
+    def capture_order(self, data):
+        return self._request("GET", f"/payment/capture-order", json=data)
     
 class UserApi(BaseApiClient):
     def get_all(self):

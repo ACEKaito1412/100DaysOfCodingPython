@@ -19,16 +19,18 @@ def create_app():
     from app.service.api_client import AuthApi
     from app.service.api_client import UserApi
     from app.service.api_client import CartApi
+    from app.service.api_client import PaymentApi
 
     product_api = ProductApi(os.getenv("BASE_URI"))
     auth_api = AuthApi(os.getenv("BASE_URI"))
     user_api = UserApi(os.getenv("BASE_URI"))
     cart_api = CartApi(os.getenv("BASE_URI"))
+    payment_api = PaymentApi(os.getenv("BASE_URI"))
 
     init_shop(product_api)
     init_login(auth_api)
     init_signup(user_api)
-    init_cart(cart_api)
+    init_cart(cart_api, payment_api)
 
     app.register_blueprint(shop_bp)
     app.register_blueprint(login_bp, url_prefix="/login/")

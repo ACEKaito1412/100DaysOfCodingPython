@@ -57,20 +57,6 @@
     color: black;
   }
 </style>
-<section class="container">
-  <div class="main-item">
-    <div class="main-img">
-      <img src="{{data[0].image_uri}}" alt="">
-    </div>
-    <div class="main-description">
-      <h2 class="m-item-title">{{data[0].name}}</h2>
-      <p class="m-item-description">{{data[0].description}}</p>
-      <p class="m-item-price">{{data[0].price}}</p>
-      <button class="m-btn-cart">Add to Cart</button>
-    </div>
-  </div>
-</section>
-
 <style>
   .items {
     display: flex;
@@ -128,9 +114,27 @@
   }
 </style>
 
+{% if not data :%}
+<section class="container" style="height: 400px;">
+  <h2>Shop server is not running</h2>
+</section>
+{% else :%}
+<section class="container">
+  <div class="main-item">
+    <div class="main-img">
+      <img src="{{data[0].image_uri}}" alt="">
+    </div>
+    <div class="main-description">
+      <h2 class="m-item-title">{{data[0].name}}</h2>
+      <p class="m-item-description">{{data[0].description}}</p>
+      <p class="m-item-price">{{data[0].price}}</p>
+      <button class="m-btn-cart">Add to Cart</button>
+    </div>
+  </div>
+</section>
 <section class="container">
   <div class="items">
-    {% for item in data[1:-1]%}
+    {% for item in data[1:8]%}
     <div class="item">
       <div class="item-image">
         <img src="{{item.image_uri}}" alt="" />
@@ -149,4 +153,5 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 {% endblock %}

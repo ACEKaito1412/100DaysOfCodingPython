@@ -15,5 +15,4 @@ def init_shop(product_client:ProductApi):
 def home():
 
     products = product_api.get_all()
-
-    return render_template('main.html', data = products[:8], is_login = is_login())
+    return render_template('main.html', data = products, is_login = is_login())

@@ -1,4 +1,3 @@
-<script src="https://www.paypal.com/sdk/js?client-id={{ client_id }}&currency=USD"></script>
 <div id="shop-cart">
   <div class="cart-title">
     <h1>Shopping Cart</h1>
@@ -80,38 +79,9 @@
     <p style="font-size: 14px; margin-bottom: 5px">
       We only accept PayPal payments
     </p>
-    <div id="paypal-button-container"></div>
+    <div id="paypal-button-container">
+      <a type="button" href="{{url_for('cart.pay_cart', cart_id = data.id)}}">Payment</a>
+    </div>
     <p id="result-message"></p>
   </div>
 </div>
-<!-- Initialize the JS-SDK -->
-<script>
-  paypal
-    .Buttons({
-      style: {
-        layout: "vertical",
-        color: "gold",
-        shape: "rect",
-        label: "paypal",
-      },
-      // Disable other funding sources like card buttons
-      fundingSource: paypal.FUNDING.PAYPAL,
-
-      createOrder: async () => {
-        const res = await fetch("/cart/create-order", { method: "POST" });
-        const data = await res.json();
-        return data.id; // order ID
-      },
-      onApprove: async (data) => {
-        const res = await fetch(`/cart/capture-order/${data.orderID}`, {
-          method: "POST",
-        });
-        const details = await res.json();
-        alert("✅ Payment completed by " + details.payer.name.given_name);
-      },
-      onCancel: () => {
-        alert("❌ Payment canceled");
-      },
-    })
-    .render("#paypal-button-container");
-</script>
