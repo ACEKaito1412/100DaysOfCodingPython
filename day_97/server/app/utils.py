@@ -19,15 +19,15 @@ def token_required(f):
             token = request.headers["Authorization"].split(" ")[1]
 
         if not token:
-            return jsonify({"error" : "Token not found"}), 401
+            return jsonify({"message" : "Token not found", "status" : 401}), 401
         
         try:
             data = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms="HS256")
             current_user = Users.query.get(data["user_id"])
         except jwt.ExpiredSignatureError:
-            return jsonify({"error" : "Token expired"}), 401
+            return jsonify({"message" : "Token expired", "status" : 402}), 402
         except Exception as e:
-            return jsonify({"error" : "Invalid token"}), 401
+            return jsonify({"message" : "Invalid token", "status" : 403}), 403
 
         return f(current_user, *args, **kwargs)
 

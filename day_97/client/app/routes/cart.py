@@ -21,7 +21,10 @@ def home():
 
     result = cart_api.get_by_id()
 
-    return render_template("cart.html", data = result, is_login = is_login(), client_id = current_app.config['PAYPAL_CLIENT'])
+    if "status" in result and result['status'] == 402:
+        return redirect(url_for('login.log_out'))
+    
+    return render_template("cart.html", data = result, is_login = is_login())
 
 
 @cart_bp.route("/update/<int:item_id>", methods=["GET"])
@@ -36,7 +39,7 @@ def update_cart(item_id):
 
     result = cart_api.get_by_id()
 
-    return render_template("_shopping_cart.html", data = result, client_id = current_app.config['PAYPAL_CLIENT'])
+    return render_template("_shopping_cart.html", data = result)
 
 @cart_bp.route("/pay_cart/<int:cart_id>")
 @login_required

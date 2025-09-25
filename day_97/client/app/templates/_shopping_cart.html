@@ -1,3 +1,11 @@
+
+{% if not data :%}
+
+<div>
+  <p>No cart data</p>
+</div>
+
+{% else %}
 <div id="shop-cart">
   <div class="cart-title">
     <h1>Shopping Cart</h1>
@@ -85,3 +93,5 @@
     <p id="result-message"></p>
   </div>
 </div>
+
+{% endif %}

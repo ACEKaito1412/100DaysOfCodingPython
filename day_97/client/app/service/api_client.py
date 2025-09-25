@@ -1,5 +1,5 @@
 import requests
-from flask import jsonify
+from flask import jsonify, redirect, url_for
 
 class BaseApiClient:
     def __init__(self, base_url, token=None):
@@ -21,7 +21,10 @@ class BaseApiClient:
         try:
             url = f"{self.base_url}{endpoint}"
             response = requests.request(method, url, headers=self._headers(), **kwargs)
-            return response.json()
+
+            data = response.json()
+            return data
+
         except requests.exceptions.HTTPError as http_err:
             return None
         except requests.exceptions.RequestException as req_err:
