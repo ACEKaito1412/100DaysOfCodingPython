@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, current_app, jsonify, session, req
 from app.utils import token_required, get_access_token
 import requests
 from app.models.carts import Cart
+from app import db
+from app.routes.cart import CartStatus
 
 payment_bp = Blueprint("payment", __name__)
 
@@ -50,7 +52,7 @@ def create_order(current_user, cart_id):
         "Authorization": f"Bearer {access_token}"
     }
 
-    cart = Cart.query.filter_by(id = cart_id).one_or_none()
+    cart = Cart.query.filter_by(id = cart_id, status = CartStatus.ACTIVE).one_or_none()
 
     purchase_units = create_purchase_unit(cart, 70)
 
@@ -92,6 +94,7 @@ def capture_order():
     data = request.get_json()
 
     order_id = data['token']
+    cart_id = data['cart_id']
 
     access_token = get_access_token()
     headers = {
@@ -103,6 +106,8 @@ def capture_order():
     capture = response.json()
 
     if capture.get("status") == "COMPLETED":
+        cart = Cart.query.filter_by(id=cart_id).update({"status" : CartStatus.PAID, 'token_id' : order_id})
+        db.session.commit()
         return jsonify({"message" : "Payment succesfull"})
     else:
         return jsonify({"message" : "Payment failed"})

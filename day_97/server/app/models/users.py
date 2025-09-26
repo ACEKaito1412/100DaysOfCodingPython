@@ -24,6 +24,6 @@ class Users(db.Model):
         "Orders", back_populates="user", cascade="all, delete-orphan"
     )
 
-    cart: Mapped["Cart"] = relationship(   # one-to-one
+    cart: Mapped[list["Orders"]] = relationship( 
         "Cart", back_populates="user", uselist=False, cascade="all, delete-orphan"
     )

@@ -6,8 +6,9 @@ class Cart(db.Model):
     __tablename__ = "carts"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False, unique=True)
-    # status: Mapped[str] = mapped_column(String(20), nullable=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    status: Mapped[str] = mapped_column(String(20), nullable=False)
+    token_id : Mapped[str] = mapped_column(String, nullable=True)
 
     items: Mapped[list["CartItem"]] = relationship(
         "CartItem", back_populates="cart", cascade="all, delete-orphan"

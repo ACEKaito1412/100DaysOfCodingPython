@@ -8,6 +8,6 @@ class Config:
     SQLALCHEMY_DATABASE_URI = "sqlite:///shop.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     DEBUG = True
-    PAYPAL_CLIENT = os.getenv('')
-    PAYPAL_SECRET = os.getenv('')
+    PAYPAL_CLIENT = os.getenv('PAYPAL_CLIENT')
+    PAYPAL_SECRET = os.getenv('PAYPAL_SECRET')
     PAYPAL_URI = "https://api-m.sandbox.paypal.com"
