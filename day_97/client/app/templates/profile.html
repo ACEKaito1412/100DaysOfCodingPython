@@ -1,0 +1,77 @@
+{% extends "base.html"%} {% block content %}
+<style>
+  /* From Uiverse.io by 1osm */
+  .card {
+    background: rgba(38, 38, 38, 0.221);
+    box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.333);
+    display: flex;
+    flex-flow: column;
+    height: 350px;
+  }
+
+  .imge {
+    width: 470px;
+    height: 70px;
+    background-color: #e8dfdf;
+  }
+
+  .imge .Usericon {
+    background-color: #414141;
+    transform: translateX(10px) translateY(10px);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+  }
+
+  .imge .UserName {
+    background-color: #414141;
+    width: 60px;
+    height: 15px;
+    border-width: 10px;
+    border-radius: 5px;
+    border-color: #262626;
+    color: #262626;
+    font-size: 15px;
+    font-weight: bold;
+    transform: translateX(70px) translateY(-35px);
+  }
+
+  .imge .Id {
+    background-color: #414141;
+    width: 100px;
+    height: 15px;
+    border-width: 10px;
+    border-radius: 5px;
+    border-color: #262626;
+    color: #262626;
+    font-size: 15px;
+    font-weight: bold;
+    transform: translateX(70px) translateY(-25px);
+  }
+
+  .Description {
+    border-color: #141414;
+    background-color: #414141;
+    transform: translate(5px, 6px);
+    width: 440px;
+    height: 230px;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+</style>
+<section class="container">
+  <!-- From Uiverse.io by 1osm -->
+  <div class="card">
+    <div class="imge">
+      <div class="Usericon"></div>
+      <p class="UserName"></p>
+      <p class="Id"></p>
+    </div>
+    <div class="Description">
+        <h3>Order List</h3>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

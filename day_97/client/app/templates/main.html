@@ -47,8 +47,9 @@
     color: white;
     width: 150px;
     padding: 10px 20px 10px 20px;
-    margin-top: 20px;
+    margin-top: 40px;
     font-weight: bolder;
+    text-decoration: none;
   }
 
   .m-btn-cart:hover {
@@ -111,6 +112,7 @@
     background-color: black;
     color: white;
     text-transform: uppercase;
+    text-decoration: none;
   }
 </style>
 
@@ -128,7 +130,8 @@
       <h2 class="m-item-title">{{data[0].name}}</h2>
       <p class="m-item-description">{{data[0].description}}</p>
       <p class="m-item-price">{{data[0].price}}</p>
-      <button class="m-btn-cart">Add to Cart</button>
+      <br>
+      <a type="button" class="m-btn-cart" href="{{url_for('cart.add_item_cart', product_id = data[0].id)}}">Add to Cart</a>
     </div>
   </div>
 </section>
@@ -147,7 +150,8 @@
       </div>
       <div>
         <p class="item-price">{{item.price}}</p>
-        <button class="add-btn">Add to Cart</button>
+        <br>
+        <a type="button" class="add-btn" href="{{url_for('cart.add_item_cart', product_id = item.id)}}">Add to Cart</a>
       </div>
     </div>
     {% endfor %}

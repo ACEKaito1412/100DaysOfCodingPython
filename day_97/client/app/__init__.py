@@ -14,6 +14,7 @@ def create_app():
     from app.routes.login import login_bp, init_login
     from app.routes.signup import signup_bp, init_signup
     from app.routes.cart import cart_bp, init_cart
+    from app.routes.profile import profile_bp
 
     from app.service.api_client import ProductApi
     from app.service.api_client import AuthApi
@@ -36,6 +37,7 @@ def create_app():
     app.register_blueprint(login_bp, url_prefix="/login/")
     app.register_blueprint(signup_bp, url_prefix="/signup/")
     app.register_blueprint(cart_bp, url_prefix="/cart/")
+    app.register_blueprint(profile_bp, url_prefix="/profile/")
 
     return app
 
