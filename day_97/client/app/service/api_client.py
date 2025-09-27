@@ -105,6 +105,9 @@ class UserApi(BaseApiClient):
     def search(self, query):
         return self._request("GET", f"/users/search?q={query}")
     
+    def get_by_token(self):
+        return self._request("GET", f"/users/get_by_session")
+    
     def get_by_id(self, user_id):
         return self._request("GET", f"/users/{user_id}")
     

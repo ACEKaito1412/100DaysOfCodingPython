@@ -111,9 +111,10 @@
           {% if not is_login :%}
           <a href="{{url_for('login.login')}}" class="nav-item">Login</a>
           <a href="{{url_for('signup.home')}}" class="nav-item">Sign-up</a>
-          {% endif %}
+          {% else %}
           <a href="{{url_for('cart.home')}}" class="nav-item"><img src="/static/shopping-cart.png" alt=""></a>
-          <a href="" id="user_image"><img src="/static/user.svg" alt="" srcset=""></a>
+          <a href="{{url_for('profile.home')}}" id="user_image"><img src="/static/user.svg" alt="" srcset=""></a>
+          {% endif %}
         </div>
       </nav>
       <div class="categories">

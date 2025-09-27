@@ -21,10 +21,11 @@ def home():
 
     result = cart_api.get_by_id()
 
-    if "status" in result and result['status'] == 402:
-        return redirect(url_for('login.log_out'))
-    elif "status" in result and result['status'] == 404:
-        return render_template("cart.html", data = [], is_login = is_login())
+    if "status" in result:
+        if result['status'] == 402 or result['status'] == 403:
+            return redirect(url_for('login.log_out'))
+        elif result['status'] == 404:
+            return render_template("cart.html", data = [], is_login = is_login())
     else:
         return render_template("cart.html", data = result, is_login = is_login())
 
