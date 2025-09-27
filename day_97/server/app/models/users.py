@@ -17,8 +17,14 @@ class Users(db.Model):
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(150), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(200), nullable=False)
-
     role: Mapped[RoleEnum] = mapped_column(Enum(RoleEnum), default=RoleEnum.USER, nullable=False)
+    phone: Mapped[str] = mapped_column(String(100), nullable=True) 
+    street: Mapped[str] = mapped_column(String(100), nullable=True) 
+    city: Mapped[str] = mapped_column(String(100), nullable=True) 
+    province: Mapped[str] = mapped_column(String(100), nullable=True) 
+    postal_code: Mapped[str] = mapped_column(String(100), nullable=True) 
+    country: Mapped[str] = mapped_column(String(100), default='Philippines', nullable=True) 
+
 
     orders: Mapped[list["Orders"]] = relationship(
         "Orders", back_populates="user", cascade="all, delete-orphan"

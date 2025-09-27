@@ -21,9 +21,27 @@ def get_users():
         for user in results
     ]), 200
 
+# GET by ID
+@users_bp.route("/get_by_session/", methods=["GET"])
+@token_required
+def get_user_by_token(current_user):
+    result = Users.query.get_or_404(current_user.id)
+    return jsonify({
+        "id" : result.id,
+        "name" : result.name,
+        "email" : result.email,
+        "role" : result.role.value,
+        "phone" : result.phone,
+        "street" : result.street,
+        "city" :  result.citty,
+        "province" : result.province,
+        "postal_code" : result.postal_code,
+        "country" : result.country
+    }), 200
 
 # GET by ID
 @users_bp.route("/<int:user_id>", methods=["GET"])
+@token_required
 def get_user(user_id):
     result = Users.query.get_or_404(user_id)
 
@@ -31,7 +49,13 @@ def get_user(user_id):
         "id" : result.id,
         "name" : result.name,
         "email" : result.email,
-        "role" : result.role.value
+        "role" : result.role.value,
+        "phone" : result.phone,
+        "street" : result.street,
+        "city" :  result.citty,
+        "province" : result.province,
+        "postal_code" : result.postal_code,
+        "country" : result.country
     }), 200
 
 
@@ -81,16 +105,31 @@ def update_user(current_user, user_id):
     try:
         data = request.get_json()
 
-        print(data)
-
         if not data:
             return jsonify({"message" : "No data found" }), 400
-        elif user.name == data["name"] and user.role == data["form_role"]:
-            return jsonify({"message" : "No changes found" }), 400
-        else:
+
+        if "name" in data:
             user.name = data["name"]
+
+        if "form_role" in data:
             user.role = data["form_role"]
-            db.session.commit()
+
+        if "phone" in data:
+            user.phone = data["phone"]
+        
+        if "street" in data:
+            user.street = data["street"]
+
+        if "city" in data:
+            user.city = data["city"]
+
+        if "province" in data:
+            user.province = data["province"]
+
+        if "postal_code" in data:
+            user.postal_code = data["postal_code"]
+
+        db.session.commit()
 
     except Exception as e:
         return jsonify({"error" :f"{e}"}), 400
