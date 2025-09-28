@@ -43,7 +43,7 @@
     margin-bottom: 10px;
   }
 
-  .add-block form{
+  .add-block form , .form{
     display: flex;
     flex-flow: column;
     gap: 10px;
@@ -67,41 +67,83 @@
     padding: 10px;
   }
 
-  .user-orders div{
+  .user-orders > div{
     height: 400px;
     border-radius: 10px;
-    border: 1px solid black;
     margin-top: 20px;
+    background: gray;
+    border-radius: 10px;
+  }
+
+  .form-item{
+    padding: 15px;
+    background-color: gray;
   }
 </style>
 <section class="container">
   <div class="user-block">
+    {% if not user : %}
     <div class="user-info">
       <div>
         <img src="" alt="">
         <div>
-          <p>Juan Dela Cruz</p>
-          <p>juan@gmail.com</p>
+          <p style="width: 150px; padding: 3px; background-color: gray; border-radius:5px; margin-bottom: 5px;"></p>
+          <p style="width: 180px; padding: 3px; background-color: gray; border-radius:5px;"></p>
         </div>
       </div>
       <div class="add-block">
         <h2>Delivery Address</h2>
-        <form method="POST" action="{{url_for('profile.update_profile')}}">
+        <div class="form"  action="">
           <label for="phone" class="form-label">Phone Number</label>
-          <input type="tel" class="form-control" id="phone" name="phone" required>
+          
+          <div class="form-item"></div>
+
+          <label for="street" class="form-label">Street Address</label>
+          <div class="form-item"></div>
+
+          <label for="city" class="form-label">City</label>
+          <div class="form-item"></div>
+
+          <label for="province" class="form-label">Province</label>
+          <div class="form-item"></div>
+
+          <label for="postalCode" class="form-label">Postal Code</label>
+          <div class="form-item"></div>
+
+          <label for="country" class="form-label">Country</label>
+          <div class="form-item"></div>
+
+          <button type="submit" class="btn btn-primary w-100" disabled>Save Delivery Address</button>
+        </div>
+      </div>
+    </div>
+    {% else : %}s
+    <div class="user-info">
+      <div>
+        <img src="" alt="">
+        <div>
+          <p>{{user.name}}</p>
+          <p style="font-size: smaller;">{{user.email}}</p>
+        </div>
+      </div>
+      <div class="add-block">
+        <h2>Delivery Address</h2>
+        <form method="POST" action="{{url_for('profile.update_profile', user_id=user.id)}}">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="phone" name="phone" required value="{{user.phone}}">
 
           <label for="street" class="form-label">Street Address</label>
           <input type="text" class="form-control" id="street" name="street" placeholder="House number and street name"
-            required>
+            required value="{{user.street}}">
 
           <label for="city" class="form-label">City</label>
-          <input type="text" class="form-control" id="city" name="city" required>
+          <input type="text" class="form-control" id="city" name="city" required value="{{user.city}}">
 
           <label for="province" class="form-label">Province</label>
-          <input type="text" class="form-control" id="province" name="province" required>
+          <input type="text" class="form-control" id="province" name="province" required value="{{user.province}}">
 
           <label for="postalCode" class="form-label">Postal Code</label>
-          <input type="text" class="form-control" id="postalCode" name="postal_code" required>
+          <input type="text" class="form-control" id="postalCode" name="postal_code" required value="{{user.postal_code}}">
 
           <label for="country" class="form-label">Country</label>
           <input type="text" class="form-control" id="country" name="country" value="Philippines" required >
@@ -109,10 +151,36 @@
         </form>
       </div>
     </div>
+    {% endif %}
     <div class="user-orders">
       <h2>ORDERS</h2>
       <div>
-
+        {% if not orders: %} 
+        <div>
+          <p>No orders yet</p>
+        </div>
+        {% else %}
+        <style>
+          .order-item{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex-flow: row wrap;
+            font-size: 15px;
+            gap: 12px;
+            font-weight: bold;
+          }
+        </style>
+        <div class="orders">
+          {% for item_ in orders: %}
+          <div class="order-item">
+            <p>ID : {{item_.id}}</p>
+            <p>Item size : {{item_.item_count}}</p>
+            <p>Total: Php {{item_.total}}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
