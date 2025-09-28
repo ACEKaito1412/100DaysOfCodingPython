@@ -72,8 +72,8 @@ class ProductApi(BaseApiClient):
         
      
 class CartApi(BaseApiClient):
-    def get_by_id(self):
-        return self._request("GET", f"/carts/")
+    def get_by_id(self, status):
+        return self._request("GET", f"/carts/{status}")
     
     def create(self, data):
         return self._request("POST", "/carts", json=data)

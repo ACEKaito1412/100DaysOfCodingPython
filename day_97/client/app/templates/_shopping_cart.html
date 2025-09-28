@@ -11,7 +11,7 @@
     <h1>Shopping Cart</h1>
   </div>
   <div class="cart-table">
-    {% for item in data['items'] :%}
+    {% for item in data[0]['items'] :%}
     <div class="t-item">
       <div>
         <p class="t-item-title">Product Details</p>
@@ -68,19 +68,19 @@
   <div class="summary-totals">
     <div class="summary-item">
       <h3>Total Items</h3>
-      <p>{{data.item_count}}</p>
+      <p>{{data[0].item_count}}</p>
     </div>
     <div class="summary-item">
       <h3>Sub Total</h3>
-      <p>Php {{data.sub_total}}</p>
+      <p>Php {{data[0].sub_total}}</p>
     </div>
     <div class="summary-item">
       <h3>Shipping</h3>
-      <p>Php {{data.shipping}}</p>
+      <p>Php {{data[0].shipping}}</p>
     </div>
     <div class="summary-item">
       <h2>Total</h2>
-      <p id="price-total">Php {{data.total}}</p>
+      <p id="price-total">Php {{data[0].total}}</p>
     </div>
   </div>
   <div>
@@ -88,7 +88,7 @@
       We only accept PayPal payments
     </p>
     <div id="paypal-button-container">
-      <a type="button" href="{{url_for('cart.pay_cart', cart_id = data.id)}}">Payment</a>
+      <a type="button" href="{{url_for('cart.pay_cart', cart_id = data[0].id)}}">Payment</a>
     </div>
     <p id="result-message"></p>
   </div>

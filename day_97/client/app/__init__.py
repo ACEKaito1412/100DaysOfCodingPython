@@ -32,7 +32,7 @@ def create_app():
     init_login(auth_api)
     init_signup(user_api)
     init_cart(cart_api, payment_api)
-    init_profile(user_api)
+    init_profile(user_api, cart_api)
 
     app.register_blueprint(shop_bp)
     app.register_blueprint(login_bp, url_prefix="/login/")

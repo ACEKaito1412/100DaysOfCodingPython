@@ -19,7 +19,7 @@ def init_cart(cart_client:CartApi, payment_client:PaymentApi):
 def home():
     cart_api.set_token(session["token"])
 
-    result = cart_api.get_by_id()
+    result = cart_api.get_by_id('active')
 
     if "status" in result:
         if result['status'] == 402 or result['status'] == 403:
