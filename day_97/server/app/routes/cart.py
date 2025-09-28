@@ -12,42 +12,44 @@ class CartStatus():
 
 
 # GET Cart BY user Auth
-@cart_bp.route("/", methods=["GET"])
+@cart_bp.route("/<string:status>", methods=["GET"])
 @token_required
-def get_cart(current_user):
+def get_cart(current_user, status):
+    carts = Cart.query.filter_by(user_id=current_user.id, status=status).all()
 
-    cart = Cart.query.filter_by(user_id = current_user.id, status = CartStatus.ACTIVE).one_or_none()
+    if not carts:
+        return jsonify({"message": "no current active cart", "status": 404}), 404
 
-    if not cart:
-        return jsonify({"message" : "no current active cart", "status" : 404})
+    response = []
+    for cart in carts:
+        sub_total = sum(item.quantity * item.product.price for item in cart.items)
+        item_count = len(cart.items)
+        shipping = 70
+        total = round(sub_total + shipping, 2)
 
-    sub_total = 0
-    item_count = len(cart.items)
-    shipping = 70
+        response.append({
+            "id": cart.id,
+            "user_id": cart.user_id,
+            "item_count": item_count,
+            "sub_total": sub_total,
+            "shipping": shipping,
+            "total": total,
+            "status": cart.status,
+            "items": [
+                {
+                    "id": i.id,
+                    "product_id": i.product_id,
+                    "product_name": i.product.name,
+                    "image_uri": i.product.image_uri,
+                    "quantity": i.quantity,
+                    "price": i.product.price,
+                    "total": round(i.product.price * i.quantity, 2),
+                }
+                for i in cart.items
+            ],
+        })
 
-    for item in cart.items:
-        sub_total += item.quantity * item.product.price
-
-    return jsonify({
-        "id" : cart.id,
-        "user_id" : cart.user_id,
-        "item_count" : item_count,
-        "sub_total" : sub_total,
-        "shipping" : shipping,
-        "total" : round(shipping + sub_total,2),
-        "items" : [
-            {
-                "id" : i.id,
-                "product_id" : i.product_id, 
-                "product_name" : i.product.name,
-                "image_uri" : i.product.image_uri,
-                "quantity" : i.quantity,
-                "price" : i.product.price,
-                "total" : round(i.product.price * i.quantity, 2)
-            }
-            for i in cart.items
-            ]
-        }), 200
+    return jsonify(response), 200
 
 
 # CREATE NEW cart

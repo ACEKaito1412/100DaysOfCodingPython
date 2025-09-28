@@ -31,12 +31,12 @@ def get_user_by_token(current_user):
         "name" : result.name,
         "email" : result.email,
         "role" : result.role.value,
-        "phone" : result.phone,
-        "street" : result.street,
-        "city" :  result.citty,
-        "province" : result.province,
-        "postal_code" : result.postal_code,
-        "country" : result.country
+        "phone" : '' if result.phone is None else result.phone,
+        "street" : '' if result.street is None else result.street,
+        "city" :  '' if result.city is None else result.city,
+        "province" : '' if result.province is None else result.province,
+        "postal_code" : '' if result.postal_code is None else result.postal_code,
+        "country" : '' if result.country is None else result.country
     }), 200
 
 # GET by ID
