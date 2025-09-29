@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models.orders import OrderItem, Orders
+from app.models.carts import Cart   
 from app.utils import token_required
 from app import db
 
@@ -8,19 +9,43 @@ orders_bp = Blueprint('orders', __name__)
 # GET ALL ORDERS
 @orders_bp.route('/', methods=["GET"])
 def get_orders():
-    orders = Orders.query.all()
+    carts = Cart.query.filter_by(status='paid').all()
 
-    return jsonify([
-        {
-            "id" : o.id,
-            "user_id" : o.user_id,
-            "items" : [
-                {"product_id" : i.product_id, "quantity" : i.quantity}
-                for i in o.items
-            ]
-        }
-        for o in orders
-    ]), 200
+    if not carts:
+        return jsonify({"message": "no orders yet", "status": 404}), 404
+
+    response = []
+    for cart in carts:
+        sub_total = sum(item.quantity * item.product.price for item in cart.items)
+        item_count = len(cart.items)
+        shipping = 70
+        total = round(sub_total + shipping, 2)
+
+        response.append({
+            "id": cart.id,
+            "user_name": cart.user.name,
+            "item_count": item_count,
+            "sub_total": sub_total,
+            "shipping": shipping,
+            "total": total,
+            "status": cart.status,
+            "token_id" : cart.token_id, 
+            "items": [
+                {
+                    "id": i.id,
+                    "product_id": i.product_id,
+                    "product_name": i.product.name,
+                    "image_uri": i.product.image_uri,
+                    "quantity": i.quantity,
+                    "price": i.product.price,
+                    "total": round(i.product.price * i.quantity, 2),
+                }
+                for i in cart.items
+            ],
+        })
+
+    return jsonify(response), 200
+
 
 # GET ORDER BY ID
 @orders_bp.route("/<int:order_id>", methods=["GET"])
