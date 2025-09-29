@@ -1,5 +1,5 @@
 import requests
-from flask import jsonify
+from flask import jsonify, redirect, url_for
 
 class BaseApiClient:
     def __init__(self, base_url, token=None):
@@ -21,7 +21,10 @@ class BaseApiClient:
         try:
             url = f"{self.base_url}{endpoint}"
             response = requests.request(method, url, headers=self._headers(), **kwargs)
-            return response.json()
+
+            data = response.json()
+            return data
+
         except requests.exceptions.HTTPError as http_err:
             return None
         except requests.exceptions.RequestException as req_err:
@@ -47,9 +50,6 @@ class OrdersApi(BaseApiClient):
     def delete(self, orders_id):
         return self._request("DELETE", f"/orders/{orders_id}")
     
-
-        
-    
 class ProductApi(BaseApiClient):
     def get_all(self):
         return self._request("GET", "/products")
@@ -69,7 +69,34 @@ class ProductApi(BaseApiClient):
     def delete(self, product_id):
         return self._request("DELETE", f"/products/{product_id}")
     
+        
+     
+class CartApi(BaseApiClient):
+    def get_by_id(self, status):
+        return self._request("GET", f"/carts/{status}")
+    
+    def create(self, data):
+        return self._request("POST", "/carts", json=data)
+    
+    def search(self, query):
+        return self._request("GET", f"/carts/search?q={query}")
+    
+    def add_item(self, data):
+        return self._request("PUT", f"/carts/", json=data)
+    
+    def update(self, data, cart_id):
+        return self._request("PUT", f"/carts/{cart_id}", json=data)
+    
+    def delete(self, cart_id):
+        return self._request("DELETE", f"/carts/{cart_id}")
+    
 
+class PaymentApi(BaseApiClient):
+    def create_order(self, cart_id, data):
+        return self._request("POST", f"/payment/create-order/{cart_id}", json=data)
+    
+    def capture_order(self, data):
+        return self._request("GET", f"/payment/capture-order", json=data)
     
 class UserApi(BaseApiClient):
     def get_all(self):
@@ -77,6 +104,9 @@ class UserApi(BaseApiClient):
     
     def search(self, query):
         return self._request("GET", f"/users/search?q={query}")
+    
+    def get_by_token(self):
+        return self._request("GET", f"/users/get_by_session")
     
     def get_by_id(self, user_id):
         return self._request("GET", f"/users/{user_id}")

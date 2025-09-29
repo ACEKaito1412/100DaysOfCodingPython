@@ -13,5 +13,5 @@ def init_order(orders_client:OrdersApi):
 @orders_bp.route("/", methods=["GET", "POST"])
 def home():
     orders = orders_api.get_all()    
-
+    
     return render_template("orders.html", data = orders, navigation = True)  
