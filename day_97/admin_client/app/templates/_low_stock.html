@@ -1,0 +1,14 @@
+{% if not data : %}
+<tr>
+  <td colspan="9" class="text-center">No results found</td>
+</tr>
+{% else %}
+    {% for prod in data['lowest_stock'] :%}
+    <tr>
+        <td id="prod_id_{{prod.id}}">{{prod.id}}</td>
+        <td id="prod_name_{{prod.id}}">{{prod.name}}</td>
+        <td id="prod_price_{{prod.id}}">{{prod.price}}</td>
+        <td id="prod_stock_{{prod.id}}">{{prod.stock}}</td>
+    </tr>
+    {% endfor %}
+{% endif %}
